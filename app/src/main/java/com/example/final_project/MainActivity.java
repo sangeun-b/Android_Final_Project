@@ -13,28 +13,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button Guardianb= (Button)findViewById(R.id.b1);
-        Button NasaDayb= (Button)findViewById(R.id.b2);
-        Button NasaEarthb= (Button)findViewById(R.id.b3);
-        Button BBCb= (Button)findViewById(R.id.b4);
+        Button Guardianb= findViewById(R.id.b1);
+        Button NasaDayb= findViewById(R.id.b2);
+        Button NasaEarthb= findViewById(R.id.b3);
+        Button BBCb= findViewById(R.id.b4);
 
         Intent goToGuardian= new Intent(MainActivity.this, GuardianActivity.class);
         Guardianb.setOnClickListener(click->startActivity(goToGuardian));
 
-        Intent goToNasaDayb= new Intent(MainActivity.this, NasaDayActivity.class);
-        Guardianb.setOnClickListener(click->startActivity(goToNasaDayb));
+        Intent goToNasaDay= new Intent(MainActivity.this, NasaDayActivity.class);
+        NasaDayb.setOnClickListener(click->startActivity(goToNasaDay));
 
         Intent goToNasaEarth= new Intent(MainActivity.this , NasaEarthActivity.class);
-        Guardianb.setOnClickListener(click->startActivity(goToNasaEarth));
+        NasaEarthb.setOnClickListener(click->startActivity(goToNasaEarth));
 
         Intent goToBBC= new Intent(MainActivity.this, BBCActivity.class);
-        Guardianb.setOnClickListener(click->startActivity(goToBBC));
+        BBCb.setOnClickListener(click->startActivity(goToBBC));
 
 
-
-
-
-
+        
 
     }
 }

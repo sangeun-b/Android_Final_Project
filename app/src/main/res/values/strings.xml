@@ -13,5 +13,6 @@
     <string name="title_activity_guardian">GuardianActivity</string>
     <string name="title_activity_nasa_day">NasaDayActivity</string>
     <string name="title_activity_bbc">BBCActivity</string>
+    <string name="title_activity_nasa_earth">NasaEarthActivity</string>
 
 </resources>
