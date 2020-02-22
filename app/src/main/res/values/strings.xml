@@ -10,5 +10,8 @@
     <string name="Guardian">Guardian News</string>
     <string name="NasaEarth">NASA Earth</string>
     <string name="NasaDay">NASA Day</string>
+    <string name="title_activity_guardian">GuardianActivity</string>
+    <string name="title_activity_nasa_day">NasaDayActivity</string>
+    <string name="title_activity_bbc">BBCActivity</string>
 
 </resources>

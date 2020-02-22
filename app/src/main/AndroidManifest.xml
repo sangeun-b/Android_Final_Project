@@ -9,7 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main2Activity"></activity>
+        <activity
+            android:name=".BBCActivity"
+            android:label="@string/title_activity_bbc"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".NasaDayActivity"
+            android:label="@string/title_activity_nasa_day"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GuardianActivity"
+            android:label="@string/title_activity_guardian"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Main2Activity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

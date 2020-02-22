@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main2Activity">
+    tools:context=".NasaEarthActivity">
 
     <TextView
         android:id="@+id/title"
@@ -14,8 +14,7 @@
         android:text="@string/title"
         android:layout_marginTop="15dp"
         android:textSize="15pt"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/saveList"
@@ -24,8 +23,8 @@
         android:src="@drawable/star"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        />
+        android:layout_marginRight="15dp" />
+
 
     <ImageView
         android:id="@+id/image"
@@ -36,7 +35,6 @@
         android:src="@drawable/earth" />
 
     <TextView
-
         android:id="@+id/lat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,8 +42,7 @@
         android:textSize="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/lat"
-        />
+        android:text="@string/lat" />
 
     <EditText
         android:id="@+id/enterLat"
@@ -57,8 +54,7 @@
         android:layout_marginRight="30dp"
         android:textSize="20dp"
         android:layout_marginBottom="30dp"
-        android:textAlignment="center"
-        />
+        android:textAlignment="center" />
 
     <TextView
 
@@ -68,8 +64,7 @@
         android:layout_below="@+id/lat"
         android:textSize="30dp"
         android:layout_marginLeft="30dp"
-        android:text="@string/lon"
-        />
+        android:text="@string/lon" />
 
     <EditText
         android:id="@+id/enterLon"
@@ -80,8 +75,8 @@
         android:layout_below="@+id/enterLat"
         android:layout_marginRight="30dp"
         android:textSize="20dp"
-        android:textAlignment="center"
-        />
+        android:textAlignment="center" />
+
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -89,7 +84,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="60dp"
         android:layout_centerInParent="true"
-        android:id="@+id/search"
-        />
+        android:id="@+id/search" />
 
 </RelativeLayout>
