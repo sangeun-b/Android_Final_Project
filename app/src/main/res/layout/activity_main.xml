@@ -8,40 +8,40 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="40pt"
         android:id="@+id/name"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10pt"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textSize="50dp"
+        android:textSize="25pt"
         android:textStyle="bold" />
 
     <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="70pt"
+        android:layout_height="70pt"
         android:id="@+id/b1"
         android:text="@string/Guardian"
-        android:layout_marginLeft="57dp"
+        android:layout_marginLeft="15pt"
         android:layout_below="@+id/name" />
 
     <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="70pt"
+        android:layout_height="70pt"
         android:id="@+id/b2"
         android:text="@string/NasaDay"
         android:layout_toRightOf="@+id/b1"
         android:layout_below="@+id/name"/>
     <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="70pt"
+        android:layout_height="70pt"
         android:id="@+id/b3"
         android:text="@string/NasaEarth"
         android:layout_below="@+id/b1"
-        android:layout_marginLeft="57dp"/>
+        android:layout_marginLeft="15pt"/>
 
     <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="70pt"
+        android:layout_height="70pt"
         android:id="@+id/b4"
         android:text="@string/BBC"
         android:layout_toRightOf="@+id/b1"
