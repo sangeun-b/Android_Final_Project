@@ -6,9 +6,20 @@
     <string name="lon">경도 : </string>
     <string name="input">여기에 입력하세요</string>
     <string name="search">찾기 !</string>
+    <string name="date">날짜 : </string>
+    <string name="re">뒤로</string>
+    <string name="save">저장</string>
+    <string name="deleteIn">저장이미지를 삭제하려면 3초 간 클릭하세요</string>
+    <string name="okay">확인</string>
+    <string name="saved">저장되었습니다</string>
+    <string name="delete">삭제하시겠습니까?</string>
+    <string name="y">네</string>
+    <string name="n">아니오</string>
+
 
     <string name="BBC">비비씨 뉴스</string>
     <string name="Guardian">가디언 뉴스</string>
     <string name="NasaEarth">나사 지구 이미지</string>
     <string name="NasaDay">나사 이미지</string>
+
 </resources>

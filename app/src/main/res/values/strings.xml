@@ -1,10 +1,5 @@
 <resources>
     <string name="app_name">Final Project</string>
-    <string name="title">NASA Earth</string>
-    <string name="lat">Latitude : </string>
-    <string name="lon">Longitude : </string>
-    <string name="input">Type here</string>
-    <string name="search">Search !</string>
 
     <string name="BBC">BBC NEWS</string>
     <string name="Guardian">Guardian News</string>
@@ -14,5 +9,22 @@
     <string name="title_activity_nasa_day">NasaDayActivity</string>
     <string name="title_activity_bbc">BBCActivity</string>
     <string name="title_activity_nasa_earth">NasaEarthActivity</string>
+
+    <!--Nasa Earth Image-->
+    <string name="title">NASA Earth</string>
+    <string name="lat">Latitude : </string>
+    <string name="lon">Longitude : </string>
+    <string name="input">Type here</string>
+    <string name="search">Search !</string>
+    <string name="date">Date: </string>
+    <string name="re">Return</string>
+    <string name="save">Save</string>
+    <string name="deleteIn">To delete the saved list, click the image for 3 seconds</string>
+    <string name="okay">Okay</string>
+    <string name="saved">The image is saved</string>
+    <string name="delete">Do you want to delete this image?</string>
+    <string name="y">Yes</string>
+    <string name="n">No</string>
+
 
 </resources>

@@ -17,7 +17,7 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/saveList"
+        android:id="@+id/saveStar"
         android:layout_width="15pt"
         android:layout_height="15pt"
         android:src="@drawable/star"
@@ -32,7 +32,8 @@
         android:layout_height="300dp"
         android:layout_below="@+id/title"
         android:layout_centerInParent="true"
-        android:src="@drawable/earth" />
+        android:src="@drawable/earth"
+        />
 
     <TextView
         android:id="@+id/lat"
