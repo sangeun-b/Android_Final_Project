@@ -9,6 +9,16 @@
     <string name="title_activity_nasa_day">NasaDayActivity</string>
     <string name="title_activity_bbc">BBCActivity</string>
     <string name="title_activity_nasa_earth">NasaEarthActivity</string>
+    <string name="pick_date">Pick a Date</string>
+    <string name="title_activity_nasa_image">NasaImage</string>
+    <string name="view_image">view image</string>
+    <string name="date">The date you pick is</string>
+    <string name= "dateTextView">The date is </string>
+    <string name= "titleTextView">The tile is </string>
+    <string name= "urlTextView">The url is </string>
+    <string name="hdurlTextView">The hdurl is </string>
+    <string name="saveImageButton"> SAVE </string>
+
 
     <!--Nasa Earth Image-->
     <string name="title">NASA Earth</string>

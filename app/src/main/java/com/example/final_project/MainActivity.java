@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         BBCb.setOnClickListener(click->startActivity(goToBBC));
 
 
-        
+
 
     }
 }

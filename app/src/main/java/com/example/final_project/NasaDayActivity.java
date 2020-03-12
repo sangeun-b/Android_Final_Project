@@ -1,32 +1,84 @@
 package com.example.final_project;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
 
-import android.view.View;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
-public class NasaDayActivity extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+
+public class NasaDayActivity extends FragmentActivity {
+
+    private DatePickerFragment datePickerFragment;
+    private Intent goToImage;
+    private static EditText textDate;
+    static SharedPreferences prefs = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nasaday);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        textDate= findViewById(R.id.date);
+        prefs = getSharedPreferences("NasaDayImage", Context.MODE_PRIVATE);
+        String savedString = prefs.getString("date", " ");
+        textDate.setText("The date you pick is "+ savedString);
+
+        datePickerFragment = new DatePickerFragment();
+        Button dateButton = findViewById(R.id.dateButton);
+        dateButton.setOnClickListener(click -> {
+            new DatePickerFragment().show(getSupportFragmentManager(), "datePicker");
         });
+
+        Button vieImageButton = findViewById(R.id.viewImageButton);
+        goToImage = new Intent(this, NasaDayImage.class);
+        vieImageButton.setOnClickListener(click -> {
+            startActivity(goToImage);
+        });
+
     }
 
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        private static final String TAG = "datePicker";
+        public static String date;
+        final Calendar cal = Calendar.getInstance();
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            cal.set(Calendar.YEAR, year);
+            cal.set(Calendar.MONTH, month);
+            cal.set(Calendar.DAY_OF_MONTH, day);
+            date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(cal.getTime());
+            Log.d(TAG, "onDateSet: " + date);
+            //new NasaDayActivity().setDate(date);
+            textDate.setText("The date you pick is " + date);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("date", date);
+            editor.commit();
+            //https://www.truiton.com/2013/03/android-pick-date-time-from-edittext-onclick-event/
+        }
+    }
 }
