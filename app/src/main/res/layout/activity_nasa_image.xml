@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NasaImage">
+    tools:context=".NasaDayImage">
 
     <TextView
         android:id="@+id/dateTextView"
@@ -38,6 +38,14 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/hdurlTextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        tools:visibility="invisible"
+        style="?android:attr/progressBarStyleHorizontal"/>
 
     <Button
         android:id="@+id/saveImageButton"

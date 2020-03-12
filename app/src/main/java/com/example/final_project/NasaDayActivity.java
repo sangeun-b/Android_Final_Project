@@ -45,7 +45,7 @@ public class NasaDayActivity extends FragmentActivity {
         });
 
         Button vieImageButton = findViewById(R.id.viewImageButton);
-        goToImage = new Intent(this, NasaImage.class);
+        goToImage = new Intent(this, NasaDayImage.class);
         vieImageButton.setOnClickListener(click -> {
             startActivity(goToImage);
         });

@@ -4,7 +4,12 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,18 +22,26 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class NasaImage extends AppCompatActivity {
+public class NasaDayImage extends AppCompatActivity {
+
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nasa_image);
 
-        NasaDayImage fetchNasaImage = new NasaDayImage();
+        mProgressBar= findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(View.VISIBLE);
+
+        NasaImage fetchNasaImage = new NasaImage();
         fetchNasaImage.execute("https://api.nasa.gov/planetary/apod?api_key=DgPLcIlnmN0Cwrzcg3e9NraFaYLIDI68Ysc6Zh3d&date=" + NasaDayActivity.DatePickerFragment.date);
+
+        Button saveButton= findViewById(R.id.saveImageButton);
+        saveButton.setOnClickListener(click-> {Toast.makeText(NasaDayImage.this, "The info get added to my favorite list" , Toast.LENGTH_LONG).show(); });
     }
 
-    class NasaDayImage extends AsyncTask<String, Integer, String> {
+    class NasaImage extends AsyncTask<String, Integer, String> {
 
         String date=null, url=null, hdUrl=null, title=null, ret=null;
 
@@ -68,6 +81,8 @@ public class NasaImage extends AppCompatActivity {
 
         public void onProgressUpdate(Integer... args) {
             super.onProgressUpdate(args);
+            mProgressBar.setVisibility(View.VISIBLE);
+            mProgressBar.setProgress(args[0]);
         }
 
         public void onPostExecute(String fromDoInBackground) {
@@ -81,8 +96,12 @@ public class NasaImage extends AppCompatActivity {
             TextView hdUrlText =findViewById(R.id.hdurlTextView);
             hdUrlText.setText("HDURL: "+ hdUrl);
 
+            mProgressBar.setVisibility(View.INVISIBLE);
+
         }
     }
+
+
 }
 
 
