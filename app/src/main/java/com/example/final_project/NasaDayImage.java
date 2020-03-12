@@ -1,9 +1,8 @@
 package com.example.final_project;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.Browser;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -38,7 +37,7 @@ public class NasaDayImage extends AppCompatActivity {
         fetchNasaImage.execute("https://api.nasa.gov/planetary/apod?api_key=DgPLcIlnmN0Cwrzcg3e9NraFaYLIDI68Ysc6Zh3d&date=" + NasaDayActivity.DatePickerFragment.date);
 
         Button saveButton= findViewById(R.id.saveImageButton);
-        saveButton.setOnClickListener(click-> {Toast.makeText(NasaDayImage.this, "The info get added to my favorite list" , Toast.LENGTH_LONG).show(); });
+        saveButton.setOnClickListener(click-> {Toast.makeText(NasaDayImage.this, "Added to the favorite list" , Toast.LENGTH_LONG).show(); });
     }
 
     class NasaImage extends AsyncTask<String, Integer, String> {
@@ -92,9 +91,14 @@ public class NasaDayImage extends AppCompatActivity {
             TextView titleText =findViewById(R.id.titleTextView);
             titleText.setText("TITLE: " + title);
             TextView urlText = findViewById(R.id.urlTextView);
-            urlText.setText("URL: " + url);
+            //try {
+                urlText.setText("URL: " + url);
+            //} catch (MalformedURLException e) {
+            //    ret = "Malformed URL exception";
+            //}
+
             TextView hdUrlText =findViewById(R.id.hdurlTextView);
-            hdUrlText.setText("HDURL: "+ hdUrl);
+                hdUrlText.setText("HDURL: "+ hdUrl);
 
             mProgressBar.setVisibility(View.INVISIBLE);
 
