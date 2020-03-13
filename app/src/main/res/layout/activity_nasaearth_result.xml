@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/latitude"
-        android:text="@string/lat"
+        android:text="@string/earthlat"
         android:textSize="20dp"
         android:layout_below="@+id/nasaImage"
         />
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/longitude"
-        android:text="@string/lon"
+        android:text="@string/earthlon"
         android:textSize="20dp"
         android:layout_below="@+id/latitude"
         />
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/date"
-        android:text="@string/date"
+        android:text="@string/earthdate"
         android:textSize="20dp"
         android:layout_below="@+id/longitude"
         />
@@ -40,7 +40,7 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="@string/re"
+        android:text="@string/earthre"
         android:layout_below="@+id/date"
         android:id="@+id/reButton"
         android:layout_marginLeft="30dp"
@@ -54,7 +54,7 @@
         android:layout_below="@+id/date"
         android:layout_toRightOf="@+id/reButton"
         android:layout_marginLeft="50dp"
-        android:text="@string/save"
+        android:text="@string/earthsave"
         android:layout_marginTop="10dp"
         />
 
