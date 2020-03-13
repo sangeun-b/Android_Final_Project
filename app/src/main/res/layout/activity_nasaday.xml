@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="date"
-        android:hint="@string/date"/>
+        android:hint="@string/datepick"/>
 
     <Button
         android:id="@+id/dateButton"
