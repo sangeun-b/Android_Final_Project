@@ -13,9 +13,9 @@
     <string name="title_activity_nasa_image">NasaImage</string>
     <string name="view_image">view image</string>
     <string name="date">The date you pick is</string>
-    <string name= "dateTextView">The date is </string>
-    <string name= "titleTextView">The tile is </string>
-    <string name= "urlTextView">The url is </string>
+    <string name="dateTextView">The date is </string>
+    <string name="titleTextView">The tile is </string>
+    <string name="urlTextView">The url is </string>
     <string name="hdurlTextView">The hdurl is </string>
     <string name="saveImageButton"> SAVE </string>
 
@@ -36,5 +36,15 @@
     <string name="y">Yes</string>
     <string name="n">No</string>
 
+    <!--BBC-->
+    <string name="BBCNewsReader">BBC News</string>
+    <string name="BBCFavouriteButton">Favourite</string>
+    <string name="BBCSearchText">Type keyword</string>
+    <string name="BBCSearchButton">Search</string>
+    <string name="BBCFavouriteHeader">BBC News Favourite List</string>
+    <string name="BBCClose">CLOSE</string>
+    <string name="BBCNewsDetail">BBC News Detail</string>
+    <string name="BBCAddToFavourite">Add To Favourite List</string>
+    <string name="BBCBack">BACK</string>
 
 </resources>
