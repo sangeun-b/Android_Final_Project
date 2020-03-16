@@ -15,4 +15,9 @@
     <string name="title_activity_bbc">BBCActivity</string>
     <string name="title_activity_nasa_earth">NasaEarthActivity</string>
 
+
+    <string name="guardian_title">Guardian News</string>
+    <string name="guardin_search">SEARCH</string>
+    <string name="search_news">search for news</string>
+
 </resources>
