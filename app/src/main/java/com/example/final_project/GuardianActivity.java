@@ -21,7 +21,12 @@ public class GuardianActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guardian);
 
         Button search =findViewById(R.id.search_button);
+        Intent goToSearch = new Intent(GuardianActivity.this, Guardian_search_results.class);
+        search.setOnClickListener(click->startActivity(goToSearch));
+
         ImageButton favourite=findViewById(R.id.favouriteList);
+        Intent goToFavourite=new Intent(GuardianActivity.this,Guardian_favourite.class);
+        favourite.setOnClickListener(click->startActivity(goToFavourite));
         
 
 

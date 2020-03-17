@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Guardian_search_results"></activity>
+        <activity android:name=".Guardian_favourite" />
+        <activity android:name=".Guardian_details" />
         <activity
             android:name=".BBCActivity"
             android:label="@string/title_activity_bbc"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NasaDayActivity"
             android:label="@string/title_activity_nasa_day"
@@ -22,12 +24,10 @@
             android:name=".GuardianActivity"
             android:label="@string/title_activity_guardian"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".NasaEarthActivity"
             android:label="@string/title_activity_nasa_earth"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +35,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>
