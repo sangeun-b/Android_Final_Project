@@ -19,5 +19,6 @@
     <string name="guardian_title">Guardian News</string>
     <string name="guardin_search">SEARCH</string>
     <string name="search_news">search for news</string>
+    <string name="guardian_favourite_list">Favourite News List</string>
 
 </resources>

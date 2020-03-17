@@ -3,6 +3,7 @@
     <string name="guardian_title">Guardian 新闻</string>
     <string name="guardin_search">搜索</string>
     <string name="search_news">搜索新闻</string>
+    <string name="guardian_favourite_list">喜爱的新闻列表</string>
 
 
 </resources>

@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NasaEarthActivity">
+    tools:context=".GuardianActivity">
 
     <ImageView
         android:id="@+id/guardian_logo"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:src="@drawable/guardian_logo" />
+
     <ImageView
         android:id="@+id/saveList"
         android:layout_width="35dp"
@@ -21,7 +22,7 @@
         android:layout_marginRight="15dp" />
 
     <TextView
-        android:id="@+id/guardian_title"
+        android:id="@+id/guardian_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -29,7 +30,12 @@
         android:textSize="20pt"
         android:textStyle="bold"
         android:layout_below="@+id/guardian_logo"/>
-
+    <ListView
+        android:id="@+id/guardian_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guardian_news"
+        android:layout_above="@id/search_button"/>
 
     <Button
         android:id="@+id/search_button"
