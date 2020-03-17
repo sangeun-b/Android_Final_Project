@@ -20,5 +20,5 @@
         android:layout_below="@id/guardian_favourite_list"/>
 
 
-    
+
 </RelativeLayout>

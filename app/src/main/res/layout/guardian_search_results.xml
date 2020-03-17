@@ -12,8 +12,8 @@
         android:layout_height="70dp"
         android:src="@drawable/guardian_logo" />
 
-    <ImageBUtton
-        android:id="@+id/favouriteList"
+    <ImageButton
+        android:id="@+id/saveList"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/star"
@@ -34,21 +34,7 @@
         android:id="@+id/guardian_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/guardian_news"
-        android:layout_above="@id/search_button"/>
+        android:layout_below="@+id/guardian_news" />
 
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/guardin_search"/>
-    <EditText
-        android:id="@+id/search_news"
-        android:layout_toRightOf="@id/search_button"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/search_news"/>
 
 </RelativeLayout>
