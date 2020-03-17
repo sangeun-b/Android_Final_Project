@@ -32,7 +32,7 @@ public class NasaDayImage extends AppCompatActivity {
 
     ProgressBar mProgressBar;
     ArrayList<Image> list= new ArrayList<>();
-    SQLiteDatabase db;
+    //SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +61,12 @@ public class NasaDayImage extends AppCompatActivity {
             String hdUrlInput= hdUrlText.getText().toString().substring(7);
 
             //if(!dateInput.equalsIgnoreCase("null") && !titleInput.equalsIgnoreCase("null") && !urlInput.equalsIgnoreCase("null") && !hdUrlInput.equalsIgnoreCase("null")) {
-                //newRowValues.put(NasaDayImageMyOpener.COL_DATE, dateInput);
-                //newRowValues.put(NasaDayImageMyOpener.COL_TITLE, titleInput);
-                //newRowValues.put(NasaDayImageMyOpener.COL_URL, urlInput);
-                //newRowValues.put(NasaDayImageMyOpener.COL_HDURL, hdUrlInput);
-                //long id= db.insert(NasaDayImageMyOpener.TABLE_NAME,null, newRowValues);
-                //list.add(new Image(dateInput, titleInput, urlInput, hdUrlInput, id));
+                newRowValues.put(NasaDayImageMyOpener.COL_DATE, dateInput);
+                newRowValues.put(NasaDayImageMyOpener.COL_TITLE, titleInput);
+                newRowValues.put(NasaDayImageMyOpener.COL_URL, urlInput);
+                newRowValues.put(NasaDayImageMyOpener.COL_HDURL, hdUrlInput);
+                long id= NasaDayActivity.dbOpener.getWritableDatabase().insert(NasaDayImageMyOpener.TABLE_NAME,null, newRowValues);
+                list.add(new Image(dateInput, titleInput, urlInput, hdUrlInput, id));
             //}
 
             /*if(titleInput.equalsIgnoreCase("null") && hdUrlInput.equalsIgnoreCase("null")){

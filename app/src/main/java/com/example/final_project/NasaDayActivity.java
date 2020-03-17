@@ -27,6 +27,7 @@ public class NasaDayActivity extends FragmentActivity {
     private Intent goToImage;
     private static EditText textDate;
     static SharedPreferences prefs = null;
+    static NasaDayImageMyOpener dbOpener;
     SQLiteDatabase db;
 
     @Override
@@ -40,7 +41,7 @@ public class NasaDayActivity extends FragmentActivity {
         String savedString = prefs.getString("date", " ");
         textDate.setText("The date you pick is "+ savedString);
 
-        NasaDayImageMyOpener dbOpener= new NasaDayImageMyOpener(this);
+        dbOpener= new NasaDayImageMyOpener(this);
         db= dbOpener.getWritableDatabase();
 
         datePickerFragment = new DatePickerFragment();
