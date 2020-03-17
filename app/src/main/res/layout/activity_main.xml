@@ -24,6 +24,7 @@
         android:layout_below="@+id/name"
         android:background="@drawable/guardian"/>
     <!--android:text="@string/Guardian"-->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

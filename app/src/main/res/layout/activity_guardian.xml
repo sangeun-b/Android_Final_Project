@@ -10,7 +10,7 @@
         android:id="@+id/guardian_logo"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:src="@drawable/guardian_logo" />
+        android:src="@drawable/guardian" />
     <TextView
         android:id="@+id/guardian_title"
         android:layout_width="match_parent"
@@ -33,10 +33,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/search_news"/>
-
-
-
-
-
 
 </RelativeLayout>

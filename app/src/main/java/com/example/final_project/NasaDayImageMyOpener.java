@@ -12,6 +12,7 @@ public class NasaDayImageMyOpener extends SQLiteOpenHelper {
     public final static String COL_DATE ="DATE";
     public final static String COL_TITLE= "TITLE";
     public final static String COL_URL= "URL";
+    public final static String COL_HDURL= "HDURL";
     public final static String COL_ID= "_id";
 
     public NasaDayImageMyOpener(Context context){
@@ -22,7 +23,8 @@ public class NasaDayImageMyOpener extends SQLiteOpenHelper {
         db.execSQL(" CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_DATE + " TEXT,"
                 + COL_TITLE + " TEXT,"
-                + COL_URL  + " TEXT);");
+                + COL_URL + " TEXT,"
+                + COL_HDURL  + " TEXT);");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

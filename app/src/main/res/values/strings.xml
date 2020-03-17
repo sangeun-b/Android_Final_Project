@@ -16,6 +16,8 @@
     <string name= "titleTextView">The tile is </string>
     <string name= "urlTextView">The url is </string>
     <string name="hdurlTextView">The hdurl is </string>
+    <string name="NasaImageoftheDay">Image of the Day</string>
+
     <string name="saveImageButton"> SAVE </string>
     <string name="earthtitle">NASA Earth</string>
     <string name="earthlat">Latitude : </string>

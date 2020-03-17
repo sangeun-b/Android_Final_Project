@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.final_project">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,6 +20,12 @@
             android:name=".NasaDayActivity"
             android:label="@string/title_activity_nasa_day"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".NasaDayImage"
+            android:label="@string/title_activity_nasa_image"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".GuardianActivity"
             android:label="@string/title_activity_guardian"

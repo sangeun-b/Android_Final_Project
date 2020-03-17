@@ -27,7 +27,7 @@ public class Nasaearth_result extends AppCompatActivity {
         saved = findViewById(R.id.save);
         saved.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), getString(R.string.saved), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.earthsaved), Toast.LENGTH_LONG).show();
             }
         });
 

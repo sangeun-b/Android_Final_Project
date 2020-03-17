@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -26,6 +27,7 @@ public class NasaDayActivity extends FragmentActivity {
     private Intent goToImage;
     private static EditText textDate;
     static SharedPreferences prefs = null;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,9 @@ public class NasaDayActivity extends FragmentActivity {
         prefs = getSharedPreferences("NasaDayImage", Context.MODE_PRIVATE);
         String savedString = prefs.getString("date", " ");
         textDate.setText("The date you pick is "+ savedString);
+
+        NasaDayImageMyOpener dbOpener= new NasaDayImageMyOpener(this);
+        db= dbOpener.getWritableDatabase();
 
         datePickerFragment = new DatePickerFragment();
         Button dateButton = findViewById(R.id.dateButton);
