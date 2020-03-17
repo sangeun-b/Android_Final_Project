@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="@string/title"
+        android:text="@string/earthtitle"
         android:layout_marginTop="15pt"
         android:textSize="15pt"
         android:textStyle="bold" />
@@ -43,13 +43,13 @@
         android:textSize="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/lat" />
+        android:text="@string/earthlat" />
 
     <EditText
         android:id="@+id/enterLat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/input"
+        android:hint="@string/earthinput"
         android:layout_toRightOf="@+id/lat"
         android:layout_below="@+id/image"
         android:layout_marginRight="30dp"
@@ -65,13 +65,13 @@
         android:layout_below="@+id/lat"
         android:textSize="30dp"
         android:layout_marginLeft="30dp"
-        android:text="@string/lon" />
+        android:text="@string/earthlon" />
 
     <EditText
         android:id="@+id/enterLon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/input"
+        android:hint="@string/earthinput"
         android:layout_toRightOf="@+id/lon"
         android:layout_below="@+id/enterLat"
         android:layout_marginRight="30dp"
@@ -81,7 +81,7 @@
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/search"
+        android:text="@string/earthsearch"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:layout_centerInParent="true"

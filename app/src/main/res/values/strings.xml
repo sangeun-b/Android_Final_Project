@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Final Project</string>
-
     <string name="BBC">BBC NEWS</string>
     <string name="Guardian">Guardian News</string>
     <string name="NasaEarth">NASA Earth</string>
@@ -12,29 +11,12 @@
     <string name="pick_date">Pick a Date</string>
     <string name="title_activity_nasa_image">NasaImage</string>
     <string name="view_image">view image</string>
-    <string name="date">The date you pick is</string>
+    <string name="datepick">The date you pick is</string>
     <string name="dateTextView">The date is </string>
-    <string name="titleTextView">The tile is </string>
-    <string name="urlTextView">The url is </string>
+    <string name= "titleTextView">The tile is </string>
+    <string name= "urlTextView">The url is </string>
     <string name="hdurlTextView">The hdurl is </string>
-    <string name="saveImageButton"> SAVE </string>
-
-
-    <!--Nasa Earth Image-->
-    <string name="title">NASA Earth</string>
-    <string name="lat">Latitude : </string>
-    <string name="lon">Longitude : </string>
-    <string name="input">Type here</string>
-    <string name="search">Search !</string>
-    <string name="date">Date: </string>
-    <string name="re">Return</string>
-    <string name="save">Save</string>
-    <string name="deleteIn">To delete the saved list, click the image for 3 seconds</string>
-    <string name="okay">Okay</string>
-    <string name="saved">The image is saved</string>
-    <string name="delete">Do you want to delete this image?</string>
-    <string name="y">Yes</string>
-    <string name="n">No</string>
+    <string name="NasaImageoftheDay">Image of the Day</string>
 
     <!--BBC-->
     <string name="BBCNewsReader">BBC News</string>
@@ -46,5 +28,24 @@
     <string name="BBCNewsDetail">BBC News Detail</string>
     <string name="BBCAddToFavourite">Add To Favourite List</string>
     <string name="BBCBack">BACK</string>
+
+    <string name="saveImageButton"> SAVE </string>
+    <string name="earthtitle">NASA Earth</string>
+    <string name="earthlat">Latitude : </string>
+    <string name="earthlon">Longitude : </string>
+    <string name="earthinput">Type here</string>
+    <string name="earthsearch">Search !</string>
+    <string name="earthdate">Date: </string>
+    <string name="earthre">Return</string>
+    <string name="earthsave">Save</string>
+    <string name="earthdeleteIn">To delete the saved list, click the image for 3 seconds</string>
+    <string name="earthokay">Okay</string>
+    <string name="earthsaved">The image is saved</string>
+    <string name="earthdelete">Do you want to delete this image?</string>
+    <string name="earthyes">Yes</string>
+    <string name="earthno">No</string>
+    <string name="guardian_title">Guardian News</string>
+    <string name="guardin_search">SEARCH</string>
+    <string name="search_news">search for news</string>
 
 </resources>

@@ -29,6 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/urlTextView"
+        android:autoLink="web"
+        android:linksClickable="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <TextView
@@ -37,6 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/hdurlTextView"
+        android:autoLink="web"
+        android:linksClickable="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <ProgressBar

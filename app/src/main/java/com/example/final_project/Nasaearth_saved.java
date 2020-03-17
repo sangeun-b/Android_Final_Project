@@ -19,8 +19,8 @@ public class Nasaearth_saved extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nasaearth_saved);
         View v1 = findViewById(R.id.savedList);
-        Snackbar snackbar = Snackbar.make(v1, getString(R.string.deleteIn), Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction(getString(R.string.okay), new View.OnClickListener() {
+        Snackbar snackbar = Snackbar.make(v1, getString(R.string.earthdeleteIn), Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(getString(R.string.earthokay), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 snackbar.dismiss();
@@ -32,14 +32,14 @@ public class Nasaearth_saved extends AppCompatActivity {
 
         savedList.setOnItemLongClickListener((parent, view, position, id) -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.delete))
+            builder.setTitle(getString(R.string.earthdelete))
                     //.setMessage(getString(R.string.select)+(position+1) + "\n"+getString(R.string.db)+id)
-                    .setPositiveButton(getString(R.string.y), (click,arg)-> {
+                    .setPositiveButton(getString(R.string.earthyes), (click,arg)-> {
                         //chatArray.remove(position);
                         //myAdapter.notifyDataSetChanged();
 
                     })
-                    .setNegativeButton(getString(R.string.n), (click,arg) -> {
+                    .setNegativeButton(getString(R.string.earthno), (click,arg) -> {
 
                     }).create().show();
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">마지막 프로젝트</string>
+    <string name="earthtitle">나사 지구</string>
+    <string name="earthlat">위도 : </string>
+    <string name="earthlon">경도 : </string>
+    <string name="earthinput">여기에 입력하세요</string>
+    <string name="earthsearch">찾기 !</string>
+    <string name="earthdate">날짜 : </string>
+    <string name="earthre">뒤로</string>
+    <string name="earthsave">저장</string>
+    <string name="earthdeleteIn">저장이미지를 삭제하려면 3초 간 클릭하세요</string>
+    <string name="earthokay">확인</string>
+    <string name="earthsaved">저장되었습니다</string>
+    <string name="earthdelete">삭제하시겠습니까?</string>
+    <string name="earthyes">네</string>
+    <string name="earthno">아니오</string>
+
+
+    <string name="BBC">비비씨 뉴스</string>
+    <string name="Guardian">가디언 뉴스</string>
+    <string name="NasaEarth">나사 지구 이미지</string>
+    <string name="NasaDay">나사 이미지</string>
+
+</resources>
