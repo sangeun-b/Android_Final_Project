@@ -9,6 +9,6 @@ public class Guardian_favourite extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guardian_favourite);
+        setContentView(R.layout.guardian_favourite_list);
     }
 }
