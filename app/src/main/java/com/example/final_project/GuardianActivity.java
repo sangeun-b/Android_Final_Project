@@ -3,7 +3,6 @@ package com.example.final_project;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class GuardianActivity extends AppCompatActivity {
 
     @Override

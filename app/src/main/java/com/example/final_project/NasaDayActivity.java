@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -15,6 +14,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,7 +24,6 @@ import java.util.Locale;
 public class NasaDayActivity extends FragmentActivity {
 
     private DatePickerFragment datePickerFragment;
-    private Intent goToImage;
     private static EditText textDate;
     static SharedPreferences prefs = null;
     static NasaDayImageMyOpener dbOpener;
@@ -50,10 +49,16 @@ public class NasaDayActivity extends FragmentActivity {
             new DatePickerFragment().show(getSupportFragmentManager(), "datePicker");
         });
 
-        Button vieImageButton = findViewById(R.id.viewImageButton);
-        goToImage = new Intent(this, NasaDayImage.class);
+        Button vieImageButton = (Button) findViewById(R.id.viewImageButton);
+        Intent goToImage = new Intent(this, NasaDayImage.class);
         vieImageButton.setOnClickListener(click -> {
             startActivity(goToImage);
+        });
+
+        ImageButton myFavoriteButton = (ImageButton) findViewById(R.id.myFavoriteDayImage);
+        Intent goToMyfavoriteList= new Intent(this, NasaDayImageMyfavoriteList.class);
+        myFavoriteButton.setOnClickListener(click->{
+            startActivity(goToMyfavoriteList);
         });
 
     }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.final_project">
-
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BBCMyOpener"></activity>
+        <activity
+            android:name=".NasaDayImageMyfavoriteList"
+            android:label="@string/title_activity_nasa_day_image_myfavorite_list"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".BBCMyOpener" />
         <activity android:name=".BBCItem" />
         <activity android:name=".BBCDetails" />
         <activity android:name=".BBCFavouriteList" />
@@ -23,12 +26,10 @@
             android:name=".NasaDayActivity"
             android:label="@string/title_activity_nasa_day"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".NasaDayImage"
             android:label="@string/title_activity_nasa_image"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".GuardianActivity"
             android:label="@string/title_activity_guardian"

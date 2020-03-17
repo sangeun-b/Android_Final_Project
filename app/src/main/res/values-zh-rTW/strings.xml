@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="guardian_title">Guardian 新闻</string>
+    <string name="guardian_title">衛報頭條</string>
     <string name="guardin_search">搜索</string>
-    <string name="search_news">搜索新闻</string>
+    <string name="search_news">搜索新聞</string>
+    <string name="datepick">你選擇的日期是</string>
+    <string name="dateTextView">日期是</string>
+    <string name="NasaImageoftheDay">本日的影像</string>
+    <string name="BBCClose">關閉</string>
 
 
 </resources>
