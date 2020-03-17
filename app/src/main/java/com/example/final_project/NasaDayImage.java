@@ -54,7 +54,7 @@ public class NasaDayImage extends AppCompatActivity {
 
         Button saveButton= findViewById(R.id.saveImageButton);
         saveButton.setOnClickListener(click-> {
-            /*title and hdurl can have null values*/
+            /*title and hdurl can have no values*/
             String dateInput= dateText.getText().toString().substring(6);
             String titleInput= titleText.getText().toString().substring(7);
             String urlInput= urlText.getText().toString().substring(5);

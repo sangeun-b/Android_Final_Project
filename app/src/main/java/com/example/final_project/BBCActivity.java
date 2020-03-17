@@ -71,8 +71,6 @@ public class BBCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bbc);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         //Get the fields from the screen:
         EditText BBCSearchText = findViewById(R.id.BBCSearchText);
