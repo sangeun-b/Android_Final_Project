@@ -10,10 +10,22 @@
     android:layout_marginRight="20dp"
     tools:context=".NasaDayActivity">
 
+    <TextView
+        android:id="@+id/NasaImageMyFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/NasaImageMyFavorite"
+        android:layout_below="@+id/NasaDayImage"
+        android:layout_marginTop="5pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginLeft="5pt"
+        android:textSize="15pt"
+        android:textStyle="bold"/>
+
     <ListView
         android:id="@+id/NasaDayImagelistView"
+        android:layout_below="@+id/NasaImageMyFavorite"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"/>
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
