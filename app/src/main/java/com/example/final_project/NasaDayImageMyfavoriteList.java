@@ -1,21 +1,30 @@
 package com.example.final_project;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class NasaDayImageMyfavoriteList extends AppCompatActivity {
@@ -32,6 +41,12 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
         loadDataFromDatabase();
         ListView listView= findViewById(R.id.NasaDayImagelistView);
         listView.setAdapter(nasaDayMyAdapter);
+        Snackbar.make(listView, "short click: view more info and long click: delete", Snackbar.LENGTH_LONG).show();
+
+        listView.setOnItemClickListener((p, v, pos, id)->{
+                    Bundle dataToPass= new Bundle();
+        });
+
 
         listView.setOnItemLongClickListener((p, v, pos, id)->{
             //FrameLayout frameLayout = findViewById(R.id.fragmentLocation);
@@ -56,7 +71,6 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
                     .show();
             return true;
         });
-
     }
 
 
@@ -68,37 +82,53 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
             return list.get(position);
         }
 
-        public View getView(int position, View convertView, ViewGroup parent){
+        public View getView(int position, View convertView, ViewGroup parent) {
             View newView = convertView;
-            Image currentImage= (Image) getItem(position);
-            LayoutInflater inflater = getLayoutInflater();
+            Image currentImage = (Image) getItem(position);
+            Bitmap image= null;
 
             if (newView == null) {
                 newView = getLayoutInflater().inflate(R.layout.activity_nasa_day_image_myfavorite_list, parent, false);
-            }
-            else {
+            } else {
                 newView = getLayoutInflater().inflate(R.layout.nasadayimage_myfavoritelist_eachitem, null);
-                TextView text = (TextView) newView.findViewById(R.id.myfavoriteDate);
-                text.setText(currentImage.getDate());
+                TextView textDate = (TextView) newView.findViewById(R.id.myfavoriteDate);
+                textDate.setText("DATE: "+ currentImage.getDate());
+                TextView textTitle = (TextView) newView.findViewById(R.id.myfavoriteTitle);
+                textTitle.setText("TITLE: "+ currentImage.getTitle());
+
+                FileInputStream fis;
+                File file= getBaseContext().getFileStreamPath(currentImage.getTitle()+ ".png");
+                if (file.exists()) {
+                    try {
+                        fis = openFileInput(currentImage.getTitle() + ".png");
+                        image = BitmapFactory.decodeStream(fis);
+                        ImageView myFavoriteImage = (ImageView) newView.findViewById(R.id.myfavoriteImg);
+                        myFavoriteImage.setImageBitmap(image);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
             return newView;
         }
-
         public long getItemId(int position){return getItem(position).getId();}
+
     }
 
     public void loadDataFromDatabase(){
+        list.clear();
         db= NasaDayActivity.dbOpener.getWritableDatabase();
         String[] columns= {NasaDayImageMyOpener.COL_ID, NasaDayImageMyOpener.COL_DATE, NasaDayImageMyOpener.COL_TITLE, NasaDayImageMyOpener.COL_URL, NasaDayImageMyOpener.COL_HDURL};
         Cursor results= db.query(false, NasaDayImageMyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
         while(results.moveToNext()){
             String date= results.getString(results.getColumnIndex(NasaDayImageMyOpener.COL_DATE));
-            String title= results.getString(results.getColumnIndex(NasaDayImageMyOpener.COL_DATE));
+            String title= results.getString(results.getColumnIndex(NasaDayImageMyOpener.COL_TITLE));
             String url= results.getString(results.getColumnIndex(NasaDayImageMyOpener.COL_URL));
             String hdurl= results.getString(results.getColumnIndex(NasaDayImageMyOpener.COL_HDURL));
             long id= results.getLong(results.getColumnIndex(NasaDayImageMyOpener.COL_ID));
             list.add(new Image(date, title, url, hdurl, id));
         }
     }
+
 }
