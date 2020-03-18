@@ -15,8 +15,8 @@ public class NasaEarthActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nasaearth);
-        search = findViewById(R.id.search);
-        saved = findViewById(R.id.saveStar);
+        search = findViewById(R.id.earthsearch);
+        saved = findViewById(R.id.earthsaved);
 
         Intent goToSearch= new Intent(NasaEarthActivity.this,Nasaearth_result.class);
         search.setOnClickListener(click->startActivity(goToSearch));

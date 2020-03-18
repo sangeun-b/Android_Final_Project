@@ -47,6 +47,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Nasaearth_saved" />
+        <activity android:name=".Nasaearth_result" />
     </application>
 
 </manifest>
