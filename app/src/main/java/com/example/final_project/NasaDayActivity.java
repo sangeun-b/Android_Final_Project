@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -55,9 +56,9 @@ public class NasaDayActivity extends FragmentActivity {
             startActivity(goToImage);
         });
 
-        ImageButton myFavoriteButton = (ImageButton) findViewById(R.id.myFavoriteDayImage);
+        ImageView myFavoriteImageView = (ImageView) findViewById(R.id.myFavoriteDayImage);
         Intent goToMyfavoriteList= new Intent(this, NasaDayImageMyfavoriteList.class);
-        myFavoriteButton.setOnClickListener(click->{
+        myFavoriteImageView.setOnClickListener(click->{
             startActivity(goToMyfavoriteList);
         });
 

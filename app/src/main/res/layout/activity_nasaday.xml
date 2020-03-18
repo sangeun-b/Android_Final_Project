@@ -18,10 +18,10 @@
         android:layout_height="250dp"
         android:src="@drawable/nasa_resize"/>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/myFavoriteDayImage"
-        android:layout_width="10pt"
-        android:layout_height="10pt"
+        android:layout_width="15pt"
+        android:layout_height="15pt"
         android:src="@drawable/star"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10pt"

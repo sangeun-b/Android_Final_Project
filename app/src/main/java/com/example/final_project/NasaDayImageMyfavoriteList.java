@@ -31,6 +31,13 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
 
     private NasaDayImageMyListAdapter nasaDayMyAdapter= new NasaDayImageMyListAdapter();
     static ArrayList<Image> list= new ArrayList<>();
+    public static final String ITEM_DATE= "date";
+    public static final String ITEM_TITLE= "title";
+    public static final String ITEM_URL= "url";
+    public static final String ITEM_HDURL= "hdurl";
+    public static final String ITEM_IMAGE= "image";
+    public static final String ITEM_ID= "id";
+    Bitmap image= null;
     SQLiteDatabase db;
 
     @Override
@@ -42,9 +49,22 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
         ListView listView= findViewById(R.id.NasaDayImagelistView);
         listView.setAdapter(nasaDayMyAdapter);
         Snackbar.make(listView, "short click: view more info and long click: delete", Snackbar.LENGTH_LONG).show();
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null;
 
         listView.setOnItemClickListener((p, v, pos, id)->{
                     Bundle dataToPass= new Bundle();
+                    dataToPass.putString(ITEM_DATE, list.get(pos).getDate());
+                    dataToPass.putString(ITEM_TITLE, list.get(pos).getTitle());
+                    dataToPass.putString(ITEM_URL, list.get(pos).getUrl());
+                    dataToPass.putString(ITEM_HDURL, list.get(pos).getHdurl());
+                    dataToPass.putParcelable(ITEM_IMAGE, image);
+                    dataToPass.putLong(ITEM_ID, id);
+
+                    if(isTablet){
+
+                    }
+
+
         });
 
 
@@ -85,7 +105,7 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             View newView = convertView;
             Image currentImage = (Image) getItem(position);
-            Bitmap image= null;
+            //Bitmap image= null;
 
             if (newView == null) {
                 newView = getLayoutInflater().inflate(R.layout.activity_nasa_day_image_myfavorite_list, parent, false);

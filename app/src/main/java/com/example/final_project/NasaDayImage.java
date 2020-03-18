@@ -73,8 +73,8 @@ public class NasaDayImage extends AppCompatActivity {
             newRowValues.put(NasaDayImageMyOpener.COL_TITLE, titleInput);
             newRowValues.put(NasaDayImageMyOpener.COL_URL, urlInput);
             newRowValues.put(NasaDayImageMyOpener.COL_HDURL, hdUrlInput);
-
-            long id= db.insert(NasaDayImageMyOpener.TABLE_NAME,null, newRowValues);
+            db.insert(NasaDayImageMyOpener.TABLE_NAME,null, newRowValues);
+            //long id= db.insert(NasaDayImageMyOpener.TABLE_NAME,null, newRowValues);
             //NasaDayImageMyfavoriteList.list.add(new Image(dateInput, titleInput, urlInput, hdUrlInput, id));
             //myAdapter.notifyDataSetChanged();
 
@@ -122,7 +122,7 @@ public class NasaDayImage extends AppCompatActivity {
                         image= BitmapFactory.decodeStream(imageConnection.getInputStream());
                         Log.i("file", "this file is from online.");
                         FileOutputStream outputStream = openFileOutput( title + ".png", Context.MODE_PRIVATE );
-                        image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                        image.compress(Bitmap.CompressFormat.PNG, 120, outputStream);
                         outputStream.flush();
                         outputStream.close();
                     }
