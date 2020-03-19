@@ -20,6 +20,7 @@
         <activity android:name=".BBCItem" />
         <activity android:name=".BBCDetails" />
         <activity android:name=".BBCFavouriteList" />
+        <activity android:name=".NasaDayImageEmptyActivity"/>
         <activity
             android:name=".BBCActivity"
             android:label="@string/title_activity_bbc"

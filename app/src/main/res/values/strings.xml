@@ -21,6 +21,7 @@
     <string name="NasaImageSelectRow">The selected row is  </string>
     <string name="NasaImageDatabaseRow">The database id is </string>
     <string name="NasaImageMyFavorite">My Favorite </string>
+    <string name="NasaDayFragmentButton">HIDE</string>
 
     <!--BBC-->
     <string name="BBCNewsReader">BBC News</string>

@@ -64,21 +64,28 @@ public class NasaDayImage extends AppCompatActivity {
         Button saveButton= findViewById(R.id.saveImageButton);
         saveButton.setOnClickListener(click-> {
             /*title and hdurl can have no values*/
-            String dateInput= dateText.getText().toString().substring(6);
-            String titleInput= titleText.getText().toString().substring(7);
-            String urlInput= urlText.getText().toString().substring(5);
-            String hdUrlInput= hdUrlText.getText().toString().substring(7);
-            db= NasaDayActivity.dbOpener.getWritableDatabase();
-            newRowValues.put(NasaDayImageMyOpener.COL_DATE, dateInput);
-            newRowValues.put(NasaDayImageMyOpener.COL_TITLE, titleInput);
-            newRowValues.put(NasaDayImageMyOpener.COL_URL, urlInput);
-            newRowValues.put(NasaDayImageMyOpener.COL_HDURL, hdUrlInput);
-            db.insert(NasaDayImageMyOpener.TABLE_NAME,null, newRowValues);
-            //long id= db.insert(NasaDayImageMyOpener.TABLE_NAME,null, newRowValues);
-            //NasaDayImageMyfavoriteList.list.add(new Image(dateInput, titleInput, urlInput, hdUrlInput, id));
-            //myAdapter.notifyDataSetChanged();
+            String dateInput = dateText.getText().toString().substring(6);
+            String titleInput = titleText.getText().toString().substring(7);
+            String urlInput = urlText.getText().toString().substring(5);
+            String hdUrlInput = hdUrlText.getText().toString().substring(7);
+            db = NasaDayActivity.dbOpener.getWritableDatabase();
+            Cursor c = db.query(false, NasaDayImageMyOpener.TABLE_NAME, new String[]{"DATE", "TITLE"},
+                    "DATE like ? and TITLE like ?", new String[]{dateInput, titleInput}, null, null, null, null);
+            if (c.getCount()>0) {
+                Toast.makeText(NasaDayImage.this, "In my favorite list already", Toast.LENGTH_LONG).show();
+            } else {
+                newRowValues.put(NasaDayImageMyOpener.COL_DATE, dateInput);
+                newRowValues.put(NasaDayImageMyOpener.COL_TITLE, titleInput);
+                newRowValues.put(NasaDayImageMyOpener.COL_URL, urlInput);
+                newRowValues.put(NasaDayImageMyOpener.COL_HDURL, hdUrlInput);
+                db.insert(NasaDayImageMyOpener.TABLE_NAME, null, newRowValues);
+                //long id= db.insert(NasaDayImageMyOpener.TABLE_NAME,null, newRowValues);
+                //NasaDayImageMyfavoriteList.list.add(new Image(dateInput, titleInput, urlInput, hdUrlInput, id));
+                //myAdapter.notifyDataSetChanged();
+                Toast.makeText(NasaDayImage.this, "Added to my favorite list", Toast.LENGTH_LONG).show();
+            }
+        });
 
-            Toast.makeText(NasaDayImage.this, "Added to the favorite list" , Toast.LENGTH_LONG).show(); });
     }
 
     class NasaImage extends AsyncTask<String, Integer, String> {
@@ -122,7 +129,7 @@ public class NasaDayImage extends AppCompatActivity {
                         image= BitmapFactory.decodeStream(imageConnection.getInputStream());
                         Log.i("file", "this file is from online.");
                         FileOutputStream outputStream = openFileOutput( title + ".png", Context.MODE_PRIVATE );
-                        image.compress(Bitmap.CompressFormat.PNG, 120, outputStream);
+                        image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                         outputStream.flush();
                         outputStream.close();
                     }
