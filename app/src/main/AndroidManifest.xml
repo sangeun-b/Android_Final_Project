@@ -13,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NasaEarth"></activity>
+        <activity
+            android:name=".InfoToolBar"
+            android:label="@string/title_activity_info_tool_bar"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".NasaEarth" />
         <activity android:name=".NasaEarthMyOpener" />
         <activity
             android:name=".NasaDayImageMyfavoriteList"
@@ -23,7 +27,7 @@
         <activity android:name=".BBCItem" />
         <activity android:name=".BBCDetails" />
         <activity android:name=".BBCFavouriteList" />
-        <activity android:name=".NasaDayImageEmptyActivity"/>
+        <activity android:name=".NasaDayImageEmptyActivity" />
         <activity
             android:name=".BBCActivity"
             android:label="@string/title_activity_bbc"

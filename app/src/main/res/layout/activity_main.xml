@@ -69,6 +69,16 @@
         android:layout_below="@+id/nasaEarthButton"
         />
 
+    <ImageView
+        android:id="@+id/projectInfo"
+        android:layout_width="20pt"
+        android:layout_height="20pt"
+        android:src="@drawable/info"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15pt"
+        android:layout_marginTop="10pt"
+        android:layout_marginBottom="10pt"/>
+
     <ImageButton
         android:layout_width="70pt"
         android:layout_height="70pt"

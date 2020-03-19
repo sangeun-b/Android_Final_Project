@@ -67,5 +67,15 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_info_tool_bar">InfoToolBar</string>
+    <string name="menu_item1">Guardian News Article Search</string>
+    <string name="menu_item2">NASA Image of the Day</string>
+    <string name="menu_item3">NASA Earth Image Search</string>
+    <string name="menu_item4">BBC news reader</string>
+    <string name="author1">Qi Wang</string>
+    <string name="version_number">Version Number: 1</string>
+    <string name="author2">Hsing-I Wang</string>
+    <string name="author3">Sangeun Baek</string>
+    <string name="author4">Xin Guo</string>
 
 </resources>
