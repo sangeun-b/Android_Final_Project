@@ -15,9 +15,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 
@@ -27,6 +29,7 @@ public class NasaDayActivity extends FragmentActivity {
     private static EditText textDate;
     static SharedPreferences prefs = null;
     static NasaDayImageMyOpener dbOpener;
+    static Context context;
     SQLiteDatabase db;
 
     @Override
@@ -34,6 +37,7 @@ public class NasaDayActivity extends FragmentActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nasaday);
+        context= this;
 
         textDate= findViewById(R.id.date);
         prefs = getSharedPreferences("NasaDayImage", Context.MODE_PRIVATE);
@@ -61,6 +65,7 @@ public class NasaDayActivity extends FragmentActivity {
             startActivity(goToMyfavoriteList);
         });
 
+
     }
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
@@ -69,19 +74,27 @@ public class NasaDayActivity extends FragmentActivity {
         public static String date;
         final Calendar cal = Calendar.getInstance();
 
+
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final Calendar cal = Calendar.getInstance();
-            int year = cal.get(Calendar.YEAR);
-            int month = cal.get(Calendar.MONTH);
-            int day = cal.get(Calendar.DAY_OF_MONTH);
+            final Calendar today = Calendar.getInstance();
+            int year = today.get(Calendar.YEAR);
+            int month = today.get(Calendar.MONTH);
+            int day = today.get(Calendar.DAY_OF_MONTH);
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
+
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             cal.set(Calendar.YEAR, year);
             cal.set(Calendar.MONTH, month);
             cal.set(Calendar.DAY_OF_MONTH, day);
+
+            Calendar today = Calendar.getInstance();
+            if(cal.compareTo(today)>0) {
+                Toast.makeText(NasaDayActivity.context.getApplicationContext(), "please pick another date(present or past)", Toast.LENGTH_LONG).show();
+            }
+
             date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(cal.getTime());
             Log.d(TAG, "onDateSet: " + date);
             //new NasaDayActivity().setDate(date);

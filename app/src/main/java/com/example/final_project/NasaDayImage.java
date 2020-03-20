@@ -157,11 +157,11 @@ public class NasaDayImage extends AppCompatActivity {
             TextView dateText = findViewById(R.id.dateTextView);
             dateText.setText("DATE: " + date);
             TextView titleText =findViewById(R.id.titleTextView);
-            titleText.setText("TITLE: " + title);
+            titleText.setText("TITLE: " + ((title != null) ? title : (title= "NA")));
             TextView urlText = findViewById(R.id.urlTextView);
             urlText.setText("URL: " + url);
             TextView hdUrlText =findViewById(R.id.hdurlTextView);
-            hdUrlText.setText("HDURL: "+ hdUrl);
+            hdUrlText.setText("HDURL: "+ ((hdUrl == null) ? (hdUrl = "NA"): hdUrl));
             mProgressBar.setVisibility(View.INVISIBLE);
 
         }
