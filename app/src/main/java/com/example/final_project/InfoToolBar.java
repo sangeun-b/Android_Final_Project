@@ -1,6 +1,7 @@
 package com.example.final_project;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class InfoToolBar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    ActionBarDrawerToggle toggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +27,18 @@ public class InfoToolBar extends AppCompatActivity implements NavigationView.OnN
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+        toggle = new ActionBarDrawerToggle(this,
                 drawer, toolbar, R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,7 +76,7 @@ public class InfoToolBar extends AppCompatActivity implements NavigationView.OnN
     public boolean onNavigationItemSelected(MenuItem item) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog alert = builder.create();
-        builder.setTitle("How to use?");
+        builder.setTitle("How To Use ");
         switch(item.getItemId())
         {
             case R.id.item_guardian:
@@ -96,7 +101,7 @@ public class InfoToolBar extends AppCompatActivity implements NavigationView.OnN
                         .show();
                 break;
             case R.id.guide_nasaday:
-                builder.setMessage("Enter a day to view the image of thatt day pick by NASA. ")
+                builder.setMessage("Enter a day to view the image of that day pick by NASA. ")
                         .setPositiveButton("OK", (click, arg)-> alert.cancel())
                         .show();
                 break;
