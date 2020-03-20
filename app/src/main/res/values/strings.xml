@@ -77,5 +77,11 @@
     <string name="author2">Hsing-I Wang</string>
     <string name="author3">Sangeun Baek</string>
     <string name="author4">Xin Guo</string>
+    <string name="guide">Guide</string>
+    <string name="go_to_guardian">Go to Guardian News Article Search</string>
+    <string name="go_to_nasa_day">Go to Nasa Image of the Day</string>
+    <string name="go_to_nasa_earth">Go to Nasa Earth Image Search</string>
+    <string name="open" />
+    <string name="close" />
 
 </resources>
