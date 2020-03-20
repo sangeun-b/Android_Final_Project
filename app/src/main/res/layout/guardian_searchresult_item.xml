@@ -22,8 +22,9 @@
         android:textSize="20pt"
         android:textStyle="bold"
         android:layout_below="@+id/guardian_logo"/>
-    <ListView
-        android:id="@+id/guardian_list"
+
+    <TextView
+        android:id="@+id/guardian_search_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/guardian_news" />

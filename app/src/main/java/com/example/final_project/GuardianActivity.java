@@ -1,6 +1,7 @@
 package com.example.final_project;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -23,9 +25,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class GuardianActivity extends AppCompatActivity {
     TextView title;
+    static GuardianMyOpener dbOpener;
+    SQLiteDatabase db;
+
+
+
 
 
     @Override
@@ -40,6 +48,9 @@ public class GuardianActivity extends AppCompatActivity {
         ImageButton favourite = findViewById(R.id.favouriteList);
         Intent goToFavourite = new Intent(GuardianActivity.this, Guardian_favourite.class);
         favourite.setOnClickListener(click -> startActivity(goToFavourite));
+
+       dbOpener=new GuardianMyOpener(this);
+       db=dbOpener.getWritableDatabase();
 
 
         title = findViewById(R.id.guardian_news);
