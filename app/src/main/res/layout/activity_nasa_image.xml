@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:orientation="vertical"
+    tools:context=".NasaDayImage">
+
+    <ImageView
+        android:id="@+id/NasaDayImageView"
+        android:layout_width="300dp"
+        android:layout_height="390dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dateTextView"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titleTextView"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <TextView
+        android:id="@+id/urlTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/urlTextView"
+        android:textStyle="bold"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <TextView
+        android:id="@+id/hdurlTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hdurlTextView"
+        android:textStyle="bold"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        tools:visibility="invisible"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+    <Button
+        android:id="@+id/saveImageButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/saveImageButton"/>
+
+
+
+</LinearLayout>

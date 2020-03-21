@@ -1,33 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:orientation="vertical"
     tools:context=".NasaDayActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <ImageView
+        android:id="@+id/NasaDayImage"
+        android:layout_marginTop="15pt"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@drawable/nasa_resize"/>
+
+    <ImageView
+        android:id="@+id/myFavoriteDayImage"
+        android:layout_width="15pt"
+        android:layout_height="15pt"
+        android:src="@drawable/star"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10pt"
+        android:layout_marginRight="10pt" />
+
+    <TextView
+        android:id="@+id/imageText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:text="@string/NasaImageoftheDay"
+        android:layout_below="@+id/NasaDayImage"
+        android:layout_marginTop="5pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginLeft="5pt"
+        android:textSize="20pt"
+        android:textStyle="bold" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_nasaday" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_below="@+id/imageText"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10pt"
+        android:inputType="date"
+        android:hint="@string/datepick"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10pt"
+        android:layout_below="@+id/date">
+
+        <Button
+            android:id="@+id/dateButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pick_date"/>
+
+        <Button
+            android:id="@+id/viewImageButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/view_image"/>
+    </LinearLayout>
+
+</RelativeLayout>

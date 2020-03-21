@@ -10,6 +10,7 @@
         android:id="@+id/guardian_logo"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+
         android:src="@drawable/guardian_logo" />
 
     <ImageButton
@@ -20,6 +21,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
         android:src="@drawable/star" />
+        android:src="@drawable/guardian" />
 
     <TextView
         android:id="@+id/guardian_news"

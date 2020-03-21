@@ -11,28 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="@string/title"
-        android:layout_marginTop="15dp"
+        android:text="@string/earthtitle"
+        android:layout_marginTop="15pt"
         android:textSize="15pt"
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/saveList"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:id="@+id/earthsaved"
+        android:layout_width="15pt"
+        android:layout_height="15pt"
         android:src="@drawable/star"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp" />
+        android:layout_marginTop="5pt"
+        android:layout_marginRight="5pt" />
 
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="306dp"
-        android:layout_height="413dp"
+        android:layout_width="250dp"
+        android:layout_height="300dp"
         android:layout_below="@+id/title"
         android:layout_centerInParent="true"
-        android:src="@drawable/earth" />
+        android:src="@drawable/earth"
+        />
 
     <TextView
         android:id="@+id/lat"
@@ -42,13 +43,13 @@
         android:textSize="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/lat" />
+        android:text="@string/earthlat" />
 
     <EditText
         android:id="@+id/enterLat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/input"
+        android:hint="@string/earthinput"
         android:layout_toRightOf="@+id/lat"
         android:layout_below="@+id/image"
         android:layout_marginRight="30dp"
@@ -64,13 +65,13 @@
         android:layout_below="@+id/lat"
         android:textSize="30dp"
         android:layout_marginLeft="30dp"
-        android:text="@string/lon" />
+        android:text="@string/earthlon" />
 
     <EditText
         android:id="@+id/enterLon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/input"
+        android:hint="@string/earthinput"
         android:layout_toRightOf="@+id/lon"
         android:layout_below="@+id/enterLat"
         android:layout_marginRight="30dp"
@@ -80,10 +81,17 @@
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/search"
+        android:text="@string/earthsearch"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="10dp"
         android:layout_centerInParent="true"
-        android:id="@+id/search" />
+        android:id="@+id/earthsearch" />
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/earthprogress"
+        style="?android:attr/progressBarStyleHorizontal"
+        />
 
 </RelativeLayout>

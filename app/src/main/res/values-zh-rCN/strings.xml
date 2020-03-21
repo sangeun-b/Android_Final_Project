@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="guardian_news">Guardian 新闻</string>
     <string name="guardin_search">搜索</string>
     <string name="search_news">搜索新闻</string>
@@ -8,6 +9,7 @@
     <string name="guardian_url">网址：</string>
     <string name="guardian_section">部分名字</string>
 
-
-
+ 
 </resources>
+
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/BBCNewsDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/BBCNewsDetail"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title: "
+        android:textSize="20dp"
+        android:layout_below="@id/BBCNewsDetail" />
+
+    <TextView
+        android:id="@+id/Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description: "
+        android:textSize="20dp"
+        android:layout_below="@id/Title" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: "
+        android:textSize="20dp"
+        android:layout_below="@id/Description" />
+
+    <TextView
+        android:id="@+id/Link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Link: "
+        android:textSize="20dp"
+        android:layout_below="@id/Date" />
+
+    <Button
+        android:id="@+id/BBCAddToFavourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/BBCAddToFavourite"
+        android:textSize="20dp"
+        android:layout_toLeftOf="@id/BBCBack"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:id="@+id/BBCBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/BBCBack"
+        android:textSize="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
