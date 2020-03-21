@@ -57,8 +57,6 @@ public class Guardian_search_results extends AppCompatActivity {
 
         }
 
-
-
         }
     public void loadDataFromDatabase(){
         //get a database connection:
