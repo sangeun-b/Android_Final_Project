@@ -2,90 +2,127 @@ package com.example.final_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Guardian_search_results extends AppCompatActivity {
-    private ArrayList<GuardianNews> list=new ArrayList<>();
-    private MyListAdapter myAdapter;
-    public static final String ACTIVITY_NAME="Guardian_search_results";
-    SQLiteDatabase db;
+    ListView titleListView;
+    ArrayList<GuardianNews> list=new ArrayList<>();
+    ProgressBar progressBar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guardian_search_results);
+        titleListView = findViewById(R.id.guardian_list);
+        MyHttpRequest req = new MyHttpRequest();
+        req.execute("https://content.guardianapis.com/search?api-key=1fb36b70-1588-4259-b703-2570ea1fac6a&q=" + GuardianActivity.searchInput);
 
-        ListView guardianList=findViewById(R.id.guardian_list);
-        loadDataFromDatabase();
-
-        myAdapter=new MyListAdapter();
-        guardianList.setAdapter(myAdapter);
     }
 
-    private class MyListAdapter extends BaseAdapter {
-        public int getCount(){
+    private class MyHttpRequest extends AsyncTask<String, Integer, String> {
+
+        //Type3                Type1
+        public String doInBackground(String... args) {
+            try {
+                //create a URL object of what server to contact:
+                URL url = new URL(args[0]);
+                //open the connection
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                //wait for data:
+                InputStream response = urlConnection.getInputStream();
+                //JSON reading:
+                //Build the entire string response:
+                BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
+                StringBuilder sb = new StringBuilder();
+
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                String result = sb.toString(); //result is the whole string*/
+
+                JSONObject jo = new JSONObject(result);
+                JSONArray jsa= jo.getJSONArray("results");
+                Log.i("TAG", Integer.toString(jsa.length()));
+                for(int i=0; i<jsa.length(); i++){
+                    JSONObject item = jsa.getJSONObject(i);
+                    GuardianNews gd= new GuardianNews();
+                    gd.setTitle(item.getString("webTitle"));
+                    gd.setUrl(item.getString("webUrl"));
+                    gd.setSection(item.getString("sectionName"));
+                    list.add(gd);
+                }
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+            }
+
+            return "Done";
+        }
+
+        protected void onProgressUpdate(Integer... value) {
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setProgress(value[0]);
+        }
+
+        protected void onPostExecute(String fromDoInBackground) {
+            titleListView.setAdapter(new GuardianListAdapter());
+        }
+
+    }
+
+    private class GuardianListAdapter extends BaseAdapter{
+        @Override
+        public int getCount() {
             return list.size();
         }
 
-        public GuardianNews getItem(int position){
+        @Override
+        public GuardianNews getItem(int position)
+        {
             return list.get(position);
         }
 
-        public long getItemId(int position){
-            return getItem(position).getId();
-        }
-
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View newView=convertView;
-            GuardianNews news=getItem(position);
-            LayoutInflater inflater= getLayoutInflater();
-            newView=inflater.inflate(R.layout.guardian_searchresult_item,parent,false);
-            TextView tView =newView.findViewById(R.id.guardian_search_title);
-            tView.setText( news.getTitle());
+            LayoutInflater inflater = getLayoutInflater();
+            GuardianNews gnews= getItem(position);
+            newView=inflater.inflate(R.layout.guardian_searchresult_item, parent,false);
+            TextView tView= newView.findViewById(R.id.guardian_news_item);
+            tView.setText( gnews.getTitle());
             return newView;
-
         }
 
-        }
-    public void loadDataFromDatabase(){
-        //get a database connection:
-        db=GuardianActivity.dbOpener.getWritableDatabase();
-        String[]columns={GuardianMyOpener.COL_ID,GuardianMyOpener.COL_TITLE,GuardianMyOpener.COL_URL,GuardianMyOpener.COL_SECTION};
-        Cursor results = db.query(false, GuardianMyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
-
-        //Now the results object has rows of results that match the query.
-        //find the column indices:
-        int titleColIndex = results.getColumnIndex(GuardianMyOpener.COL_TITLE);
-        int urlColIndex = results.getColumnIndex(GuardianMyOpener.COL_URL);
-        int sectionColIndex = results.getColumnIndex(GuardianMyOpener.COL_SECTION);
-        int idColIndex = results.getColumnIndex(GuardianMyOpener.COL_ID);
-
-        while(results.moveToNext())
+        //we return the object's database id
+        @Override
+        public long getItemId(int position)
         {
-            String title = results.getString(titleColIndex);
-            String url = results.getString(urlColIndex);
-            String section = results.getString(sectionColIndex);
-            long id = results.getLong(idColIndex);
-
-
-            //add the new Message to the array list:
-            //Message m=new Message(message,send,id);
-            list.add((new GuardianNews(title,url,section,id)));
+            return getItem(position).getId();
         }
-
-
-
-
     }
+
 }

@@ -14,7 +14,7 @@
 
 
     <TextView
-        android:id="@+id/guardian_news"
+        android:id="@+id/guardian_news_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"

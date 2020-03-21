@@ -14,8 +14,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.os.Bundle;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -28,32 +30,36 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class GuardianActivity extends AppCompatActivity {
-    TextView title;
+    ListView title;
     static GuardianMyOpener dbOpener;
     SQLiteDatabase db;
-
-
-
-
+    static String searchInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guardian);
 
+        EditText searchText=findViewById(R.id.search_news);
         Button search = findViewById(R.id.search_button);
         Intent goToSearch = new Intent(GuardianActivity.this, Guardian_search_results.class);
-        search.setOnClickListener(click -> startActivity(goToSearch));
+        search.setOnClickListener(click ->{
+                searchInput =searchText.getText().toString();
+                startActivity(goToSearch);});
 
         ImageButton favourite = findViewById(R.id.favouriteList);
         Intent goToFavourite = new Intent(GuardianActivity.this, Guardian_favourite.class);
         favourite.setOnClickListener(click -> startActivity(goToFavourite));
 
-       dbOpener=new GuardianMyOpener(this);
+
+
+
+
+       /*dbOpener=new GuardianMyOpener(this);
        db=dbOpener.getWritableDatabase();
 
 
-        title = findViewById(R.id.guardian_news);
+        title = findViewById(R.id.guardian_list);
         MyHttpRequest req = new MyHttpRequest();
         req.execute("https://content.guardianapis.com/search?api-key=1fb36b70-1588-4259-b703-2570ea1fac6a&q=Tesla");
     }
@@ -99,8 +105,9 @@ public class GuardianActivity extends AppCompatActivity {
             }
 
             protected void onPostExecute(String fromDoInBackground) {
+
              title.setText("The news title is:"+ newsTitle);
-            }
+            }*/
 
 
 

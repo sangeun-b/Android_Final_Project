@@ -6,6 +6,8 @@ public class GuardianNews {
     private String section;
     private long id;
 
+    public GuardianNews(){};
+
     public GuardianNews(String title, String url, String section, long id){
         this.title=title;
         this.url=url;
