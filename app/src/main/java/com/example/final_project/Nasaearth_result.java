@@ -107,8 +107,8 @@ public class Nasaearth_result extends AppCompatActivity {
                     String result = sb.toString();
                     JSONObject json = new JSONObject(result);
 
-                    longitude= NasaEarthActivity.inputLon;
-                    latitude = NasaEarthActivity.inputLat;
+                    //longitude= NasaEarthActivity.inputLon;
+                    //latitude = NasaEarthActivity.inputLat;
 
                     id = json.getString("id");
                     publishProgress(25);
@@ -153,14 +153,16 @@ public class Nasaearth_result extends AppCompatActivity {
 
             public void onPostExecute(String fromDoInBackground) {
                 super.onPostExecute(fromDoInBackground);
-                ImageView nasaEarthImage = findViewById(R.id.earthImage);
-                nasaEarthImage.setImageBitmap(image);
-                TextView latText = findViewById(R.id.earthlat);
-                latText.setText(R.string.earthlat + latitude);
-                TextView lonText =findViewById(R.id.earthlon);
-                lonText.setText(R.string.earthlon + longitude);
-                TextView dateText = findViewById(R.id.earthdate);
-                dateText.setText(R.string.earthdate + date);
+                longitude= NasaEarthActivity.inputLon;
+                latitude = NasaEarthActivity.inputLat;
+                //ImageView nasaEarthImage = findViewById(R.id.earthImage);
+                earthImageView.setImageBitmap(image);
+                //TextView latText = findViewById(R.id.earthlat);
+                earthLatTextView.setText(getString(R.string.earthlat) + latitude);
+                //TextView lonText =findViewById(R.id.earthlon);
+                earthLonTextView.setText(getString(R.string.earthlon) + longitude);
+                //TextView dateText = findViewById(R.id.earthdate);
+                earthDateTextView.setText(getString(R.string.earthdate) + date);
                 earthProgressBar.setVisibility(View.INVISIBLE);
             }
 
