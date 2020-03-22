@@ -32,6 +32,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -47,6 +48,7 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
@@ -61,10 +63,10 @@ import java.net.URL;
 
 public class BBCActivity extends AppCompatActivity {
 
-    ArrayList<BBCItem> itemList = new ArrayList<>();
+    static ArrayList<BBCItem> itemList = new ArrayList<>();
     MyListAdapter adapter;
     int positionClicked = 0;
-    SQLiteDatabase db;
+    static SQLiteDatabase db;
     int versionNum;
 
     @Override
@@ -76,54 +78,55 @@ public class BBCActivity extends AppCompatActivity {
         EditText BBCSearchText = findViewById(R.id.BBCSearchText);
         Button BBCSearchButton = findViewById(R.id.BBCSearchButton);
         ListView BBCTitle = findViewById(R.id.BBCTitle);
-        Button BBCFavouriteButton = findViewById(R.id.BBCFavouriteButton);
+        ImageView BBCFavouriteStar = findViewById(R.id.BBCFavouriteStar);
+
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         MyHTTPRequest req = new MyHTTPRequest();
         req.execute("http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml");  //Type 1
-
-        BBCFavouriteButton.setOnClickListener( new View.OnClickListener()
-        {   public void onClick(View v) {
-            Intent goToProfile = new Intent(BBCActivity.this, BBCFavouriteList.class);
-            startActivity(goToProfile);
-        } });
-
 
         loadDataFromDatabase(); //get any previously saved Contact objects
         adapter = new MyListAdapter();
         BBCTitle.setAdapter(adapter);
 
+        BBCFavouriteStar.setOnClickListener(v -> {
+            Intent goToProfile = new Intent(BBCActivity.this, BBCFavouriteList.class);
+            startActivity(goToProfile);
+        });
 
-        /*        list.setOnItemLongClickListener((parent,view,position,id)-> {
-         *//*View extraViewStuff = getLayoutInflater().inflate(R.layout.row_layout);
-            ((TextView) extraViewStuff.findViewById(R.id.textGoesHere)).setText("More stuff");*//*
+        BBCSearchButton.setOnClickListener(v -> {
+//            saveSharedPrefs(editText.getText().toString());
+            Intent goToSearch = new Intent(BBCActivity.this, BBCSearchList.class);
+            goToSearch.putExtra("KEYWORD", BBCSearchText.getText().toString());
+            startActivity(goToSearch);
+        });
 
-            Message selectedMessage = msgList.get(position);
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Do you want to delete this?").setMessage("The selected row is: " + (position+1) + "\nThe database id is: " + (adapter.getItemId(position)))
-                    .setPositiveButton("Yes", (click, arg) -> {
-                        deleteContact(selectedMessage);
-                        msgList.remove(position);
-                        list.setAdapter(new MyListAdapter());
-                        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
-                        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-                        {
-                            @Override
-                            public void onRefresh()
-                            {
-                                list.setAdapter(new MyListAdapter());
-                            }
-                        });
-                    })
-                    .setNegativeButton("No", (click, arg) -> { Toast.makeText(ChatRoomActivity.this, "Nothing changed", Toast.LENGTH_LONG).show();
-                    }).create().show();
-            return true;
-        });*/
+        /*ListView BBCTitle = findViewById(R.id.BBCTitle);
+            BBCTitle.setAdapter(new MyListAdapter());
+            final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
+            swipeRefreshLayout.setOnRefreshListener(() -> BBCTitle.setAdapter(new MyListAdapter()));*/
+
+        BBCTitle.setOnItemClickListener((parent,view,position,id)-> {
+            Intent goToDetails = new Intent(BBCActivity.this, BBCDetails.class);
+            BBCItem selectedItem = itemList.get(position);
+
+            goToDetails.putExtra("POSITION", position);
+            //goToDetails.putExtra("ID", selectedItem.getId());
+            goToDetails.putExtra("TITLE", selectedItem.getTitle());
+            goToDetails.putExtra("DESCRIPTION", selectedItem.getDescription());
+            goToDetails.putExtra("LINK", selectedItem.getLink());
+            goToDetails.putExtra("DATE", selectedItem.getDate());
+            goToDetails.putExtra("ISFAVOURITE", selectedItem.getIsFavourite());
+
+            startActivity(goToDetails);
+
+        });
     }
 
     //Type1     Type2   Type3
     private class MyHTTPRequest extends AsyncTask< String, Integer, String>
     {
-        private String title, description, link, date;
         //Type3                Type1
         protected String doInBackground(String ... args)
         {
@@ -134,57 +137,29 @@ public class BBCActivity extends AppCompatActivity {
 
                 //open the connection
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
+                publishProgress(10);
                 //wait for data:
                 InputStream response = urlConnection.getInputStream();
 
-                //From part 3: slide 19
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                 factory.setNamespaceAware(false);
                 XmlPullParser xpp = factory.newPullParser();
                 xpp.setInput( response  , "UTF-8");
+                xpp.nextTag();
 
-                int eventType = xpp.getEventType(); //The parser is currently at START_DOCUMENT
-
-                while(eventType != XmlPullParser.END_DOCUMENT)
-                {
-
-                    if(eventType == XmlPullParser.START_TAG)
-                    {
-                        //If you get here, then you are pointing at a start tag
-                        if(xpp.getName().equals("item"))
-                        {
-                            //If you get here, then you are pointing to a <Weather> start tag
-                            title = xpp.getAttributeValue(null,    "title");
-                            publishProgress(10);
-                            description = xpp.getAttributeValue(null,    "description");
-                            publishProgress(20);
-                            link = xpp.getAttributeValue(null, "link");
-                            publishProgress(30);
-                            date = xpp.getAttributeValue(null, "pubDate");
-                            publishProgress(40);
-
-                            //add to the database and get the new ID
-                            ContentValues newRowValues = new ContentValues();
-
-                            //Now provide a value for every database column defined in MyOpener.java:
-                            newRowValues.put(BBCMyOpener.COL_TITLE, title);
-                            newRowValues.put(BBCMyOpener.COL_DESCRIPTION, description);
-                            newRowValues.put(BBCMyOpener.COL_LINK, link);
-                            newRowValues.put(BBCMyOpener.COL_DATE, date);
-
-                            //Now insert in the database:
-                            long newId = db.insert(BBCMyOpener.TABLE_NAME, null, newRowValues);
-
-                            BBCItem item = new BBCItem(title, description, link, date, newId);
-                            itemList.add(item);
-
+                    xpp.require(XmlPullParser.START_TAG, null, "rss");
+                    publishProgress(25);
+                    while (xpp.next() != XmlPullParser.END_TAG) {
+                        publishProgress(50);
+                        if (xpp.getEventType() != XmlPullParser.START_TAG) {
+                            continue;
+                        }
+                        if (xpp.getName().equals("channel")) {
+                            readChannel(xpp);
+                        } else {
+                            skip(xpp);
                         }
                     }
-                    eventType = xpp.next(); //move to the next xml event and store it in a variable
-                }
-
-
             }
             catch (Exception e)
             {
@@ -197,6 +172,8 @@ public class BBCActivity extends AppCompatActivity {
         //Type 2
         public void onProgressUpdate(Integer ... args)
         {
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+            progressBar.setVisibility(View.VISIBLE);
             setProgress(args[0]);
         }
         //Type3
@@ -207,45 +184,46 @@ public class BBCActivity extends AppCompatActivity {
             ListView BBCTitle = findViewById(R.id.BBCTitle);
             BBCTitle.setAdapter(new MyListAdapter());
 
-        }
-    }
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+            progressBar.setVisibility(View.INVISIBLE);
 
-    protected void deleteContact(BBCItem c)
-    {
-        db.delete(BBCMyOpener.TABLE_NAME, BBCMyOpener.COL_ID + "= ?", new String[] {Long.toString(c.getId())});
+        }
     }
 
     private void loadDataFromDatabase()
     {
+        itemList.clear();
+
         //get a database connection:
         BBCMyOpener dbOpener = new BBCMyOpener(this);
         db = dbOpener.getWritableDatabase();
 
-
         // We want to get all of the columns. Look at MyOpener.java for the definitions:
-        String [] columns = {BBCMyOpener.COL_ID, BBCMyOpener.COL_TITLE, BBCMyOpener.COL_DESCRIPTION, BBCMyOpener.COL_LINK, BBCMyOpener.COL_DATE};
+        String [] columns = {BBCMyOpener.COL_ID, BBCMyOpener.COL_TITLE, BBCMyOpener.COL_DESCRIPTION, BBCMyOpener.COL_LINK, BBCMyOpener.COL_DATE, BBCMyOpener.COL_ISFAVOURITE};
         //query all the results from the database:
         Cursor results = db.query(false, BBCMyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
         //Now the results object has rows of results that match the query.
         //find the column indices:
+        int idColIndex = results.getColumnIndex(BBCMyOpener.COL_ID);
         int titleColumnIndex = results.getColumnIndex(BBCMyOpener.COL_TITLE);
         int descriptionColIndex = results.getColumnIndex(BBCMyOpener.COL_DESCRIPTION);
         int linkColIndex = results.getColumnIndex(BBCMyOpener.COL_LINK);
         int dateColIndex = results.getColumnIndex(BBCMyOpener.COL_DATE);
-        int idColIndex = results.getColumnIndex(BBCMyOpener.COL_ID);
+        int isFavouriteColIndex = results.getColumnIndex(BBCMyOpener.COL_ISFAVOURITE);
 
         //iterate over the results, return true if there is a next item:
         while(results.moveToNext())
         {
+            long id = results.getLong(idColIndex);
             String title = results.getString(titleColumnIndex);
             String description = results.getString(descriptionColIndex);
             String link = results.getString(linkColIndex);
             String date = results.getString(dateColIndex);
-            long id = results.getLong(idColIndex);
+            String isFavourite = results.getString(isFavouriteColIndex);
 
             //add the new Contact to the array list:
-            itemList.add(new BBCItem(title, description, link, date, id));
+            itemList.add(new BBCItem(id, title, description, link, date, isFavourite));
         }
 
         //At this point, the contactsList array has loaded every row from the cursor.
@@ -270,10 +248,121 @@ public class BBCActivity extends AppCompatActivity {
             BBCItem item = (BBCItem) getItem(position);
             View newView = inflater.inflate(R.layout.activity_bbclistview, null);
             TextView theText = newView.findViewById(R.id.bbclistview);
-            theText.setText(item.getTitle());
+            theText.setTextSize(20);
+            theText.setText(item.getId() + ": " + item.getTitle());
             return newView;
         }
+    }
 
+    private void readChannel(XmlPullParser parser) throws XmlPullParserException, IOException {
+
+        parser.require(XmlPullParser.START_TAG, null, "channel");
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+
+            if (parser.getName().equals("item")) {
+                readItem(parser);
+            } else {
+                skip(parser);
+            }
+        }
+    }
+
+    private void readItem(XmlPullParser parser) throws XmlPullParserException, IOException {
+
+        String title=null, description=null, link=null, date=null, isFavourite="false";
+
+        parser.require(XmlPullParser.START_TAG, null, "item");
+        ContentValues newRowValues = new ContentValues();
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+
+            if (parser.getName().equals("title")) {
+                title = readTitle(parser);
+                newRowValues.put(BBCMyOpener.COL_TITLE, title);
+            } else if (parser.getName().equals("description")) {
+                    description = readDescription(parser);
+                    newRowValues.put(BBCMyOpener.COL_DESCRIPTION, description);
+                } else if (parser.getName().equals("link")) {
+                        link = readLink(parser);
+                        newRowValues.put(BBCMyOpener.COL_LINK, link);
+                    } else if (parser.getName().equals("pubDate")) {
+                            date = readDate(parser);
+                            newRowValues.put(BBCMyOpener.COL_DATE, date);
+                        } else {
+                            skip(parser);
+                        }
+        }
+
+        newRowValues.put(BBCMyOpener.COL_ISFAVOURITE, isFavourite);
+
+        //Now insert in the database:
+        long newId = db.insert(BBCMyOpener.TABLE_NAME, null, newRowValues);
+
+        BBCItem item = new BBCItem(newId, title, description, link, date, isFavourite);
+        itemList.add(item);
+    }
+
+    private String readTitle(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, "title");
+        String title = readText(parser);
+        Log.d("title", title);
+        parser.require(XmlPullParser.END_TAG, null, "title");
+        return title;
+    }
+
+    private String readDescription(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, "description");
+        String description = readText(parser);
+        Log.d("description", description);
+        parser.require(XmlPullParser.END_TAG, null, "description");
+        return description;
+    }
+
+    private String readLink(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, "link");
+        String link = readText(parser);
+        Log.d("link", link);
+        parser.require(XmlPullParser.END_TAG, null, "link");
+        return link;
+    }
+
+    private String readDate(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, "pubDate");
+        String date = readText(parser);
+        Log.d("date", date);
+        parser.require(XmlPullParser.END_TAG, null, "pubDate");
+        return date;
+    }
+
+    private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
+        String result = "";
+        if (parser.next() == XmlPullParser.TEXT) {
+            result = parser.getText();
+            parser.nextTag();
+        }
+        return result;
+    }
+
+    private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
+        if (parser.getEventType() != XmlPullParser.START_TAG) {
+            throw new IllegalStateException();
+        }
+        int depth = 1;
+        while (depth != 0) {
+            switch (parser.next()) {
+                case XmlPullParser.END_TAG:
+                    depth--;
+                    break;
+                case XmlPullParser.START_TAG:
+                    depth++;
+                    break;
+            }
+        }
     }
 
 }

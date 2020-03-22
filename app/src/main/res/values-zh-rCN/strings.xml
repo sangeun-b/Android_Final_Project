@@ -3,5 +3,14 @@
     <string name="guardian_title">Guardian 新闻</string>
     <string name="guardin_search">搜索</string>
     <string name="search_news">搜索新闻</string>
+    <string name="BBCNewsReader">BBC新闻</string>
+    <string name="BBCSearchButton">搜索</string>
+    <string name="BBCSearchText">搜索BBC新闻</string>
+    <string name="BBCBack1">返回</string>
+    <string name="BBCBack">返回</string>
+    <string name="BBCFavouriteHeader">BBC新闻收藏</string>
+    <string name="BBCAddToFavourite">添加到BBC新闻收藏</string>
+    <string name="BBC">BBC新闻</string>
+    <string name="BBCNewsDetails">BBC新闻详情</string>
 </resources>
 
