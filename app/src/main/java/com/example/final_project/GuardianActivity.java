@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -47,12 +48,9 @@ public class GuardianActivity extends AppCompatActivity {
                 searchInput =searchText.getText().toString();
                 startActivity(goToSearch);});
 
-        ImageButton favourite = findViewById(R.id.favouriteList);
+        ImageView favourite = findViewById(R.id.favouriteList);
         Intent goToFavourite = new Intent(GuardianActivity.this, Guardian_favourite.class);
         favourite.setOnClickListener(click -> startActivity(goToFavourite));
-
-
-
 
 
        /*dbOpener=new GuardianMyOpener(this);

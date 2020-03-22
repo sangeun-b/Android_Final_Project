@@ -6,28 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".GuardianActivity">
 
-    <ImageView
-        android:id="@+id/guardian_logo"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:src="@drawable/guardian_logo" />
-
-
-    <TextView
-        android:id="@+id/guardian_news_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="@string/guardian_news"
-        android:textSize="20pt"
-        android:textStyle="bold"
-        android:layout_below="@+id/guardian_logo"/>
 
     <TextView
         android:id="@+id/guardian_search_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/guardian_news" />
+        android:textSize="10pt"/>
 
 
 </RelativeLayout>

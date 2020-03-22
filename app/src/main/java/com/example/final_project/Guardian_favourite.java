@@ -26,7 +26,7 @@ public class Guardian_favourite extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guardian_favourite_list);
 
-        ListView guardianList = findViewById(R.id.guardian_list);
+        ListView guardianList = findViewById(R.id.guardian_listView);
         loadDataFromDatabase();
 
         myAdapter = new MyListAdapter();
@@ -61,7 +61,9 @@ public class Guardian_favourite extends AppCompatActivity {
 
     public void loadDataFromDatabase(){
         //get a database connection:
-        db=GuardianActivity.dbOpener.getWritableDatabase();
+        GuardianMyOpener guardianDB= new GuardianMyOpener(this);
+        db = guardianDB.getWritableDatabase();
+        //db=GuardianActivity.dbOpener.getWritableDatabase();
         String[]columns={GuardianMyOpener.COL_ID,GuardianMyOpener.COL_TITLE,GuardianMyOpener.COL_URL,GuardianMyOpener.COL_SECTION};
         Cursor results = db.query(false, GuardianMyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 

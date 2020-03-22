@@ -5,15 +5,6 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/guardian_favourite_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/guardian_favourite_list"
-        android:textAlignment="center"
-        android:textSize="15pt"
-        android:textStyle="bold"/>
-
-    <TextView
         android:id="@+id/guardian_favouritelist_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

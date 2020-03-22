@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,20 +32,59 @@ public class Guardian_search_results extends AppCompatActivity {
     ListView titleListView;
     ArrayList<GuardianNews> list=new ArrayList<>();
     ProgressBar progressBar;
+    public static final String TITLE = "TITLE";
+    public static final String URL = "URL";
+    public static final String SECTION = "SECTION NAME";
+    public static final String ID= "ID";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guardian_search_results);
+
+        boolean isTablet=findViewById(R.id.fragmentLocation)!=null;
+        FrameLayout frameLayout = findViewById(R.id.fragmentLocation);
+
         titleListView = findViewById(R.id.guardian_list);
         MyHttpRequest req = new MyHttpRequest();
         req.execute("https://content.guardianapis.com/search?api-key=1fb36b70-1588-4259-b703-2570ea1fac6a&q=" + GuardianActivity.searchInput);
 
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
+        titleListView.setOnItemClickListener((l, view, pos, id) -> {
+            //Create a bundle to pass data to the new fragment
+            Bundle dataToPass=new Bundle();
+            dataToPass.putString(TITLE, list.get(pos).getTitle());
+            dataToPass.putString(URL,list.get(pos).getUrl());
+            dataToPass.putString(SECTION,list.get(pos).getSection());
+            dataToPass.putLong(ID,id);
+
+
+            if(isTablet){
+                Guardian_details_fragment dFragment=new Guardian_details_fragment();//add a DetailFragment
+                dFragment.setArguments(dataToPass);
+                dFragment.setTablet(true);
+                //pass it a bundle for information
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentLocation,dFragment) //Add the fragment in FrameLayout
+                        .commit(); //actually load the fragment.
+            }
+
+            else {//isPhone
+                Intent nextActivity = new Intent(Guardian_search_results.this, GuardianEmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivity(nextActivity); //make the transition
+            }
+
+    });
     }
 
     private class MyHttpRequest extends AsyncTask<String, Integer, String> {
-
+        JSONObject jo;
+        JSONArray jsa;
         //Type3                Type1
         public String doInBackground(String... args) {
             try {
@@ -65,13 +105,16 @@ public class Guardian_search_results extends AppCompatActivity {
                 }
                 String result = sb.toString(); //result is the whole string*/
 
-                JSONObject jo = new JSONObject(result);
-                JSONArray jsa= jo.getJSONArray("results");
-                Log.i("TAG", Integer.toString(jsa.length()));
+                JSONObject jo1 = new JSONObject(result);
+                //JSONObject jo2= jo1.getJSONObject("response");
+                //String s= jo.getString("userTier");
+                //Log.i("String s",s);
+                jsa= jo1.getJSONObject("response").getJSONArray("results");
                 for(int i=0; i<jsa.length(); i++){
                     JSONObject item = jsa.getJSONObject(i);
                     GuardianNews gd= new GuardianNews();
                     gd.setTitle(item.getString("webTitle"));
+                    publishProgress(25);
                     gd.setUrl(item.getString("webUrl"));
                     gd.setSection(item.getString("sectionName"));
                     list.add(gd);
@@ -90,6 +133,7 @@ public class Guardian_search_results extends AppCompatActivity {
 
         protected void onPostExecute(String fromDoInBackground) {
             titleListView.setAdapter(new GuardianListAdapter());
+            progressBar.setVisibility(View.INVISIBLE);
         }
 
     }
@@ -112,7 +156,7 @@ public class Guardian_search_results extends AppCompatActivity {
             LayoutInflater inflater = getLayoutInflater();
             GuardianNews gnews= getItem(position);
             newView=inflater.inflate(R.layout.guardian_searchresult_item, parent,false);
-            TextView tView= newView.findViewById(R.id.guardian_news_item);
+            TextView tView= newView.findViewById(R.id.guardian_search_title);
             tView.setText( gnews.getTitle());
             return newView;
         }

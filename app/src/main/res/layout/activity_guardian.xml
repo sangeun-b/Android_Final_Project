@@ -12,7 +12,7 @@
         android:layout_height="70dp"
         android:src="@drawable/guardian_logo" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/favouriteList"
         android:layout_width="35dp"
         android:layout_height="35dp"

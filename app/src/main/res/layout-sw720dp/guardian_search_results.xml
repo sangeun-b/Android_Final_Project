@@ -25,9 +25,19 @@
 
     <ListView
         android:id="@+id/guardian_list"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/guardian_news" />
+
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/guardian_list"
+        android:layout_above="@+id/progressBar"/>
+
+
+
 
     <ProgressBar
         android:id="@+id/progressBar"

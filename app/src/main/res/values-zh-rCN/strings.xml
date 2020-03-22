@@ -7,7 +7,9 @@
     <string name="guardian_title">标题：</string>
     <string name="guardian_url">网址：</string>
     <string name="guardian_section">部分名字</string>
-
+    <string name="details">新闻详细信息</string>
+    <string name="hide">隐藏</string>
+    <string name="save"></string>
 
 
 </resources>
