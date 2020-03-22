@@ -129,7 +129,7 @@ public class NasaDayImage extends AppCompatActivity {
                         image= BitmapFactory.decodeStream(imageConnection.getInputStream());
                         Log.i("file", "this file is from online.");
                         FileOutputStream outputStream = openFileOutput( title + ".png", Context.MODE_PRIVATE );
-                        image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                        image.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
                         outputStream.flush();
                         outputStream.close();
                     }
