@@ -10,13 +10,18 @@
     <string name="title_activity_nasa_earth">NasaEarthActivity</string>
     <string name="pick_date">Pick a Date</string>
     <string name="title_activity_nasa_image">NasaImage</string>
-    <string name="view_image">view image</string>
+    <string name="view_image">View Image</string>
     <string name="datepick">The date you pick is</string>
     <string name="dateTextView">The date is </string>
-    <string name= "titleTextView">The tile is </string>
-    <string name= "urlTextView">The url is </string>
+    <string name="titleTextView">The tile is </string>
+    <string name="urlTextView">The url is </string>
     <string name="hdurlTextView">The hdurl is </string>
     <string name="NasaImageoftheDay">Image of the Day</string>
+    <string name="NasaImageAlertDelete">Do you want to delete this? </string>
+    <string name="NasaImageSelectRow">The selected row is  </string>
+    <string name="NasaImageDatabaseRow">The database id is </string>
+    <string name="NasaImageMyFavorite">My Favorite </string>
+    <string name="NasaDayFragmentButton">HIDE</string>
 
     <!--BBC-->
     <string name="BBCNewsReader">BBC News</string>
@@ -30,6 +35,7 @@
     <string name="BBCBack2">BACK</string>
     <string name="BBCSearchHeader">BBC News Search List</string>
 
+    <!--NASA Earth-->
     <string name="saveImageButton"> SAVE </string>
     <string name="earthtitle">NASA Earth</string>
     <string name="earthlat">Latitude : </string>
@@ -45,8 +51,46 @@
     <string name="earthdelete">Do you want to delete this image?</string>
     <string name="earthyes">Yes</string>
     <string name="earthno">No</string>
+    <string name="earthck">Please enter the latitude and Longitude</string>
+    <string name="earthcklat">Please enter the latitude</string>
+    <string name="earthcklon">Please enter the Longitude</string>
+
+
     <string name="guardian_title">Guardian News</string>
+    <string name="title_activity_nasa_day_image_myfavorite_list">NasaDayImageMyfavoriteList</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="title_activity_info_tool_bar">InfoToolBar</string>
+    <string name="menu_item1">Guardian News Article Search</string>
+    <string name="menu_item2">NASA Image of the Day</string>
+    <string name="menu_item3">NASA Earth Image Search</string>
+    <string name="menu_item4">BBC News Reader</string>
+    <string name="author1">Qi Wang</string>
+    <string name="version_number">Version Number: 1</string>
+    <string name="author2">Hsing-I Wang</string>
+    <string name="author3">Sangeun Baek</string>
+    <string name="author4">Xin Guo</string>
+    <string name="guide">Guide</string>
+    <string name="go_to_guardian">Go to Guardian News Article Search</string>
+    <string name="go_to_nasa_day">Go to Nasa Image of the Day</string>
+    <string name="go_to_nasa_earth">Go to Nasa Earth Image Search</string>
+    <string name="open" />
+    <string name="close" />
+
+
+    <string name="guardian_news">Guardian News</string>
     <string name="guardin_search">SEARCH</string>
     <string name="search_news">search for news</string>
+    <string name="guardian_favourite_list">Favourite News List</string>
+    <string name="guardian_details">News Details Information</string>
+    <string name="guardian_url">Url:</string>
+    <string name="guardian_section">Section Name:</string>
+    <string name="details">News Details</string>
+    <string name="frament_title">Title:</string>
+    <string name="hide">HIDE</string>
+    <string name="guardian_save">Save</string>
+
 
 </resources>

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,10 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton Guardianb= findViewById(R.id.guardianButoon);
-        ImageButton NasaDayb= findViewById(R.id.nasaDayButton);
-        ImageButton NasaEarthb= findViewById(R.id.nasaEarthButton);
-        ImageButton BBCb= findViewById(R.id.bbcButton);
+        ImageButton Guardianb= (ImageButton) findViewById(R.id.guardianButoon);
+        ImageButton NasaDayb= (ImageButton) findViewById(R.id.nasaDayButton);
+        ImageButton NasaEarthb= (ImageButton) findViewById(R.id.nasaEarthButton);
+        ImageButton BBCb= (ImageButton) findViewById(R.id.bbcButton);
+        ImageView projectInformation = (ImageView) findViewById(R.id.projectInfo);
 
         Intent goToGuardian= new Intent(MainActivity.this, GuardianActivity.class);
         Guardianb.setOnClickListener(click->startActivity(goToGuardian));
@@ -31,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         Intent goToBBC= new Intent(MainActivity.this, BBCActivity.class);
         BBCb.setOnClickListener(click->startActivity(goToBBC));
 
-
+        Intent goToToolBar=  new Intent(MainActivity.this, InfoToolBar.class);
+        projectInformation.setOnClickListener(click->startActivity(goToToolBar));
 
 
     }

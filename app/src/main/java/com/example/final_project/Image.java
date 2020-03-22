@@ -1,5 +1,7 @@
 package com.example.final_project;
 
+import android.graphics.Bitmap;
+
 public class Image {
 
     private String date;

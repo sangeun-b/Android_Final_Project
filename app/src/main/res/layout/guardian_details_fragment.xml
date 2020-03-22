@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GuardianActivity">
+
+    <TextView
+        android:id="@+id/guardian_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guardian_details"
+        android:textAlignment="center"
+        android:textSize="15pt"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/guardian_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/guardian_details"
+        android:text="@string/guardian_title"
+        android:textSize="10pt"/>
+
+    <TextView
+        android:id="@+id/guardian_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/guardian_title"
+        android:text="@string/guardian_url"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:textSize="10pt"/>
+    <TextView
+        android:id="@+id/guardian_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/guardian_url"
+        android:text="@string/guardian_section"
+        android:textSize="10pt"/>
+
+    <Button
+        android:id= "@+id/guardain_saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/guardian_save"
+        android:layout_alignParentBottom="true"/>
+
+
+
+
+    <Button
+        android:id="@+id/guardian_hideButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hide"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/guardain_saveButton"/>
+
+
+
+
+</RelativeLayout>

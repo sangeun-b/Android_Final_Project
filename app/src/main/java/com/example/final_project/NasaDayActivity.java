@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -15,19 +14,22 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 
 public class NasaDayActivity extends FragmentActivity {
 
     private DatePickerFragment datePickerFragment;
-    private Intent goToImage;
     private static EditText textDate;
     static SharedPreferences prefs = null;
     static NasaDayImageMyOpener dbOpener;
+    static Context context;
     SQLiteDatabase db;
 
     @Override
@@ -35,6 +37,7 @@ public class NasaDayActivity extends FragmentActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nasaday);
+        context= this;
 
         textDate= findViewById(R.id.date);
         prefs = getSharedPreferences("NasaDayImage", Context.MODE_PRIVATE);
@@ -50,11 +53,18 @@ public class NasaDayActivity extends FragmentActivity {
             new DatePickerFragment().show(getSupportFragmentManager(), "datePicker");
         });
 
-        Button vieImageButton = findViewById(R.id.viewImageButton);
-        goToImage = new Intent(this, NasaDayImage.class);
+        Button vieImageButton = (Button) findViewById(R.id.viewImageButton);
+        Intent goToImage = new Intent(this, NasaDayImage.class);
         vieImageButton.setOnClickListener(click -> {
             startActivity(goToImage);
         });
+
+        ImageView myFavoriteImageView = (ImageView) findViewById(R.id.myFavoriteDayImage);
+        Intent goToMyfavoriteList= new Intent(this, NasaDayImageMyfavoriteList.class);
+        myFavoriteImageView.setOnClickListener(click->{
+            startActivity(goToMyfavoriteList);
+        });
+
 
     }
 
@@ -64,19 +74,27 @@ public class NasaDayActivity extends FragmentActivity {
         public static String date;
         final Calendar cal = Calendar.getInstance();
 
+
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final Calendar cal = Calendar.getInstance();
-            int year = cal.get(Calendar.YEAR);
-            int month = cal.get(Calendar.MONTH);
-            int day = cal.get(Calendar.DAY_OF_MONTH);
+            final Calendar today = Calendar.getInstance();
+            int year = today.get(Calendar.YEAR);
+            int month = today.get(Calendar.MONTH);
+            int day = today.get(Calendar.DAY_OF_MONTH);
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
+
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             cal.set(Calendar.YEAR, year);
             cal.set(Calendar.MONTH, month);
             cal.set(Calendar.DAY_OF_MONTH, day);
+
+            Calendar today = Calendar.getInstance();
+            if(cal.compareTo(today)>0) {
+                Toast.makeText(NasaDayActivity.context.getApplicationContext(), "please pick another date(present or past)", Toast.LENGTH_LONG).show();
+            }
+
             date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(cal.getTime());
             Log.d(TAG, "onDateSet: " + date);
             //new NasaDayActivity().setDate(date);
