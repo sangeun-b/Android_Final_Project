@@ -88,16 +88,15 @@ public class Nasaearth_result extends AppCompatActivity {
 
         });
     }
-        private class NasaEarthImage  extends AsyncTask<String, Integer, String> {
-            String latitude, longitude, date;
-            String url=null;
+        private class NasaEarthImage extends AsyncTask<String, Integer, String> {
+            String latitude=null, longitude=null, date=null, url=null, id=null;
             Bitmap image;
 
             public String doInBackground(String... args) {
                 try {
                     //URL url = new URL();
-                    URL url = new URL(args[0]);
-                    HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+                    URL infoUrl = new URL(args[0]);
+                    HttpsURLConnection urlConnection = (HttpsURLConnection) infoUrl.openConnection();
                     InputStream response = urlConnection.getInputStream();
 
                     BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
@@ -108,27 +107,30 @@ public class Nasaearth_result extends AppCompatActivity {
                     String result = sb.toString();
                     JSONObject json = new JSONObject(result);
 
-                    longitude= json.getString("longitude");
+                    longitude= NasaEarthActivity.inputLon;
+                    latitude = NasaEarthActivity.inputLat;
+
+                    id = json.getString("id");
                     publishProgress(25);
-                    latitude= json.getString("latitude");
-                    publishProgress(50);
                     date= json.getString("date");
+                    publishProgress(50);
+                    url = json.getString("url");
                     publishProgress(75);
 
                     FileInputStream fis;
-                    if(fileExistance(latitude + "," + longitude + ".png")){
-                        fis= openFileInput(latitude + "," + longitude +".png");
+                    if(fileExistance(id + ".png")){
+                        fis= openFileInput(id +".png");
                         image= BitmapFactory.decodeStream(fis);
                         Log.i("file", "this is the local file.");
                     }else{
-                        URL urlImage= new URL("https:api.nasa.gov/planetary/earth/imagery?lon="+longitude+"&lat="+latitude);
+                        URL urlImage= new URL(url);
                         HttpURLConnection imageConnection= (HttpURLConnection) urlImage.openConnection();
                         imageConnection.connect();
                         int responseCode= imageConnection.getResponseCode();
                         if(responseCode==200){
                             image= BitmapFactory.decodeStream(imageConnection.getInputStream());
                             Log.i("file", "this file is from online.");
-                            FileOutputStream outputStream = openFileOutput( latitude + "," + longitude + ".png", Context.MODE_PRIVATE );
+                            FileOutputStream outputStream = openFileOutput( id + ".png", Context.MODE_PRIVATE );
                             image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                             publishProgress(100);
                             outputStream.flush();
