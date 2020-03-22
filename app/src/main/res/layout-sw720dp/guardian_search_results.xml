@@ -10,18 +10,8 @@
         android:id="@+id/guardian_logo"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-
         android:src="@drawable/guardian_logo" />
 
-    <ImageView
-        android:id="@+id/favouriteList"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:src="@drawable/star" />
-        android:src="@drawable/guardian" />
 
     <TextView
         android:id="@+id/guardian_news"
@@ -32,25 +22,30 @@
         android:textSize="20pt"
         android:textStyle="bold"
         android:layout_below="@+id/guardian_logo"/>
+
     <ListView
         android:id="@+id/guardian_list"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/guardian_news"
-        android:layout_above="@id/search_button"/>
+        android:layout_below="@+id/guardian_news" />
 
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/guardin_search"/>
-    <EditText
-        android:id="@+id/search_news"
-        android:layout_toRightOf="@id/search_button"
-        android:layout_alignParentBottom="true"
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/guardian_list"
+        android:layout_above="@+id/progressBar"/>
+
+
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/search_news"/>
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
 
 </RelativeLayout>
