@@ -20,12 +20,12 @@
         <activity android:name=".BBCDetails" />
         <activity android:name=".BBCFavouriteList" />
         <activity android:name=".BBCSearchList" />
-        android:theme="@style/AppTheme">
 
         <activity android:name=".GuardianEmptyActivity"></activity>
         <activity android:name=".Guardian_search_results"></activity>
         <activity android:name=".Guardian_favourite" />
         <activity android:name=".Guardian_details_fragment" />
+
         <activity
             android:name=".InfoToolBar"
             android:label="@string/title_activity_info_tool_bar"

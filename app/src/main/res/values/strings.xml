@@ -22,7 +22,7 @@
     <string name="NasaImageDatabaseRow">The database id is </string>
     <string name="NasaImageMyFavorite">My Favorite </string>
     <string name="NasaDayFragmentButton">HIDE</string>
-    
+
     <!--BBC-->
     <string name="BBCNewsReader">BBC News</string>
     <string name="BBCSearchText">Search for BBC News</string>
