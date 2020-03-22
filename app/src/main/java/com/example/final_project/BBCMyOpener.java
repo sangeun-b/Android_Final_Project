@@ -8,15 +8,15 @@ import android.util.Log;
 
 public class BBCMyOpener extends SQLiteOpenHelper {
 
-    public static final String MY_OPENER = "PROFILE_ACTIVITY";
-    protected final static String DATABASE_NAME = "ItemDB";
+    protected final static String DATABASE_NAME = "BBCItemDB";
     protected final static int VERSION_NUM = 1;
-    public final static String TABLE_NAME = "ITEMS";
+    public final static String TABLE_NAME = "BBCITEMS";
+    public final static String COL_ID = "_id";
     public final static String COL_TITLE = "TITLE";
     public final static String COL_DESCRIPTION = "DESCRIPTION";
     public final static String COL_LINK = "LINK";
     public final static String COL_DATE = "DATE";
-    public final static String COL_ID = "_id";
+    public final static String COL_ISFAVOURITE = "ISFAVOURITE";
 
     public BBCMyOpener(Context ctx)
     {
@@ -29,11 +29,13 @@ public class BBCMyOpener extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_TITLE + " text,"
                 + COL_DESCRIPTION + " text,"
                 + COL_LINK + " text,"
-                + COL_DATE  + " text);");  // add or remove columns
+                + COL_DATE + " text,"
+                + COL_ISFAVOURITE  + " text);");  // add or remove columns
     }
 
 

@@ -4,13 +4,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/BBCLogo"
+        android:layout_marginRight="25pt"
+        android:layout_marginLeft="25pt"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5pt"
+        android:layout_height="100dp"
+        android:src="@drawable/bbc_logo_resize"/>
+
     <TextView
         android:id="@+id/BBCNewsDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/BBCNewsDetail"
+        android:text="@string/BBCNewsDetails"
+        android:layout_below="@+id/BBCLogo"
         android:layout_centerHorizontal="true"
-        android:textSize="30dp" />
+        android:textSize="15pt"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/Title"
@@ -18,6 +29,8 @@
         android:layout_height="wrap_content"
         android:text="Title: "
         android:textSize="20dp"
+        android:layout_marginRight="10pt"
+        android:layout_marginLeft="10pt"
         android:layout_below="@id/BBCNewsDetail" />
 
     <TextView
@@ -26,6 +39,8 @@
         android:layout_height="wrap_content"
         android:text="Description: "
         android:textSize="20dp"
+        android:layout_marginRight="10pt"
+        android:layout_marginLeft="10pt"
         android:layout_below="@id/Title" />
 
     <TextView
@@ -34,6 +49,8 @@
         android:layout_height="wrap_content"
         android:text="Date: "
         android:textSize="20dp"
+        android:layout_marginRight="10pt"
+        android:layout_marginLeft="10pt"
         android:layout_below="@id/Description" />
 
     <TextView
@@ -42,7 +59,11 @@
         android:layout_height="wrap_content"
         android:text="Link: "
         android:textSize="20dp"
-        android:layout_below="@id/Date" />
+        android:layout_marginRight="10pt"
+        android:layout_marginLeft="10pt"
+        android:layout_below="@id/Date"
+        android:autoLink="web"
+        android:linksClickable="true" />
 
     <Button
         android:id="@+id/BBCAddToFavourite"
@@ -50,8 +71,26 @@
         android:layout_height="wrap_content"
         android:text="@string/BBCAddToFavourite"
         android:textSize="20dp"
+        android:layout_above="@id/BBCBack"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/BBCBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/BBCBack"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true" />
+
+<!--    <Button
+        android:id="@+id/BBCAddToFavourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/BBCAddToFavourite"
+        android:textSize="20dp"
         android:layout_toLeftOf="@id/BBCBack"
-        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10pt"
         android:layout_alignParentBottom="true" />
 
     <Button
@@ -60,7 +99,8 @@
         android:layout_height="wrap_content"
         android:text="@string/BBCBack"
         android:textSize="20dp"
+        android:layout_marginRight="10pt"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true" />-->
 
 </RelativeLayout>

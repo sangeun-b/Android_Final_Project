@@ -1,48 +1,63 @@
 package com.example.final_project;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
-public class BBCFavouriteList extends AppCompatActivity {
+public class BBCSearchList extends AppCompatActivity {
 
     ArrayList<BBCItem> itemList = new ArrayList<>();
-    BBCFavouriteList.MyListAdapter adapter;
+    BBCSearchList.MyListAdapter adapter;
+    String keyword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bbcfavourite_list);
+        setContentView(R.layout.activity_bbcsearch_list);
 
-        ListView BBCFavouriteList = findViewById(R.id.BBCFavouriteList);
+        ListView BBCSearchList = findViewById(R.id.BBCSearchList);
+        Intent fromBBC = getIntent();
+        keyword = fromBBC.getStringExtra("KEYWORD");
 
         loadDataFromDatabase();
-        adapter = new MyListAdapter();
-        BBCFavouriteList.setAdapter(adapter);
 
-        Button BBCBack = findViewById(R.id.BBCBack1);
+        //BBCSearchList.setAdapter(new BBCSearchList.MyListAdapter());
+        //final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh1);
+        //swipeRefreshLayout.setOnRefreshListener(() -> BBCSearchList.setAdapter(new BBCSearchList.MyListAdapter()));
+
+        if(itemList.size() == 0) {
+            Toast.makeText(BBCSearchList.this, "No news was found related to the keywords entered", Toast.LENGTH_LONG).show();
+            //Snackbar.make(BBCSearchList, "No news was found related to the keywords entered", Snackbar.LENGTH_LONG).show();
+        } else {
+            adapter = new MyListAdapter();
+            BBCSearchList.setAdapter(adapter);
+        }
+
+        Button BBCBack = findViewById(R.id.BBCBack2);
         BBCBack.setOnClickListener(v -> {
             finish();
         });
 
-        BBCFavouriteList.setOnItemClickListener((parent,view,position,id)-> {
-            Intent goToDetails = new Intent(BBCFavouriteList.this, BBCDetails.class);
+        BBCSearchList.setOnItemClickListener((parent,view,position,id)-> {
+            Intent goToDetails = new Intent(BBCSearchList.this, BBCDetails.class);
             BBCItem selectedItem = itemList.get(position);
 
             goToDetails.putExtra("POSITION", position);
@@ -57,29 +72,12 @@ public class BBCFavouriteList extends AppCompatActivity {
 
         });
 
-        BBCFavouriteList.setOnItemLongClickListener((parent,view,position,id)-> {
-
-            BBCItem selectedItem = itemList.get(position);
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Do you want to remove this from Favourite List?").setPositiveButton("Yes", (click, arg) -> {
-                modifyItem(selectedItem, "false");
-                selectedItem.setIsFavourite("false");
-                itemList.remove(position);
-                BBCFavouriteList.setAdapter(new MyListAdapter());
-                final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
-                swipeRefreshLayout.setOnRefreshListener(() -> BBCFavouriteList.setAdapter(new MyListAdapter()));
-                Toast.makeText(BBCFavouriteList.this, "News " + selectedItem.getId() + " removed from Favourite List", Toast.LENGTH_LONG).show();
-            })
-                .setNegativeButton("No", (click, arg) -> { Toast.makeText(BBCFavouriteList.this, "Nothing changed", Toast.LENGTH_LONG).show();
-                }).create().show();
-            return true;
-        });
-
     }
 
     private void loadDataFromDatabase()
     {
         itemList.clear();
+
         //get a database connection:
         BBCMyOpener dbOpener = new BBCMyOpener(this);
         BBCActivity.db = dbOpener.getWritableDatabase();
@@ -87,7 +85,7 @@ public class BBCFavouriteList extends AppCompatActivity {
         // We want to get all of the columns. Look at MyOpener.java for the definitions:
         String [] columns = {BBCMyOpener.COL_ID, BBCMyOpener.COL_TITLE, BBCMyOpener.COL_DESCRIPTION, BBCMyOpener.COL_LINK, BBCMyOpener.COL_DATE, BBCMyOpener.COL_ISFAVOURITE};
         //query all the results from the database:
-        Cursor results = BBCActivity.db.query(false, BBCMyOpener.TABLE_NAME, columns, BBCMyOpener.COL_ISFAVOURITE + "= 'true'", null, null, null, null, null);
+        Cursor results = BBCActivity.db.query(false, BBCMyOpener.TABLE_NAME, columns, BBCMyOpener.COL_TITLE + " like '%" + keyword + "%'", null, null, null, null, null);
 
         //Now the results object has rows of results that match the query.
         //find the column indices:

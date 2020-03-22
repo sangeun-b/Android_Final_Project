@@ -25,14 +25,15 @@
 
     <!--BBC-->
     <string name="BBCNewsReader">BBC News</string>
-    <string name="BBCFavouriteButton">Favourite</string>
-    <string name="BBCSearchText">Type keyword</string>
+    <string name="BBCSearchText">Search for BBC News</string>
     <string name="BBCSearchButton">Search</string>
     <string name="BBCFavouriteHeader">BBC News Favourite List</string>
-    <string name="BBCClose">CLOSE</string>
-    <string name="BBCNewsDetail">BBC News Detail</string>
+    <string name="BBCNewsDetails">BBC News Details</string>
     <string name="BBCAddToFavourite">Add To Favourite List</string>
     <string name="BBCBack">BACK</string>
+    <string name="BBCBack1">BACK</string>
+    <string name="BBCBack2">BACK</string>
+    <string name="BBCSearchHeader">BBC News Search List</string>
 
     <!--NASA Earth-->
     <string name="saveImageButton"> SAVE </string>
