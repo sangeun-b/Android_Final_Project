@@ -15,6 +15,8 @@ public class NasaEarthActivity extends AppCompatActivity {
     ImageView saved;
     EditText earthLat;
     EditText earthLon;
+    static String inputLat;
+    static String inputLon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +30,8 @@ public class NasaEarthActivity extends AppCompatActivity {
         //Intent goToSearch= new Intent(NasaEarthActivity.this,Nasaearth_result.class);
         //search.setOnClickListener(click->startActivity(goToSearch));
         search.setOnClickListener(click-> {
-            String inputLat = earthLat.getText().toString();
-            String inputLon = earthLon.getText().toString();
+            inputLat = earthLat.getText().toString();
+            inputLon = earthLon.getText().toString();
                     if (inputLat.isEmpty()) {
                         Toast.makeText(getApplicationContext(), getString(R.string.earthcklat), Toast.LENGTH_SHORT).show();
                     } else if(inputLon.isEmpty()) {
