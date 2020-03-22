@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+
+    <TextView
+        android:id="@+id/NasaImageMyFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/NasaImageMyFavorite"
+        android:layout_marginTop="5pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginLeft="5pt"
+        android:textSize="15pt"
+        android:textStyle="bold"/>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresher"
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NasaImageMyFavorite">
+
+    <ListView
+        android:id="@+id/NasaDayImagelistView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/NasaImageMyFavorite"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

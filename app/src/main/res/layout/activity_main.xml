@@ -8,45 +8,94 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="30pt"
         android:id="@+id/name"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5pt"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textSize="50dp"
+        android:textSize="28pt"
         android:textStyle="bold" />
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/b1"
+    <ImageButton
+        android:layout_width="70pt"
+        android:layout_height="70pt"
+        android:id="@+id/guardianButoon"
+        android:layout_marginLeft="12pt"
+        android:layout_below="@+id/name"
+        android:background="@drawable/guardian"/>
+    <!--android:text="@string/Guardian"-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/Guardian"
-        android:layout_marginLeft="57dp"
-        android:layout_below="@+id/name" />
+        android:layout_marginLeft="30pt"
+        android:id="@+id/guardianText"
+        android:layout_below="@+id/guardianButoon"
+        />
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/b2"
-        android:text="@string/NasaDay"
-        android:layout_toRightOf="@+id/b1"
+    <ImageButton
+        android:layout_width="70pt"
+        android:layout_height="70pt"
+        android:id="@+id/nasaDayButton"
+        android:background="@drawable/nasa_resize"
+        android:layout_toRightOf="@+id/guardianButoon"
+        android:layout_marginLeft="7pt"
         android:layout_below="@+id/name"/>
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/b3"
+    <!--android:text="@string/NasaDay"-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NasaDay"
+        android:layout_marginLeft="105pt"
+        android:id="@+id/nasaDayText"
+        android:layout_below="@+id/nasaDayButton"
+        />
+    <ImageButton
+        android:layout_width="70pt"
+        android:layout_height="70pt"
+        android:id="@+id/nasaEarthButton"
+        android:background="@drawable/nasaearth_logo"
+        android:layout_below="@+id/guardianText"
+        android:layout_marginLeft="12pt"
+        android:layout_marginTop="7pt"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/NasaEarth"
-        android:layout_below="@+id/b1"
-        android:layout_marginLeft="57dp"/>
+        android:layout_marginLeft="30pt"
+        android:id="@+id/nasaEarthText"
+        android:layout_below="@+id/nasaEarthButton"
+        />
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/b4"
+    <ImageView
+        android:id="@+id/projectInfo"
+        android:layout_width="20pt"
+        android:layout_height="20pt"
+        android:src="@drawable/info"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15pt"
+        android:layout_marginTop="10pt"
+        android:layout_marginBottom="10pt"/>
+
+    <ImageButton
+        android:layout_width="70pt"
+        android:layout_height="70pt"
+        android:id="@+id/bbcButton"
+        android:layout_marginLeft="7pt"
+        android:background="@drawable/bbc_logo"
+        android:layout_toRightOf="@+id/nasaEarthButton"
+        android:layout_below="@+id/nasaDayText"
+        android:layout_marginTop="7pt"/>
+        <!--android:text="@string/BBC"-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/BBC"
-        android:layout_toRightOf="@+id/b1"
-        android:layout_below="@+id/b2"/>
-
+        android:layout_marginLeft="105pt"
+        android:layout_below="@+id/bbcButton"
+        />
 
 
 </RelativeLayout>

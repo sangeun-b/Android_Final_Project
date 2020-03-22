@@ -3,6 +3,10 @@
     package="com.example.final_project">
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,12 +20,31 @@
         <activity android:name=".Guardian_favourite" />
         <activity android:name=".Guardian_details_fragment" />
         <activity
+            android:name=".InfoToolBar"
+            android:label="@string/title_activity_info_tool_bar"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".NasaEarth" />
+        <activity android:name=".NasaEarthMyOpener" />
+        <activity
+            android:name=".NasaDayImageMyfavoriteList"
+            android:label="@string/title_activity_nasa_day_image_myfavorite_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BBCMyOpener" />
+        <activity android:name=".BBCItem" />
+        <activity android:name=".BBCDetails" />
+        <activity android:name=".BBCFavouriteList" />
+        <activity android:name=".NasaDayImageEmptyActivity" />
+        <activity
             android:name=".BBCActivity"
             android:label="@string/title_activity_bbc"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NasaDayActivity"
             android:label="@string/title_activity_nasa_day"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NasaDayImage"
+            android:label="@string/title_activity_nasa_image"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".GuardianActivity"
@@ -38,6 +61,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Nasaearth_saved" />
+        <activity android:name=".Nasaearth_result" />
+
     </application>
 
 </manifest>

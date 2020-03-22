@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item android:id="@+id/choice1"
+            android:title="@string/menu_item1"
+            android:icon="@drawable/guardian"
+            android:orderInCategory="10"
+            app:showAsAction="always"/>
+
+        <item android:id="@+id/choice2"
+            android:title="@string/menu_item2"
+            android:icon="@drawable/nasa_resize"
+            android:orderInCategory="20"
+            app:showAsAction="always"/>
+
+        <item android:id="@+id/choice3"
+            android:title="@string/menu_item3"
+            android:icon="@drawable/nasa"
+            android:orderInCategory="30"
+            app:showAsAction="always"/>
+
+        <item android:id="@+id/choice4"
+            android:title="@string/menu_item4"
+            android:icon="@drawable/bbc_logo"
+            android:orderInCategory="40"
+            app:showAsAction="always"/>
+
+</menu>
+
+
+

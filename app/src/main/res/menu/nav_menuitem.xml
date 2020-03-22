@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/item_guardian"
+            android:icon="@drawable/guardian"
+            android:title="@string/go_to_guardian"/>
+
+        <item
+            android:id="@+id/item_nasaday"
+            android:icon="@drawable/nasa_resize"
+            android:title="@string/go_to_nasa_day"/>
+
+        <item
+            android:id="@+id/item_nasaearth"
+            android:icon="@drawable/nasa"
+            android:title="@string/go_to_nasa_earth"/>
+
+        <item
+            android:id="@+id/item_bbc"
+            android:icon="@drawable/bbc_logo"
+            android:title="Go to BBC News Reader"/>
+
+    </group>
+
+    <item android:title="@string/guide">
+        <menu>
+            <item
+                android:id="@+id/guide_guardian"
+                android:icon="@drawable/guardian"
+                android:title="@string/menu_item1"/>
+
+            <item
+                android:id="@+id/guide_nasaday"
+                android:icon="@drawable/nasa_resize"
+                android:title="@string/menu_item2"/>
+
+            <item
+                android:id="@+id/guide_nasaearth"
+                android:icon="@drawable/nasa"
+                android:title="@string/menu_item3"/>
+
+            <item
+                android:id="@+id/guide_bbc"
+                android:icon="@drawable/bbc_logo"
+                android:title="@string/menu_item4"/>
+        </menu>
+    </item>
+</menu>
