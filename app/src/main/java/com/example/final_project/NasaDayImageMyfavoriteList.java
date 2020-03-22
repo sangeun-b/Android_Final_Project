@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -22,10 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.google.android.material.snackbar.Snackbar;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -141,7 +136,7 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
                 textTitle.setText("TITLE: "+ currentImage.getTitle());
 
                 FileInputStream fis;
-                File file= getBaseContext().getFileStreamPath(currentImage.getTitle()+ ".png");
+                File file = getBaseContext().getFileStreamPath(currentImage.getTitle() + ".png");
                 if (file.exists()) {
                     try {
                         fis = openFileInput(currentImage.getTitle() + ".png");
@@ -152,7 +147,6 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            //}
             return newView;
         }
         public long getItemId(int position){return getItem(position).getId();}

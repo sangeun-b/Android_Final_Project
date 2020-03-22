@@ -22,7 +22,7 @@
     <string name="NasaImageDatabaseRow">The database id is </string>
     <string name="NasaImageMyFavorite">My Favorite </string>
     <string name="NasaDayFragmentButton">HIDE</string>
-
+    
     <!--BBC-->
     <string name="BBCNewsReader">BBC News</string>
     <string name="BBCSearchText">Search for BBC News</string>
@@ -55,8 +55,6 @@
     <string name="earthcklat">Please enter the latitude</string>
     <string name="earthcklon">Please enter the Longitude</string>
 
-
-    <string name="guardian_title">Guardian News</string>
     <string name="title_activity_nasa_day_image_myfavorite_list">NasaDayImageMyfavoriteList</string>
     <!-- Strings used for fragments for navigation -->
     <string name="next">Next</string>
@@ -85,6 +83,7 @@
     <string name="search_news">search for news</string>
     <string name="guardian_favourite_list">Favourite News List</string>
     <string name="guardian_details">News Details Information</string>
+    <string name="guardian_title">Title:</string>
     <string name="guardian_url">Url:</string>
     <string name="guardian_section">Section Name:</string>
     <string name="details">News Details</string>
