@@ -11,13 +11,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".BBCMyOpener"></activity>
+        <activity android:name=".BBCItem" />
+        <activity android:name=".BBCDetails" />
+        <activity android:name=".BBCFavouriteList" />
+        <activity android:name=".BBCSearchList" />
 
         <activity android:name=".Guardian_favourite_empty"></activity>
         <activity android:name=".GuardianEmptyActivity"></activity>
         <activity android:name=".Guardian_search_results"></activity>
         <activity android:name=".Guardian_favourite" />
         <activity android:name=".Guardian_details_fragment" />
+
         <activity
             android:name=".InfoToolBar"
             android:label="@string/title_activity_info_tool_bar"

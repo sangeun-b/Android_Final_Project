@@ -14,34 +14,34 @@
         android:src="@drawable/bbc_logo_resize"/>
 
     <TextView
-        android:id="@+id/BBCFavouriteHeader"
+        android:id="@+id/BBCSearchHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/BBCFavouriteHeader"
+        android:text="@string/BBCSearchHeader"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/BBCLogo"
         android:textSize="13pt"
         android:textStyle="bold" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swiperefresh"
+        android:id="@+id/swiperefresh1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/BBCBack1"
-        android:layout_below="@+id/BBCFavouriteHeader"
+        android:layout_below="@+id/BBCSearchHeader"
         android:layout_marginLeft="10pt"
         android:layout_marginRight="10pt" >
         <ListView
-            android:id="@+id/BBCFavouriteList"
+            android:id="@+id/BBCSearchList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <Button
-        android:id="@+id/BBCBack1"
+        android:id="@+id/BBCBack2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/BBCBack1"
+        android:text="@string/BBCBack2"
         android:textSize="20dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true" />

@@ -4,24 +4,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/BBCLogo"
+        android:layout_marginRight="25pt"
+        android:layout_marginLeft="25pt"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5pt"
+        android:layout_height="100dp"
+        android:src="@drawable/bbc_logo_resize"/>
+
+    <ImageView
+        android:id="@+id/BBCFavouriteStar"
+        android:layout_width="15pt"
+        android:layout_height="15pt"
+        android:src="@drawable/star"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5pt"
+        android:layout_marginRight="5pt" />
+
     <TextView
         android:id="@+id/BBCNewsReader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BBCNewsReader"
+        android:layout_below="@+id/BBCLogo"
         android:layout_centerHorizontal="true"
-        android:textSize="30dp" />
+        android:textSize="20pt"
+        android:textStyle="bold" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        android:layout_below="@+id/BBCNewsReader"
+        android:layout_marginLeft="10pt"
+        android:layout_marginRight="10pt" >
         <ListView
             android:id="@+id/BBCTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/BBCNews"
-            android:layout_above="@+id/BBCSearchText" />
+            android:layout_height="500dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <EditText
@@ -31,7 +52,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/BBCSearchText"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10pt" />
 
     <Button
         android:id="@+id/BBCSearchButton"
@@ -40,16 +62,20 @@
         android:text="@string/BBCSearchButton"
         android:textSize="20dp"
         android:layout_toRightOf="@id/BBCSearchText"
-        android:layout_toLeftOf="@id/BBCFavouriteButton"
-        android:layout_alignParentBottom="true" />
-
-    <Button
-        android:id="@+id/BBCFavouriteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/BBCFavouriteButton"
-        android:textSize="20dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_marginRight="10pt" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10pt"
+        android:layout_marginLeft="10pt"
+        android:layout_above="@id/BBCSearchText"
+        android:layout_below="@id/swiperefresh"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
 
 </RelativeLayout>

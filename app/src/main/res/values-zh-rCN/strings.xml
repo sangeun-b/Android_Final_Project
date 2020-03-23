@@ -3,6 +3,16 @@
     <string name="guardian_news">Guardian 新闻</string>
     <string name="guardin_search">搜索</string>
     <string name="search_news">搜索新闻</string>
+    <string name="BBCNewsReader">BBC新闻</string>
+    <string name="BBCSearchButton">搜索</string>
+    <string name="BBCSearchText">搜索BBC新闻</string>
+    <string name="BBCBack1">返回</string>
+    <string name="BBCBack">返回</string>
+    <string name="BBCFavouriteHeader">BBC新闻收藏</string>
+    <string name="BBCAddToFavourite">添加到BBC新闻收藏</string>
+    <string name="BBC">BBC新闻</string>
+    <string name="BBCNewsDetails">BBC新闻详情</string>
+
     <string name="guardian_favourite_list">喜爱的新闻列表</string>
     <string name="guardian_title">标题：</string>
     <string name="guardian_url">网址：</string>
@@ -10,6 +20,5 @@
     <string name="guardian_details">新闻详细信息</string>
     <string name="hide">隐藏</string>
     <string name="guardian_save">保存</string>
-
 
 </resources>
