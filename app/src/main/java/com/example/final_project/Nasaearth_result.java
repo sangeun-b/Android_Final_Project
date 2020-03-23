@@ -127,7 +127,7 @@ public class Nasaearth_result extends AppCompatActivity {
                         if(responseCode==200){
                             image= BitmapFactory.decodeStream(imageConnection.getInputStream());
                             Log.i("file", "this file is from online.");
-                            FileOutputStream outputStream = openFileOutput( id + ".png", Context.MODE_PRIVATE );
+                            FileOutputStream outputStream = openFileOutput( date + ".png", Context.MODE_PRIVATE );
                             image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                             publishProgress(100);
                             outputStream.flush();
