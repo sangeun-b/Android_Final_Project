@@ -57,7 +57,7 @@ public class Nasaearth_result extends AppCompatActivity {
         // https://api.nasa.gov/planetary/earth/imagery?lon=100.75&lat=1.5&date=2014-02-01&api_key=DEMO_KEY
 
         NasaEarthImage nasaEarth = new NasaEarthImage();
-        nasaEarth.execute("https:api.nasa.gov/planetary/earth/imagery?lon="+NasaEarthActivity.inputLon+"&lat="+NasaEarthActivity.inputLat+"&date=2014-02-01&api_key=DEMO_KEY");
+        nasaEarth.execute("https://api.nasa.gov/planetary/earth/imagery/?lon=" + NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat +"&date=2014-02-01&api_key=DEMO_KEY");
         //nasaEarth.execute();
 
         earthImageView = findViewById(R.id.earthImage);
@@ -89,14 +89,14 @@ public class Nasaearth_result extends AppCompatActivity {
         });
     }
         private class NasaEarthImage extends AsyncTask<String, Integer, String> {
-            String latitude=null, longitude=null, date=null, url=null, id=null;
+            String date=null, url=null, id=null;
             Bitmap image;
 
             public String doInBackground(String... args) {
                 try {
                     //URL url = new URL();
                     URL infoUrl = new URL(args[0]);
-                    HttpsURLConnection urlConnection = (HttpsURLConnection) infoUrl.openConnection();
+                    HttpURLConnection urlConnection = (HttpURLConnection) infoUrl.openConnection();
                     InputStream response = urlConnection.getInputStream();
 
                     BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
@@ -107,9 +107,6 @@ public class Nasaearth_result extends AppCompatActivity {
                     String result = sb.toString();
                     JSONObject json = new JSONObject(result);
 
-                    longitude= NasaEarthActivity.inputLon;
-                    latitude = NasaEarthActivity.inputLat;
-
                     id = json.getString("id");
                     publishProgress(25);
                     date= json.getString("date");
@@ -118,8 +115,8 @@ public class Nasaearth_result extends AppCompatActivity {
                     publishProgress(75);
 
                     FileInputStream fis;
-                    if(fileExistance(id + ".png")){
-                        fis= openFileInput(id +".png");
+                    if(fileExistance(date + ".png")){
+                        fis= openFileInput(date +".png");
                         image= BitmapFactory.decodeStream(fis);
                         Log.i("file", "this is the local file.");
                     }else{
@@ -153,14 +150,10 @@ public class Nasaearth_result extends AppCompatActivity {
 
             public void onPostExecute(String fromDoInBackground) {
                 super.onPostExecute(fromDoInBackground);
-                ImageView nasaEarthImage = findViewById(R.id.earthImage);
-                nasaEarthImage.setImageBitmap(image);
-                TextView latText = findViewById(R.id.earthlat);
-                latText.setText(R.string.earthlat + latitude);
-                TextView lonText =findViewById(R.id.earthlon);
-                lonText.setText(R.string.earthlon + longitude);
-                TextView dateText = findViewById(R.id.earthdate);
-                dateText.setText(R.string.earthdate + date);
+                earthImageView.setImageBitmap(image);
+                earthLatTextView.setText(getString(R.string.earthlat) + NasaEarthActivity.inputLon);
+                earthLonTextView.setText(getString(R.string.earthlon) + NasaEarthActivity.inputLat);
+                earthDateTextView.setText(getString(R.string.earthdate) + date);
                 earthProgressBar.setVisibility(View.INVISIBLE);
             }
 
