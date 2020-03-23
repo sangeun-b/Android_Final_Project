@@ -57,7 +57,8 @@ public class Nasaearth_result extends AppCompatActivity {
         // https://api.nasa.gov/planetary/earth/imagery?lon=100.75&lat=1.5&date=2014-02-01&api_key=DEMO_KEY
 
         NasaEarthImage nasaEarth = new NasaEarthImage();
-        nasaEarth.execute("https:api.nasa.gov/planetary/earth/imagery?lon="+NasaEarthActivity.inputLon+"&lat="+NasaEarthActivity.inputLat+"&date=2014-02-01&api_key=DEMO_KEY");
+        //nasaEarth.execute("https:api.nasa.gov/planetary/earth/imagery?lon="+NasaEarthActivity.inputLon+"&lat="+NasaEarthActivity.inputLat+"&date=2014-02-01&api_key=zVpq4sFd2AWMLfsOZLQ1pjmae6HqKyHZAeWT4nGf");
+        nasaEarth.execute("https://api.nasa.gov/planetary/earth/imagery/?lon="+ NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat + "&date=2014-02-01&api_key=DEMO_KEY");
         //nasaEarth.execute();
 
         earthImageView = findViewById(R.id.earthImage);
@@ -94,9 +95,9 @@ public class Nasaearth_result extends AppCompatActivity {
 
             public String doInBackground(String... args) {
                 try {
-                    //URL url = new URL();
+                    //URL infoUrl = new URL("https://api.nasa.gov/planetary/earth/imagery?lon="+ NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat + "&date=2014-02-01&api_key=DEMO_KEY");
                     URL infoUrl = new URL(args[0]);
-                    HttpsURLConnection urlConnection = (HttpsURLConnection) infoUrl.openConnection();
+                    HttpURLConnection urlConnection = (HttpURLConnection) infoUrl.openConnection();
                     InputStream response = urlConnection.getInputStream();
 
                     BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
@@ -155,13 +156,9 @@ public class Nasaearth_result extends AppCompatActivity {
                 super.onPostExecute(fromDoInBackground);
                 longitude= NasaEarthActivity.inputLon;
                 latitude = NasaEarthActivity.inputLat;
-                //ImageView nasaEarthImage = findViewById(R.id.earthImage);
                 earthImageView.setImageBitmap(image);
-                //TextView latText = findViewById(R.id.earthlat);
                 earthLatTextView.setText(getString(R.string.earthlat) + latitude);
-                //TextView lonText =findViewById(R.id.earthlon);
                 earthLonTextView.setText(getString(R.string.earthlon) + longitude);
-                //TextView dateText = findViewById(R.id.earthdate);
                 earthDateTextView.setText(getString(R.string.earthdate) + date);
                 earthProgressBar.setVisibility(View.INVISIBLE);
             }
@@ -172,8 +169,6 @@ public class Nasaearth_result extends AppCompatActivity {
         File file= getBaseContext().getFileStreamPath(fname);
         return file.exists();
     }
-
-
 
     }
 

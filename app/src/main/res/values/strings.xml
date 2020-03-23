@@ -40,7 +40,7 @@
     <string name="earthlon">Longitude : </string>
     <string name="earthinput">Type here</string>
     <string name="earthsearch">Search !</string>
-    <string name="earthdate">Date: </string>
+    <string name="earthdate">Date : </string>
     <string name="earthre">Return</string>
     <string name="earthsave">Save</string>
     <string name="earthdeleteIn">To delete the saved list, click the image for 3 seconds</string>
