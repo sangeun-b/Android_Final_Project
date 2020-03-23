@@ -78,7 +78,7 @@
     <string name="open" />
     <string name="close" />
 
-
+    <!--Guardian-->
     <string name="guardian_news">Guardian News</string>
     <string name="guardin_search">SEARCH</string>
     <string name="search_news">search for news</string>

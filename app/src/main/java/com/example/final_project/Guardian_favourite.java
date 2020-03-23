@@ -1,7 +1,10 @@
 package com.example.final_project;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -9,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,6 +23,11 @@ public class Guardian_favourite extends AppCompatActivity {
     private MyListAdapter myAdapter;
     SQLiteDatabase db;
 
+    public static final String TITLE = "TITLE";
+    public static final String URL = "URL";
+    public static final String SECTION = "SECTION NAME";
+    public static final String ID= "ID";
+
 
 
     @Override
@@ -26,12 +35,56 @@ public class Guardian_favourite extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guardian_favourite_list);
 
-        ListView guardianList = findViewById(R.id.guardian_listView);
+        ListView guardianList = findViewById(R.id.guardian_favourite);
+        FrameLayout frameLayout = findViewById(R.id.fragmentLocation);
         loadDataFromDatabase();
 
         myAdapter = new MyListAdapter();
         guardianList.setAdapter(myAdapter);
 
+
+        guardianList.setOnItemLongClickListener((parent, view, position, id) -> {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Do you want to delete this?")
+                    .setMessage("The selected row is:" + (position + 1) + "\n The database id is: " + id)
+                    .setPositiveButton("Yes", (click, arg) -> {
+                        if (frameLayout != null) {
+                            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                                if (fragment.getArguments().getLong(ID) == Long.valueOf(myAdapter.getItemId(position))) {
+                                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                                    break;
+                                }
+                            }
+                        }
+                        list.remove(position);
+                        db.delete(GuardianMyOpener.TABLE_NAME, GuardianMyOpener.COL_ID + "= ?", new String[]{Long.toString(id)});
+                        myAdapter.notifyDataSetChanged();
+                    })
+                    .setNegativeButton("No", (click, arg) -> {
+                    })
+
+                    .create().show();
+
+            return true;
+
+        });
+
+        guardianList.setOnItemClickListener((l, view, pos, id) -> {
+            //Create a bundle to pass data to the new fragment
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(TITLE, list.get(pos).getTitle());
+            dataToPass.putString(URL, list.get(pos).getUrl());
+            dataToPass.putString(SECTION, list.get(pos).getSection());
+            dataToPass.putLong(ID, id);
+
+            //for phone and tablet
+            Intent nextActivity = new Intent(Guardian_favourite.this, Guardian_favourite_empty.class);
+            nextActivity.putExtras(dataToPass); //send data to next activity
+            startActivity(nextActivity); //make the transition
+
+
+
+        });
     }
         private class MyListAdapter extends BaseAdapter {
             public int getCount() {
@@ -58,6 +111,7 @@ public class Guardian_favourite extends AppCompatActivity {
             }
 
         }
+
 
     public void loadDataFromDatabase(){
         //get a database connection:
@@ -89,6 +143,7 @@ public class Guardian_favourite extends AppCompatActivity {
 
 
 
-
     }
+
+
 }

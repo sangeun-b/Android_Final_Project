@@ -15,7 +15,7 @@
         android:textSize="15pt"
         android:textStyle="bold"/>
     <ListView
-        android:id="@+id/guardian_listView"
+        android:id="@+id/guardian_favourite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/guardian_favourite_list"/>
