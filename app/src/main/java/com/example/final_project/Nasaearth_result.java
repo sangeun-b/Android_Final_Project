@@ -119,8 +119,8 @@ public class Nasaearth_result extends AppCompatActivity {
                     publishProgress(75);
 
                     FileInputStream fis;
-                    if(fileExistance(id + ".png")){
-                        fis= openFileInput(id +".png");
+                    if(fileExistance(date + ".png")){
+                        fis= openFileInput(date +".png");
                         image= BitmapFactory.decodeStream(fis);
                         Log.i("file", "this is the local file.");
                     }else{
@@ -131,7 +131,7 @@ public class Nasaearth_result extends AppCompatActivity {
                         if(responseCode==200){
                             image= BitmapFactory.decodeStream(imageConnection.getInputStream());
                             Log.i("file", "this file is from online.");
-                            FileOutputStream outputStream = openFileOutput( id + ".png", Context.MODE_PRIVATE );
+                            FileOutputStream outputStream = openFileOutput( date + ".png", Context.MODE_PRIVATE );
                             image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                             publishProgress(100);
                             outputStream.flush();
