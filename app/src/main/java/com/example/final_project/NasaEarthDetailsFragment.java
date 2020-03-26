@@ -24,15 +24,15 @@ public class NasaEarthDetailsFragment extends Fragment {
 
     public NasaEarthDetailsFragment() {}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+   // @Override
+    //public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        dataFromActivity = getArguments();
-        id = dataFromActivity.getLong(Nasaearth_saved.EARTH_ID);
+       // dataFromActivity = getArguments();
+        //id = dataFromActivity.getLong(Nasaearth_saved.EARTH_ID);
 
-        View result =  inflater.inflate(R.layout.activity_nasaearth_details_fragment, container, false);
+        //View result =  inflater.inflate(R.layout.activity_nasaearth_details_fragment, container, false);
 
-        ImageView detailEarthImageView = result.findViewById(R.id.detailEarthImage);
+        //ImageView detailEarthImageView = result.findViewById(R.id.detailEarthImage);
        /* detailEarthImageView.setText(dataFromActivity.getString(ChatRoomActivity.MESSAGE_SELECTED));
 
         TextView messageId = (TextView)result.findViewById(R.id.lab7t2);
@@ -59,10 +59,10 @@ public class NasaEarthDetailsFragment extends Fragment {
         });*/
 
 
-        return result;
+        //return result;
 
 
-    }
+   // }
 }
 
 
