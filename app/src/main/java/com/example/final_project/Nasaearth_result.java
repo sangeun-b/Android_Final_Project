@@ -54,12 +54,11 @@ public class Nasaearth_result extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nasaearth_result);
 
-        // https://api.nasa.gov/planetary/earth/imagery?lon=100.75&lat=1.5&date=2014-02-01&api_key=DEMO_KEY
 
         NasaEarthImage nasaEarth = new NasaEarthImage();
         //nasaEarth.execute("https:api.nasa.gov/planetary/earth/imagery?lon="+NasaEarthActivity.inputLon+"&lat="+NasaEarthActivity.inputLat+"&date=2014-02-01&api_key=zVpq4sFd2AWMLfsOZLQ1pjmae6HqKyHZAeWT4nGf");
         nasaEarth.execute("https://api.nasa.gov/planetary/earth/imagery/?lon="+ NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat + "&date=2014-02-01&api_key=DEMO_KEY");
-        //nasaEarth.execute();
+
 
         earthImageView = findViewById(R.id.earthImage);
         earthLatTextView = findViewById(R.id.earthlat);
@@ -95,26 +94,30 @@ public class Nasaearth_result extends AppCompatActivity {
 
             public String doInBackground(String... args) {
                 try {
-                    //URL infoUrl = new URL("https://api.nasa.gov/planetary/earth/imagery?lon="+ NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat + "&date=2014-02-01&api_key=DEMO_KEY");
+                    //create a URL object of what server to contact:
                     URL infoUrl = new URL(args[0]);
+                    //open the connection
                     HttpURLConnection urlConnection = (HttpURLConnection) infoUrl.openConnection();
+                    //wait for data
                     InputStream response = urlConnection.getInputStream();
-
+                    //JSON reading:
+                    //Build the entire string response
                     BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
                     StringBuilder sb = new StringBuilder();
                     String line= null;
 
                     while ((line = reader.readLine()) != null) {sb.append(line + "\n"); }
                     String result = sb.toString();
+                    //convert string to JSON
                     JSONObject json = new JSONObject(result);
 
-                    //longitude= NasaEarthActivity.inputLon;
-                    //latitude = NasaEarthActivity.inputLat;
-
+                    //get the string associated with "id"
                     id = json.getString("id");
                     publishProgress(25);
+                    //get the string associated with "date"
                     date= json.getString("date");
                     publishProgress(50);
+                    //get the string associated wiht "url"
                     url = json.getString("url");
                     publishProgress(75);
 

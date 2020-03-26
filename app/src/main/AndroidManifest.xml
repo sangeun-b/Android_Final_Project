@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.final_project">
-    <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,21 +15,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BBCMyOpener"></activity>
+        <activity android:name=".NasaEarthEmptyActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NasaEarthDetailsFragment">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".BBCMyOpener" />
         <activity android:name=".BBCItem" />
         <activity android:name=".BBCDetails" />
         <activity android:name=".BBCFavouriteList" />
         <activity android:name=".BBCSearchList" />
-
-        <activity android:name=".GuardianEmptyActivity"></activity>
-        <activity android:name=".Guardian_search_results"></activity>
+        <activity android:name=".GuardianEmptyActivity" />
+        <activity android:name=".Guardian_search_results" />
         <activity android:name=".Guardian_favourite" />
         <activity android:name=".Guardian_details_fragment" />
-
         <activity
             android:name=".InfoToolBar"
             android:label="@string/title_activity_info_tool_bar"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NasaEarth" />
         <activity android:name=".NasaEarthMyOpener" />
         <activity
@@ -70,7 +82,6 @@
         </activity>
         <activity android:name=".Nasaearth_saved" />
         <activity android:name=".Nasaearth_result" />
-
     </application>
 
 </manifest>

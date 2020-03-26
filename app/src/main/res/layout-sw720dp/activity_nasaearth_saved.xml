@@ -19,5 +19,12 @@
         android:id="@+id/savedList"
         android:layout_below="@+id/earthsavedTitle"
         />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/earthFragment"
+        android:layout_below="@+id/earthsavedTitle"
+        android:layout_toEndOf="@+id/savedList"
+        />
 
 </RelativeLayout>
