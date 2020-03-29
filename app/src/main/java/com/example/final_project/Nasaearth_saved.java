@@ -96,7 +96,7 @@ public class Nasaearth_saved extends AppCompatActivity {
         });
 
     }
-    /*public void loadDataFromDatabase(){
+    public void loadDataFromDatabase(){
         earthArray.clear();
         NasaEarthMyOpener earthDB = new NasaEarthMyOpener(this);
         db = earthDB.getWritableDatabase();
@@ -134,8 +134,8 @@ public class Nasaearth_saved extends AppCompatActivity {
             View v = convertView;
             NasaEarth earth = getItem(position);
 
-            v = getLayoutInflater().inflate(R.layout.)
-            TextView textDate = (TextView) v.findViEW
+            //v = getLayoutInflater().inflate(R.layout.)
+            //TextView textDate = (TextView) v.findViEW
             return v;
 
         }
@@ -145,5 +145,5 @@ public class Nasaearth_saved extends AppCompatActivity {
 
         }
 
-    }*/
+    }
 }
