@@ -2,6 +2,7 @@ package com.example.final_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -38,6 +39,7 @@ public class Nasaearth_saved extends AppCompatActivity {
     public static final String EARTH_DATE = "date";
     public static final String EARTH_LATITUDE="Latitude";
     public static final String EARTH_LONGITUDE = "Longitude";
+    NasaEarthDetailsFragment earthFragment;
 
 
     @Override
@@ -55,7 +57,7 @@ public class Nasaearth_saved extends AppCompatActivity {
             }
         });
         snackbar.show();
-        //boolean isTablet = findViewById(R.id.earthFragment) != null;
+        boolean isTablet = findViewById(R.id.earthFragment) != null;
         savedList = findViewById(R.id.savedList);
 
         savedList.setOnItemClickListener((list,view,pos,id)->{
@@ -65,19 +67,19 @@ public class Nasaearth_saved extends AppCompatActivity {
             dataToPass.putString(EARTH_LONGITUDE, earthArray.get(pos).getLongitude());
             dataToPass.putString(EARTH_DATE, earthArray.get(pos).getDate());
 
-           /* if(isTablet) {
-                eFragment = new NasaEarthDetailsFragment();//add a DetailFragment
-                eFragment.setArguments(dataToPass);//pass it a bundle for information
-                eFragment.setTablet(true);
+            if(isTablet) {
+                earthFragment = new NasaEarthDetailsFragment();//add a DetailFragment
+                earthFragment.setArguments(dataToPass);//pass it a bundle for information
+                earthFragment.setTablet(true);
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.earthFragment, eFragment) //Add the fragment in FrameLayout
+                        .replace(R.id.earthFragment, earthFragment) //Add the fragment in FrameLayout
                         .commit();
             }else{
-                Intent nextActivity = new Intent(Nasaearth_saved.this, NasaEarthEmptyActivity.class);
+                Intent nextActivity = new Intent(Nasaearth_saved.this, NasaEarthEmpty.class);
                 nextActivity.putExtras(dataToPass); //send data to next activity
                 startActivity(nextActivity); //make the transition
-            }*/
+            }
         });
 
         savedList.setOnItemLongClickListener((parent, view, position, id) -> {
@@ -88,9 +90,10 @@ public class Nasaearth_saved extends AppCompatActivity {
                         db.delete(NasaEarthMyOpener.TABLE_NAME, NasaEarthMyOpener.COL_ID + "=?", new String[]{Long.toString(id)});
                         earthArray.remove(position);
                         myAdapter.notifyDataSetChanged();
-                        /*if(isTablet) {
-                            getSupportFragmentManager().beginTransaction().remove(eFragment).commit();
-                        }*/
+                        if(isTablet) {
+                            getSupportFragmentManager().beginTransaction().remove(earthFragment).commit();
+                        }
+
 
 
                     })

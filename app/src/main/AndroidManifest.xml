@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".NasaEarthEmpty"/>
         <activity android:name=".BBCMyOpener" />
         <activity android:name=".BBCItem" />
         <activity android:name=".BBCDetails" />
@@ -64,8 +65,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Nasaearth_saved" />
-        <activity android:name=".Nasaearth_result" />
+        <activity
+            android:name=".Nasaearth_saved"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Nasaearth_result"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

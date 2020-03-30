@@ -66,7 +66,7 @@ public class Nasaearth_result extends AppCompatActivity {
         re.setOnClickListener(click -> startActivity(goToPrevious));
         NasaEarthMyOpener earthDB = new NasaEarthMyOpener(this);
         saved.setOnClickListener(click->{
-                String inDate = earthDateTextView.getText().toString().substring(5);
+                String inDate = earthDateTextView.getText().toString().substring(6);
                 db=earthDB.getWritableDatabase();
                 newRowValues.put(NasaEarthMyOpener.COL_LATITUDE, NasaEarthActivity.inputLat);
                 newRowValues.put(NasaEarthMyOpener.COL_LONGITUDE, NasaEarthActivity.inputLon );
