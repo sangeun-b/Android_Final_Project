@@ -54,6 +54,7 @@
     <string name="earthck">Please enter the latitude and Longitude</string>
     <string name="earthcklat">Please enter the latitude</string>
     <string name="earthcklon">Please enter the Longitude</string>
+    <string name="earthsavedtitle">Saved List</string>
 
     <string name="title_activity_nasa_day_image_myfavorite_list">NasaDayImageMyfavoriteList</string>
     <!-- Strings used for fragments for navigation -->

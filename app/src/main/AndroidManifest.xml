@@ -13,32 +13,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BBCMyOpener"></activity>
+        <activity android:name=".BBCMyOpener" />
         <activity android:name=".BBCItem" />
         <activity android:name=".BBCDetails" />
         <activity android:name=".BBCFavouriteList" />
         <activity android:name=".BBCSearchList" />
 
+
         <activity android:name=".Guardian_favourite_empty"></activity>
         <activity android:name=".GuardianEmptyActivity"></activity>
         <activity android:name=".Guardian_search_results"></activity>
+
         <activity android:name=".Guardian_favourite" />
         <activity android:name=".Guardian_details_fragment" />
-
         <activity
             android:name=".InfoToolBar"
             android:label="@string/title_activity_info_tool_bar"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NasaEarth" />
         <activity android:name=".NasaEarthMyOpener" />
         <activity
             android:name=".NasaDayImageMyfavoriteList"
             android:label="@string/title_activity_nasa_day_image_myfavorite_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BBCMyOpener" />
-        <activity android:name=".BBCItem" />
-        <activity android:name=".BBCDetails" />
-        <activity android:name=".BBCFavouriteList" />
         <activity android:name=".NasaDayImageEmptyActivity" />
         <activity
             android:name=".BBCActivity"
@@ -69,7 +66,6 @@
         </activity>
         <activity android:name=".Nasaearth_saved" />
         <activity android:name=".Nasaearth_result" />
-
     </application>
 
 </manifest>

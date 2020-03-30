@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+//create getter and setter
 public class NasaEarth extends AppCompatActivity {
     private long id;
     private String latitude, longitude, date;
 
     public NasaEarth(){
     }
+    //Counstructor
     public NasaEarth(long id, String latitude, String longitude, String date){
         this.id = id;
         this.latitude = latitude;

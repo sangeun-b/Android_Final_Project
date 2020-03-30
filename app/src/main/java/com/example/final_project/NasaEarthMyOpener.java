@@ -21,6 +21,7 @@ public class NasaEarthMyOpener extends SQLiteOpenHelper {
 
     public NasaEarthMyOpener (Context ctx){super(ctx, DATABASE_NAME, null, VERSION_NUM);}
 
+    //This function gets called if no database file exist.
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -28,11 +29,13 @@ public class NasaEarthMyOpener extends SQLiteOpenHelper {
                 + COL_LONGITUDE + " Longitude,"
                 + COL_DATE + " Date);");
     }
+    //this function gets called if the database version on your device is lower than VERSION_NUM
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
 
         onCreate(db);
     }
+    //this function gets called if the database version on your device is higer than VERSION_NUM
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
