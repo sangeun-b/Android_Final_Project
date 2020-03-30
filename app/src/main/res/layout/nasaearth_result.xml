@@ -43,8 +43,11 @@
         android:text="@string/earthre"
         android:layout_below="@+id/earthdate"
         android:id="@+id/reButton"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
+        android:background="#C2E9F8"
+        android:textColor="#494646"
+
         />
 
     <Button
@@ -56,6 +59,8 @@
         android:layout_marginLeft="25dp"
         android:text="@string/earthsave"
         android:layout_marginTop="10dp"
+        android:background="#C2E9F8"
+        android:textColor="#494646"
         />
 
     <ProgressBar
