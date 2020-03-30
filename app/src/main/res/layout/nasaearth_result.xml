@@ -43,7 +43,7 @@
         android:text="@string/earthre"
         android:layout_below="@+id/earthdate"
         android:id="@+id/reButton"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
         />
 
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/earthdate"
         android:layout_toRightOf="@+id/reButton"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="25dp"
         android:text="@string/earthsave"
         android:layout_marginTop="10dp"
         />
