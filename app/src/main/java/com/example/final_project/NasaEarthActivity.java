@@ -18,6 +18,7 @@ public class NasaEarthActivity extends AppCompatActivity {
     EditText earthLon;
     static String inputLat;
     static String inputLon;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class NasaEarthActivity extends AppCompatActivity {
         Intent goToSaved = new Intent(NasaEarthActivity.this,Nasaearth_saved.class);
         saved.setOnClickListener(click->startActivity(goToSaved));
 
+        Intent goBack = new Intent(NasaEarthActivity.this,MainActivity.class);
+        back = findViewById(R.id.earthback);
+        back.setOnClickListener(click -> startActivity(goBack));
 
     }
     @Override
