@@ -49,6 +49,8 @@
         android:layout_alignParentBottom="true"
         android:text="@string/earthhide"
         android:id="@+id/detailEarthHide"
+        android:background="#C2E9F8"
+        android:textColor="#494646"
         />
 
 </LinearLayout>
