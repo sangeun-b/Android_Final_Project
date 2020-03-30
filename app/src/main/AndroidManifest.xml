@@ -15,20 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NasaEarthEmptyActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".NasaEarthDetailsFragment">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".BBCMyOpener" />
         <activity android:name=".BBCItem" />
         <activity android:name=".BBCDetails" />
@@ -48,10 +34,6 @@
             android:name=".NasaDayImageMyfavoriteList"
             android:label="@string/title_activity_nasa_day_image_myfavorite_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BBCMyOpener" />
-        <activity android:name=".BBCItem" />
-        <activity android:name=".BBCDetails" />
-        <activity android:name=".BBCFavouriteList" />
         <activity android:name=".NasaDayImageEmptyActivity" />
         <activity
             android:name=".BBCActivity"

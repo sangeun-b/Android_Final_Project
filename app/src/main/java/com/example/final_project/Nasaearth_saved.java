@@ -2,15 +2,16 @@ package com.example.final_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,13 +20,16 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import static com.example.final_project.NasaEarthMyOpener.COL_ID;
 import static com.example.final_project.NasaEarthMyOpener.TABLE_NAME;
 
 public class Nasaearth_saved extends AppCompatActivity {
-    //private NasaEarthAdapter myAdapter;
+    private NasaEarthAdapter myAdapter = new NasaEarthAdapter();
     static ArrayList<NasaEarth> earthArray = new ArrayList<>();
     ListView savedList;
     Bitmap image= null;
@@ -34,15 +38,16 @@ public class Nasaearth_saved extends AppCompatActivity {
     public static final String EARTH_DATE = "date";
     public static final String EARTH_LATITUDE="Latitude";
     public static final String EARTH_LONGITUDE = "Longitude";
-    NasaEarthDetailsFragment eFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nasaearth_saved);
-        //loadDataFromDatabase();
-        View v1 = findViewById(R.id.savedList);
-        Snackbar snackbar = Snackbar.make(v1, getString(R.string.earthdeleteIn), Snackbar.LENGTH_INDEFINITE);
+        setContentView(R.layout.nasaearth_saved);
+        loadDataFromDatabase();
+        ListView listview = findViewById(R.id.savedList);
+        listview.setAdapter(myAdapter);
+        Snackbar snackbar = Snackbar.make(listview, getString(R.string.earthdeleteIn), Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction(getString(R.string.earthokay), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +55,7 @@ public class Nasaearth_saved extends AppCompatActivity {
             }
         });
         snackbar.show();
-        boolean isTablet = findViewById(R.id.earthFragment) != null;
+        //boolean isTablet = findViewById(R.id.earthFragment) != null;
         savedList = findViewById(R.id.savedList);
 
         savedList.setOnItemClickListener((list,view,pos,id)->{
@@ -60,7 +65,7 @@ public class Nasaearth_saved extends AppCompatActivity {
             dataToPass.putString(EARTH_LONGITUDE, earthArray.get(pos).getLongitude());
             dataToPass.putString(EARTH_DATE, earthArray.get(pos).getDate());
 
-            if(isTablet) {
+           /* if(isTablet) {
                 eFragment = new NasaEarthDetailsFragment();//add a DetailFragment
                 eFragment.setArguments(dataToPass);//pass it a bundle for information
                 eFragment.setTablet(true);
@@ -72,7 +77,7 @@ public class Nasaearth_saved extends AppCompatActivity {
                 Intent nextActivity = new Intent(Nasaearth_saved.this, NasaEarthEmptyActivity.class);
                 nextActivity.putExtras(dataToPass); //send data to next activity
                 startActivity(nextActivity); //make the transition
-            }
+            }*/
         });
 
         savedList.setOnItemLongClickListener((parent, view, position, id) -> {
@@ -80,11 +85,12 @@ public class Nasaearth_saved extends AppCompatActivity {
             builder.setTitle(getString(R.string.earthdelete))
                     //.setMessage(getString(R.string.select)+(position+1) + "\n"+getString(R.string.db)+id)
                     .setPositiveButton(getString(R.string.earthyes), (click,arg)-> {
-                        db.delete(TABLE_NAME, COL_ID + "=?", new String[]{Long.toString(id)});
+                        db.delete(NasaEarthMyOpener.TABLE_NAME, NasaEarthMyOpener.COL_ID + "=?", new String[]{Long.toString(id)});
                         earthArray.remove(position);
-                        if(isTablet) {
+                        myAdapter.notifyDataSetChanged();
+                        /*if(isTablet) {
                             getSupportFragmentManager().beginTransaction().remove(eFragment).commit();
-                        }
+                        }*/
 
 
                     })
@@ -96,28 +102,7 @@ public class Nasaearth_saved extends AppCompatActivity {
         });
 
     }
-    public void loadDataFromDatabase(){
-        earthArray.clear();
-        NasaEarthMyOpener earthDB = new NasaEarthMyOpener(this);
-        db = earthDB.getWritableDatabase();
-        String[] columns = {COL_ID, NasaEarthMyOpener.COL_LONGITUDE, NasaEarthMyOpener.COL_LATITUDE, NasaEarthMyOpener.COL_DATE};
-        Cursor results = db.query(false, TABLE_NAME, columns, null,null,null,null,null,null);
-        int lonColIndex = results.getColumnIndex(NasaEarthMyOpener.COL_LONGITUDE);
-        int latColIndex = results.getColumnIndex(NasaEarthMyOpener.COL_LATITUDE);
-        int dateColIndex = results.getColumnIndex(NasaEarthMyOpener.COL_DATE);
-        int idColIndex = results.getColumnIndex(COL_ID);
 
-        while(results.moveToNext())
-        {
-            String lon = results.getString(lonColIndex);
-            String lat = results.getString(latColIndex);
-            String date = results.getString(dateColIndex);
-            long id = results.getLong(idColIndex);
-
-            earthArray.add((new NasaEarth(id, lat, lon, date)));
-        }
-
-    }
     public class NasaEarthAdapter extends BaseAdapter {
 
         public int getCount() {
@@ -134,8 +119,26 @@ public class Nasaearth_saved extends AppCompatActivity {
             View v = convertView;
             NasaEarth earth = getItem(position);
 
-            //v = getLayoutInflater().inflate(R.layout.)
-            //TextView textDate = (TextView) v.findViEW
+            v = inflater.inflate(R.layout.nasaearth_saved_item, null);
+            TextView earthDate = v.findViewById(R.id.earthsaveddate);
+            earthDate.setText(getString(R.string.earthdate) + earth.getDate());
+            TextView earthLat = v.findViewById(R.id.earthsavedlat);
+            earthLat.setText(getString(R.string.earthlat) + earth.getLatitude());
+            TextView earthLot = v.findViewById(R.id.earthsavedlon);
+            earthLot.setText(getString(R.string.earthlon)+earth.getLongitude());
+
+            FileInputStream fis;
+            File file = getBaseContext().getFileStreamPath(earth.getDate()+".png");
+            if(file.exists()){
+                try{
+                    fis = openFileInput(earth.getDate()+".png");
+                    image = BitmapFactory.decodeStream(fis);
+                    ImageView savedImage = v.findViewById(R.id.earthsavedimage);
+                    savedImage.setImageBitmap(image);
+                }catch(FileNotFoundException e){
+                    e.printStackTrace();
+                }
+            }
             return v;
 
         }
@@ -143,6 +146,28 @@ public class Nasaearth_saved extends AppCompatActivity {
         public long getItemId(int position) {
             return getItem(position).getId();
 
+        }
+
+    }
+    public void loadDataFromDatabase(){
+        earthArray.clear();
+        NasaEarthMyOpener earthDB = new NasaEarthMyOpener(this);
+        db = earthDB.getWritableDatabase();
+        String[] columns = {NasaEarthMyOpener.COL_ID, NasaEarthMyOpener.COL_LONGITUDE, NasaEarthMyOpener.COL_LATITUDE, NasaEarthMyOpener.COL_DATE};
+        Cursor results = db.query(false, TABLE_NAME, columns, null,null,null,null,null,null);
+        int lonColIndex = results.getColumnIndex(NasaEarthMyOpener.COL_LONGITUDE);
+        int latColIndex = results.getColumnIndex(NasaEarthMyOpener.COL_LATITUDE);
+        int dateColIndex = results.getColumnIndex(NasaEarthMyOpener.COL_DATE);
+        int idColIndex = results.getColumnIndex(COL_ID);
+
+        while(results.moveToNext())
+        {
+            String lon = results.getString(lonColIndex);
+            String lat = results.getString(latColIndex);
+            String date = results.getString(dateColIndex);
+            long id = results.getLong(idColIndex);
+
+            earthArray.add((new NasaEarth(id, lat, lon, date)));
         }
 
     }

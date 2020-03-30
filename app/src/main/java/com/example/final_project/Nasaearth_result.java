@@ -13,31 +13,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class Nasaearth_result extends AppCompatActivity {
     Button re;
@@ -52,7 +42,7 @@ public class Nasaearth_result extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nasaearth_result);
+        setContentView(R.layout.nasaearth_result);
 
 
         NasaEarthImage nasaEarth = new NasaEarthImage();
@@ -75,14 +65,13 @@ public class Nasaearth_result extends AppCompatActivity {
 
         Intent goToPrevious = new Intent(Nasaearth_result.this, NasaEarthActivity.class);
         re.setOnClickListener(click -> startActivity(goToPrevious));
-
+        NasaEarthMyOpener earthDB = new NasaEarthMyOpener(this);
         saved.setOnClickListener(click->{
-                String inDate = earthDateTextView.getText().toString();
-                db= NasaDayActivity.dbOpener.getWritableDatabase();
+                String inDate = earthDateTextView.getText().toString().substring(5);
+                db=earthDB.getWritableDatabase();
                 newRowValues.put(NasaEarthMyOpener.COL_LATITUDE, NasaEarthActivity.inputLat);
                 newRowValues.put(NasaEarthMyOpener.COL_LONGITUDE, NasaEarthActivity.inputLon );
                 newRowValues.put(NasaEarthMyOpener.COL_DATE, inDate);
-
                 long id= db.insert(NasaEarthMyOpener.TABLE_NAME,null, newRowValues);
                 Toast.makeText(Nasaearth_result.this, getString(R.string.earthsaved) , Toast.LENGTH_LONG).show();
 
