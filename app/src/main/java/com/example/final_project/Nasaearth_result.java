@@ -46,7 +46,6 @@ public class Nasaearth_result extends AppCompatActivity {
 
 
         NasaEarthImage nasaEarth = new NasaEarthImage();
-        //nasaEarth.execute("https:api.nasa.gov/planetary/earth/imagery?lon="+NasaEarthActivity.inputLon+"&lat="+NasaEarthActivity.inputLat+"&date=2014-02-01&api_key=zVpq4sFd2AWMLfsOZLQ1pjmae6HqKyHZAeWT4nGf");
         nasaEarth.execute("https://api.nasa.gov/planetary/earth/imagery/?lon="+ NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat + "&date=2014-02-01&api_key=DEMO_KEY");
 
 
@@ -67,7 +66,7 @@ public class Nasaearth_result extends AppCompatActivity {
         re.setOnClickListener(click -> startActivity(goToPrevious));
         NasaEarthMyOpener earthDB = new NasaEarthMyOpener(this);
         saved.setOnClickListener(click->{
-                String inDate = earthDateTextView.getText().toString().substring(5);
+                String inDate = earthDateTextView.getText().toString().substring(6);
                 db=earthDB.getWritableDatabase();
                 newRowValues.put(NasaEarthMyOpener.COL_LATITUDE, NasaEarthActivity.inputLat);
                 newRowValues.put(NasaEarthMyOpener.COL_LONGITUDE, NasaEarthActivity.inputLon );

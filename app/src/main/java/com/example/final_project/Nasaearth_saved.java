@@ -55,7 +55,7 @@ public class Nasaearth_saved extends AppCompatActivity {
             }
         });
         snackbar.show();
-        //boolean isTablet = findViewById(R.id.earthFragment) != null;
+        boolean isTablet = findViewById(R.id.earthFragment) != null;
         savedList = findViewById(R.id.savedList);
 
         savedList.setOnItemClickListener((list,view,pos,id)->{
