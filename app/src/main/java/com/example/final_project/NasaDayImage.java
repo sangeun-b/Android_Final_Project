@@ -53,7 +53,7 @@ public class NasaDayImage extends AppCompatActivity {
 
         NasaImage fetchNasaImage = new NasaImage();
         if (NasaDayActivity.DatePickerFragment.date== null){NasaDayActivity.DatePickerFragment.date= new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Calendar.getInstance().getTime());}
-        fetchNasaImage.execute("https://api.nasa.gov/planetary/apod?api_key=DgPLcIlnmN0Cwrzcg3e9NraFaYLIDI68Ysc6Zh3d&date=" + NasaDayActivity.DatePickerFragment.date);
+        fetchNasaImage.execute("https://api.nasa.gov/planetary/apod?api_key=ag86Nm1ZKRTbTktES1IXL0aZyHYZmNOtoTdg5ZtM&date=" + NasaDayActivity.DatePickerFragment.date);
 
         TextView dateText = findViewById(R.id.dateTextView);
         TextView titleText =findViewById(R.id.titleTextView);

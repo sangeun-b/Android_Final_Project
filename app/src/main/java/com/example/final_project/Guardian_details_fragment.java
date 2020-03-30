@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,7 +34,7 @@ public class Guardian_details_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         dataFromActivity=getArguments();
-        id=dataFromActivity.getLong(Guardian_search_results.TITLE);
+        id=dataFromActivity.getLong(Guardian_search_results.ID);
 
         // Inflate the layout for this fragment
         View result = inflater.inflate(R.layout.guardian_details_fragment, container, false);
@@ -52,20 +53,28 @@ public class Guardian_details_fragment extends Fragment {
 
 
         Button saveButton=result.findViewById(R.id.guardain_saveButton);
-        saveButton.setOnClickListener(clk->{
-                    ContentValues newRowValues = new ContentValues();
-                    newRowValues.put(GuardianMyOpener.COL_TITLE, dataFromActivity.getString(Guardian_search_results.TITLE) );
-                    newRowValues.put(GuardianMyOpener.COL_URL,dataFromActivity.getString(Guardian_search_results.URL ));
-                    newRowValues.put(GuardianMyOpener.COL_SECTION,dataFromActivity.getString(Guardian_search_results.SECTION ));
+        saveButton.setOnClickListener(clk-> {
+            GuardianMyOpener guardianDB = new GuardianMyOpener(getContext());
+            db = guardianDB.getWritableDatabase();
 
-                   GuardianMyOpener guardianDB= new GuardianMyOpener(getContext());
-                   db = guardianDB.getWritableDatabase();
-                   db.insert(GuardianMyOpener.TABLE_NAME, null, newRowValues);
-                   Toast.makeText(getActivity(),"Add to your favourite list",Toast.LENGTH_LONG).show();
+            Cursor c = db.query(false, GuardianMyOpener.TABLE_NAME, new String[]{"TITLE"},
+                    "TITLE like ?", new String[]{dataFromActivity.getString(Guardian_search_results.TITLE)}, null, null, null, null);
+            if (c.getCount() > 0) {
+                Toast.makeText(getActivity(), "In your favorite list already", Toast.LENGTH_LONG).show();
+            } else {
 
-                }
-                );
 
+                ContentValues newRowValues = new ContentValues();
+                newRowValues.put(GuardianMyOpener.COL_TITLE, dataFromActivity.getString(Guardian_search_results.TITLE));
+                newRowValues.put(GuardianMyOpener.COL_URL, dataFromActivity.getString(Guardian_search_results.URL));
+                newRowValues.put(GuardianMyOpener.COL_SECTION, dataFromActivity.getString(Guardian_search_results.SECTION));
+
+
+                db.insert(GuardianMyOpener.TABLE_NAME, null, newRowValues);
+                Toast.makeText(getActivity(), "Add to your favourite list", Toast.LENGTH_LONG).show();
+
+            }
+        });
 
 
 

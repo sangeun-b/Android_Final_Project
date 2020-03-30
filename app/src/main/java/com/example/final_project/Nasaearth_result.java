@@ -46,7 +46,6 @@ public class Nasaearth_result extends AppCompatActivity {
 
 
         NasaEarthImage nasaEarth = new NasaEarthImage();
-        //nasaEarth.execute("https:api.nasa.gov/planetary/earth/imagery?lon="+NasaEarthActivity.inputLon+"&lat="+NasaEarthActivity.inputLat+"&date=2014-02-01&api_key=zVpq4sFd2AWMLfsOZLQ1pjmae6HqKyHZAeWT4nGf");
         nasaEarth.execute("https://api.nasa.gov/planetary/earth/imagery/?lon="+ NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat + "&date=2014-02-01&api_key=DEMO_KEY");
 
 
@@ -78,7 +77,7 @@ public class Nasaearth_result extends AppCompatActivity {
         });
     }
         private class NasaEarthImage extends AsyncTask<String, Integer, String> {
-            String latitude=null, longitude=null, date=null, url=null, id=null;
+            String date=null, url=null, id=null;
             Bitmap image;
 
             public String doInBackground(String... args) {
@@ -101,6 +100,7 @@ public class Nasaearth_result extends AppCompatActivity {
                     JSONObject json = new JSONObject(result);
 
                     //get the string associated with "id"
+
                     id = json.getString("id");
                     publishProgress(25);
                     //get the string associated with "date"
@@ -146,11 +146,9 @@ public class Nasaearth_result extends AppCompatActivity {
 
             public void onPostExecute(String fromDoInBackground) {
                 super.onPostExecute(fromDoInBackground);
-                longitude= NasaEarthActivity.inputLon;
-                latitude = NasaEarthActivity.inputLat;
                 earthImageView.setImageBitmap(image);
-                earthLatTextView.setText(getString(R.string.earthlat) + latitude);
-                earthLonTextView.setText(getString(R.string.earthlon) + longitude);
+                earthLatTextView.setText(getString(R.string.earthlat) + NasaEarthActivity.inputLon);
+                earthLonTextView.setText(getString(R.string.earthlon) + NasaEarthActivity.inputLat);
                 earthDateTextView.setText(getString(R.string.earthdate) + date);
                 earthProgressBar.setVisibility(View.INVISIBLE);
             }
@@ -161,6 +159,8 @@ public class Nasaearth_result extends AppCompatActivity {
         File file= getBaseContext().getFileStreamPath(fname);
         return file.exists();
     }
+
+
 
     }
 

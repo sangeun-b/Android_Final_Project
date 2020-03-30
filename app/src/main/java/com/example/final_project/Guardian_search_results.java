@@ -114,11 +114,18 @@ public class Guardian_search_results extends AppCompatActivity {
                     JSONObject item = jsa.getJSONObject(i);
                     GuardianNews gd= new GuardianNews();
                     gd.setTitle(item.getString("webTitle"));
-                    publishProgress(25);
+
                     gd.setUrl(item.getString("webUrl"));
                     gd.setSection(item.getString("sectionName"));
+
                     list.add(gd);
                 }
+
+                publishProgress(25);
+                publishProgress(50);
+                publishProgress(75);
+                publishProgress(100);
+
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
             }
