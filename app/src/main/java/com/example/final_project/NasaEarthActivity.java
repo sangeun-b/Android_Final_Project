@@ -2,7 +2,9 @@ package com.example.final_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +28,12 @@ public class NasaEarthActivity extends AppCompatActivity {
         earthLat = findViewById(R.id.enterLat);
         earthLon = findViewById(R.id.enterLon);
 
+        SharedPreferences prefs = getSharedPreferences("NasaEarth", Context.MODE_PRIVATE);
+        String s1 = prefs.getString("Lat", "");
+        earthLat.setText(s1);
+        String s2 = prefs.getString("Lon", "");
+        earthLon.setText(s2);
+
         //Intent goToSearch= new Intent(NasaEarthActivity.this,Nasaearth_result.class);
         //search.setOnClickListener(click->startActivity(goToSearch));
         search.setOnClickListener(click-> {
@@ -44,6 +52,19 @@ public class NasaEarthActivity extends AppCompatActivity {
         Intent goToSaved = new Intent(NasaEarthActivity.this,Nasaearth_saved.class);
         saved.setOnClickListener(click->startActivity(goToSaved));
 
+
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        earthLat = findViewById(R.id.enterLat);
+        earthLon = findViewById(R.id.enterLon);
+
+        SharedPreferences prefs = getSharedPreferences("NasaEarth",Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("Lon",earthLon.getText().toString());
+        edit.putString("Lat",earthLat.getText().toString());
+        edit.commit();
 
     }
 }
