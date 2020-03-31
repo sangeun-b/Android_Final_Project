@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -46,8 +47,9 @@ public class Nasaearth_result extends AppCompatActivity {
 
 
         NasaEarthImage nasaEarth = new NasaEarthImage();
-        nasaEarth.execute("https://api.nasa.gov/planetary/earth/imagery/?lon="+ NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat + "&date=2014-02-01&api_key=DEMO_KEY");
-
+        //nasaEarth.execute("https://api.nasa.gov/planetary/earth/imagery/?lon="+ NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat + "&date=2014-02-01&api_key=DEMO_KEY");
+         //not json nasaEarth.execute("https://dev.virtualearth.net/REST/V1/Imagery/Map/Birdseye/" + NasaEarthActivity.inputLat + "," + NasaEarthActivity.inputLon +"/20?dir=180&ms=500,500&key=ApUD42GYzVyU6_EZQ_Vi9qCx9ZmHYkjrQkO93IISLCWUsJbXUHjUIWCIZawaV_LD");
+        nasaEarth.execute("https://dev.virtualearth.net/REST/V1/Imagery/Metadata/Aerial/"+ NasaEarthActivity.inputLon +"," + NasaEarthActivity.inputLat +"?zl=15&o=&key=ApUD42GYzVyU6_EZQ_Vi9qCx9ZmHYkjrQkO93IISLCWUsJbXUHjUIWCIZawaV_LD");
 
         earthImageView = findViewById(R.id.earthImage);
         earthLatTextView = findViewById(R.id.earthlat);
@@ -98,16 +100,16 @@ public class Nasaearth_result extends AppCompatActivity {
                     String result = sb.toString();
                     //convert string to JSON
                     JSONObject json = new JSONObject(result);
-
+                    //JSONArray arr = new JSONArray(result);
+                    //JSONObject json = arr.getJSONObject(0);
                     //get the string associated with "id"
-
-                    id = json.getString("id");
+                    url = json.getString("imageUrl");
                     publishProgress(25);
                     //get the string associated with "date"
-                    date= json.getString("date");
+                    date= json.getString("vintageEnd");
                     publishProgress(50);
                     //get the string associated wiht "url"
-                    url = json.getString("url");
+                    id = json.getString("traceId");
                     publishProgress(75);
 
                     FileInputStream fis;
