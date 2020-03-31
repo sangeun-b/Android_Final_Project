@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.final_project">
-
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -21,8 +19,12 @@
         <activity android:name=".BBCDetails" />
         <activity android:name=".BBCFavouriteList" />
         <activity android:name=".BBCSearchList" />
-        <activity android:name=".GuardianEmptyActivity" />
-        <activity android:name=".Guardian_search_results" />
+
+
+        <activity android:name=".Guardian_favourite_empty"></activity>
+        <activity android:name=".GuardianEmptyActivity"></activity>
+        <activity android:name=".Guardian_search_results"></activity>
+
         <activity android:name=".Guardian_favourite" />
         <activity android:name=".Guardian_details_fragment" />
         <activity
