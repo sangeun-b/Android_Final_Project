@@ -29,10 +29,7 @@ public class GuardianActivity extends AppCompatActivity {
         String saveSearch= prefs.getString("searchNews", "");
         searchText.setText(saveSearch);
 
-
-
-
-
+        
         Button search = findViewById(R.id.search_button);
         Intent goToSearch = new Intent(GuardianActivity.this, Guardian_search_results.class);
         search.setOnClickListener(click ->{
