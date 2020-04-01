@@ -22,16 +22,14 @@ public class GuardianActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guardian);
-        //EditText searchText=findViewById(R.id.search_news);
-        //searchInput =searchText.getText().toString();
+        EditText searchText=findViewById(R.id.search_news);
+
 
         prefs = getSharedPreferences("Guardian", Context.MODE_PRIVATE);
-        String saveSearch = prefs.getString("searchNews", "");
-        EditText searchText=findViewById(R.id.search_news);
+        String saveSearch= prefs.getString("searchNews", "");
         searchText.setText(saveSearch);
-       //SharedPreferences.Editor editor = prefs.edit();
-       //editor.putString("Guardian", searchText.getText().toString());
-      // editor.commit();
+
+
 
 
 
@@ -43,13 +41,13 @@ public class GuardianActivity extends AppCompatActivity {
                     Snackbar.make(search,"Please enter the key word!",Snackbar.LENGTH_LONG).show();
                 }
                 else{
-                    EditText editText = findViewById(R.id.search_news);
-                    goToSearch.putExtra("Guardian", editText.getText().toString());
-
-                   // goToSearch.putExtra("Guardian", searchInput);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("searchNews", searchInput);
+                    editor.commit();
                     startActivity(goToSearch);
-
                     }});
+
+
 
 
         ImageView favourite = findViewById(R.id.favouriteList);
@@ -58,20 +56,6 @@ public class GuardianActivity extends AppCompatActivity {
 
 
         }
-
-        protected void onPause() {
-            super.onPause();
-
-            EditText typeField = findViewById(R.id.search_news);
-            String searchNews = typeField.getText().toString();
-            savedSharedPrefs(searchNews);
-        }
-
-    private void savedSharedPrefs(String stringToSave){
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("Guardian", stringToSave);
-        editor.commit();
-    }
 
 
     }
