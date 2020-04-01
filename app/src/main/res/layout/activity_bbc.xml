@@ -35,15 +35,27 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swiperefresh"
         android:layout_width="wrap_content"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/BBCNewsReader"
+        android:layout_above="@+id/progressBar"
         android:layout_marginLeft="10pt"
         android:layout_marginRight="10pt" >
         <ListView
             android:id="@+id/BBCTitle"
             android:layout_width="wrap_content"
-            android:layout_height="500dp" />
+            android:layout_height="wrap_content" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10pt"
+        android:layout_marginLeft="10pt"
+        android:layout_above="@id/BBCSearchText"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/BBCSearchText"
@@ -65,17 +77,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="10pt" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10pt"
-        android:layout_marginLeft="10pt"
-        android:layout_above="@id/BBCSearchText"
-        android:layout_below="@id/swiperefresh"
-        android:layout_gravity="center"
-        android:visibility="invisible" />
 
 </RelativeLayout>

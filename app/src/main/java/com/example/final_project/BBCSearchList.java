@@ -27,6 +27,7 @@ public class BBCSearchList extends AppCompatActivity {
     ArrayList<BBCItem> itemList = new ArrayList<>();
     BBCSearchList.MyListAdapter adapter;
     String keyword;
+    BBCDetailsFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +57,30 @@ public class BBCSearchList extends AppCompatActivity {
             finish();
         });
 
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null;
+
         BBCSearchList.setOnItemClickListener((parent,view,position,id)-> {
-            Intent goToDetails = new Intent(BBCSearchList.this, BBCDetails.class);
-            BBCItem selectedItem = itemList.get(position);
+            Bundle goToDetails = new Bundle();
+            goToDetails.putLong("ID", itemList.get(position).getId());
+            goToDetails.putString("TITLE", itemList.get(position).getTitle());
+            goToDetails.putString("DESCRIPTION", itemList.get(position).getDescription());
+            goToDetails.putString("LINK", itemList.get(position).getLink());
+            goToDetails.putString("DATE", itemList.get(position).getDate());
+            goToDetails.putString("ISFAVOURITE", itemList.get(position).getIsFavourite());
 
-            goToDetails.putExtra("POSITION", position);
-            //goToDetails.putExtra("ID", selectedItem.getId());
-            goToDetails.putExtra("TITLE", selectedItem.getTitle());
-            goToDetails.putExtra("DESCRIPTION", selectedItem.getDescription());
-            goToDetails.putExtra("LINK", selectedItem.getLink());
-            goToDetails.putExtra("DATE", selectedItem.getDate());
-            goToDetails.putExtra("ISFAVOURITE", selectedItem.getIsFavourite());
-
-            startActivity(goToDetails);
+            if(isTablet){
+                fragment = new BBCDetailsFragment();
+                fragment.setArguments(goToDetails);
+                fragment.setTablet(true);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentLocation, fragment)
+                        .commit();
+            }else{
+                Intent nextActivity = new Intent(BBCSearchList.this, BBCDetails.class);
+                nextActivity.putExtras(goToDetails); //send data to next activity
+                startActivity(nextActivity); //make the transition
+            }
 
         });
 
@@ -136,13 +148,6 @@ public class BBCSearchList extends AppCompatActivity {
             theText.setText(item.getId() + ": " + item.getTitle());
             return newView;
         }
-    }
-
-    protected void modifyItem(BBCItem c, String s)
-    {
-        ContentValues dataToInsert = new ContentValues();
-        dataToInsert.put(BBCMyOpener.COL_ISFAVOURITE, s);
-        BBCActivity.db.update(BBCMyOpener.TABLE_NAME, dataToInsert,BBCMyOpener.COL_ID + "= ?", new String[] {Long.toString(c.getId())});
     }
 
 }

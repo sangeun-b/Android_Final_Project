@@ -46,7 +46,7 @@ public class BBCFavouriteList extends AppCompatActivity {
             BBCItem selectedItem = itemList.get(position);
 
             goToDetails.putExtra("POSITION", position);
-            //goToDetails.putExtra("ID", selectedItem.getId());
+            goToDetails.putExtra("ID", selectedItem.getId());
             goToDetails.putExtra("TITLE", selectedItem.getTitle());
             goToDetails.putExtra("DESCRIPTION", selectedItem.getDescription());
             goToDetails.putExtra("LINK", selectedItem.getLink());

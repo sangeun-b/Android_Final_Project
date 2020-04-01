@@ -46,6 +46,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -112,7 +113,7 @@ public class BBCActivity extends AppCompatActivity {
             BBCItem selectedItem = itemList.get(position);
 
             goToDetails.putExtra("POSITION", position);
-            //goToDetails.putExtra("ID", selectedItem.getId());
+            goToDetails.putExtra("ID", selectedItem.getId());
             goToDetails.putExtra("TITLE", selectedItem.getTitle());
             goToDetails.putExtra("DESCRIPTION", selectedItem.getDescription());
             goToDetails.putExtra("LINK", selectedItem.getLink());
@@ -140,6 +141,41 @@ public class BBCActivity extends AppCompatActivity {
                 publishProgress(10);
                 //wait for data:
                 InputStream response = urlConnection.getInputStream();
+
+                /*
+                //JSON reading:
+                //Build the entire string response:
+                BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
+                StringBuilder sb = new StringBuilder();
+
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                String result = sb.toString(); //result is the whole string
+
+                JSONObject obj1 = new JSONObject(result);
+                JSONArray array= obj1.getJSONObject("rss").getJSONArray("item");
+                for(int i=0; i<array.length(); i++){
+                    JSONObject obj = array.getJSONObject(i);
+                    BBCItem item = new BBCItem();
+                    ContentValues newRowValues = new ContentValues();
+                    item.setTitle(obj.getString("title"));
+                    newRowValues.put(BBCMyOpener.COL_TITLE, obj.getString("title"));
+                    item.setDescription(obj.getString("description"));
+                    newRowValues.put(BBCMyOpener.COL_DESCRIPTION, obj.getString("description"));
+                    item.setLink(obj.getString("link"));
+                    newRowValues.put(BBCMyOpener.COL_LINK, obj.getString("link"));
+                    item.setDate(obj.getString("pubDate"));
+                    newRowValues.put(BBCMyOpener.COL_DATE, obj.getString("pubDate"));
+                    item.setIsFavourite("false");
+                    newRowValues.put(BBCMyOpener.COL_ISFAVOURITE, "false");
+                    //Now insert in the database:
+                    long newId = db.insert(BBCMyOpener.TABLE_NAME, null, newRowValues);
+                    item.setId(newId);
+                    itemList.add(item);
+                }
+                */
 
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                 factory.setNamespaceAware(false);

@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/BBCLogo"
+        android:id="@+id/BBCLogoFragment"
         android:layout_marginRight="25pt"
         android:layout_marginLeft="25pt"
         android:layout_width="match_parent"
@@ -14,68 +14,68 @@
         android:src="@drawable/bbc_logo_resize"/>
 
     <TextView
-        android:id="@+id/BBCNewsDetail"
+        android:id="@+id/BBCNewsDetailFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BBCNewsDetails"
-        android:layout_below="@+id/BBCLogo"
+        android:layout_below="@+id/BBCLogoFragment"
         android:layout_centerHorizontal="true"
         android:textSize="15pt"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/Title"
+        android:id="@+id/TitleFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title: "
         android:textSize="20dp"
         android:layout_marginRight="10pt"
         android:layout_marginLeft="10pt"
-        android:layout_below="@id/BBCNewsDetail" />
+        android:layout_below="@id/BBCNewsDetailFragment" />
 
     <TextView
-        android:id="@+id/Description"
+        android:id="@+id/DescriptionFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description: "
         android:textSize="20dp"
         android:layout_marginRight="10pt"
         android:layout_marginLeft="10pt"
-        android:layout_below="@id/Title" />
+        android:layout_below="@id/TitleFragment" />
 
     <TextView
-        android:id="@+id/Date"
+        android:id="@+id/DateFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date: "
         android:textSize="20dp"
         android:layout_marginRight="10pt"
         android:layout_marginLeft="10pt"
-        android:layout_below="@id/Description" />
+        android:layout_below="@id/DescriptionFragment" />
 
     <TextView
-        android:id="@+id/Link"
+        android:id="@+id/LinkFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Link: "
         android:textSize="20dp"
         android:layout_marginRight="10pt"
         android:layout_marginLeft="10pt"
-        android:layout_below="@id/Date"
+        android:layout_below="@id/DateFragment"
         android:autoLink="web"
         android:linksClickable="true" />
 
     <Button
-        android:id="@+id/BBCAddToFavourite"
+        android:id="@+id/BBCAddToFavouriteFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BBCAddToFavourite"
         android:textSize="20dp"
-        android:layout_above="@id/BBCBack"
+        android:layout_above="@id/BBCBackFragment"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/BBCBack"
+        android:id="@+id/BBCBackFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BBCBack"
