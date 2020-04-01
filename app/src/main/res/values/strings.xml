@@ -54,6 +54,8 @@
     <string name="earthck">Please enter the latitude and Longitude</string>
     <string name="earthcklat">Please enter the latitude</string>
     <string name="earthcklon">Please enter the Longitude</string>
+    <string name="earthsavedtitle">Saved List</string>
+    <string name="earthhide">Hide</string>
 
     <string name="title_activity_nasa_day_image_myfavorite_list">NasaDayImageMyfavoriteList</string>
     <!-- Strings used for fragments for navigation -->
@@ -90,6 +92,9 @@
     <string name="frament_title">Title:</string>
     <string name="hide">HIDE</string>
     <string name="guardian_save">Save</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

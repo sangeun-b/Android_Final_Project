@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">마지막 프로젝트</string>
+    <string name="app_name">프로젝트</string>
     <string name="earthtitle">나사 지구</string>
     <string name="earthlat">위도 : </string>
     <string name="earthlon">경도 : </string>
@@ -18,11 +18,71 @@
     <string name="earthck">경도와 위도를 입력해주세요</string>
     <string name="earthcklat">위도를 입력해주세요</string>
     <string name="earthcklon">경도를 입력해주세요</string>
+    <string name="earthsavedtitle">저장 목록</string>
+    <string name="earthhide">숨기기</string>
 
 
     <string name="BBC">비비씨 뉴스</string>
     <string name="Guardian">가디언 뉴스</string>
     <string name="NasaEarth">나사 지구 이미지</string>
-    <string name="NasaDay">나사 이미지</string>
+    <string name="NasaDay">나사 하루 이미지</string>
+    <string name="title_activity_guardian">가디언  뉴스</string>
+    <string name="title_activity_nasa_day">나사 하루 이미지</string>
+    <string name="title_activity_bbc">비비씨 뉴스</string>
+    <string name="title_activity_nasa_earth">나사 지구 이미지</string>
+    <string name="pick_date">날짜를 고르세요</string>
+    <string name="title_activity_nasa_image">나사사진</string>
+    <string name="view_image">뷰 이미지</string>
+    <string name="datepick">너가 고른 날짜는</string>
+    <string name="dateTextView">날짜는</string>
+    <string name="titleTextView">제목은</string>
+    <string name="urlTextView">url 주소는</string>
+    <string name="hdurlTextView">hdurl 주소는</string>
+    <string name="NasaImageoftheDay">그 날의 사진</string>
+    <string name="NasaImageAlertDelete">삭제하겠습니까?</string>
+    <string name="NasaImageSelectRow">선택된 줄은</string>
+    <string name="NasaImageDatabaseRow">데이터베이스 아이디는</string>
+    <string name="NasaImageMyFavorite">즐겨찾기</string>
+    <string name="NasaDayFragmentButton">숨기기</string>
+    <string name="BBCNewsReader">비비씨 뉴스</string>
+    <string name="BBCSearchText">비비씨 뉴스에서 찾기</string>
+    <string name="BBCSearchButton">찾기</string>
+    <string name="BBCFavouriteHeader">비비씨 뉴스 즐겨찾기</string>
+    <string name="BBCNewsDetails">비비씨 뉴스 상세</string>
+    <string name="BBCAddToFavourite">즐겨찾기 추가</string>
+    <string name="BBCBack">뒤로</string>
+    <string name="BBCBack1">뒤로</string>
+    <string name="BBCBack2">뒤로</string>
+    <string name="BBCSearchHeader">뒤로</string>
+    <string name="saveImageButton">저장</string>
+    <string name="title_activity_nasa_day_image_myfavorite_list">나사 하루 즐겨찾기</string>
+    <string name="next">다음</string>
+    <string name="previous">이전</string>
+    <string name="title_activity_info_tool_bar">툴바정보</string>
+    <string name="menu_item1">가디언뉴스 찾기</string>
+    <string name="menu_item2">나사 그 날의 이미지</string>
+    <string name="menu_item3">나사 이미지 찾기</string>
+    <string name="menu_item4">비비씨 뉴스 일기</string>
+    <string name="author1">왕치</string>
+    <string name="version_number">버전 1</string>
+    <string name="author2">왕승희</string>
+    <string name="author3">백상은</string>
+    <string name="author4">신구오</string>
+    <string name="guide">가이드</string>
+    <string name="go_to_guardian">가디언 뉴스 가기</string>
+    <string name="go_to_nasa_day">나사 하루 이미지 가기</string>
+    <string name="go_to_nasa_earth">나사 지구 이미지 가기</string>
+    <string name="guardian_news">가디언뉴스</string>
+    <string name="guardin_search">찾기</string>
+    <string name="search_news">뉴스 검색</string>
+    <string name="guardian_favourite_list">뉴스 즐겨찾기</string>
+    <string name="guardian_details">뉴스 상세 정보</string>
+    <string name="guardian_title">제목 :</string>
+    <string name="guardian_url">Url 주소:</string>
+    <string name="guardian_section">섹션 이름:</string>
+    <string name="details">뉴스 상세</string>
+    <string name="frament_title">제목:</string>
+    <string name="hide">숨기기</string>
+    <string name="guardian_save">저장</string>
 
 </resources>
