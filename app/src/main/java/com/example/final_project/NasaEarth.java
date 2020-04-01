@@ -7,7 +7,7 @@ import android.os.Bundle;
 //create getter and setter
 public class NasaEarth extends AppCompatActivity {
     private long id;
-    private String latitude, longitude, date;
+    private String latitude, longitude, date, url;
 
     public NasaEarth(){
     }
