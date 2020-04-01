@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -47,7 +48,6 @@ public class Nasaearth_result extends AppCompatActivity {
 
 
         NasaEarthImage nasaEarth = new NasaEarthImage();
-        //nasaEarth.execute("https://api.nasa.gov/planetary/earth/imagery/?lon="+ NasaEarthActivity.inputLon + "&lat=" + NasaEarthActivity.inputLat + "&date=2014-02-01&api_key=DEMO_KEY");
          //not json nasaEarth.execute("https://dev.virtualearth.net/REST/V1/Imagery/Map/Birdseye/" + NasaEarthActivity.inputLat + "," + NasaEarthActivity.inputLon +"/20?dir=180&ms=500,500&key=ApUD42GYzVyU6_EZQ_Vi9qCx9ZmHYkjrQkO93IISLCWUsJbXUHjUIWCIZawaV_LD");
         nasaEarth.execute("https://dev.virtualearth.net/REST/V1/Imagery/Metadata/Aerial/"+ NasaEarthActivity.inputLon +"," + NasaEarthActivity.inputLat +"?zl=15&o=&key=ApUD42GYzVyU6_EZQ_Vi9qCx9ZmHYkjrQkO93IISLCWUsJbXUHjUIWCIZawaV_LD");
 
@@ -85,6 +85,7 @@ public class Nasaearth_result extends AppCompatActivity {
             public String doInBackground(String... args) {
                 try {
                     //create a URL object of what server to contact:
+                    JSONArray ja = null;
                     URL infoUrl = new URL(args[0]);
                     //open the connection
                     HttpURLConnection urlConnection = (HttpURLConnection) infoUrl.openConnection();
@@ -100,38 +101,36 @@ public class Nasaearth_result extends AppCompatActivity {
                     String result = sb.toString();
                     //convert string to JSON
                     JSONObject json = new JSONObject(result);
-                    //JSONArray arr = new JSONArray(result);
-                    //JSONObject json = arr.getJSONObject(0);
-                    //get the string associated with "id"
-                    url = json.getString("imageUrl");
-                    publishProgress(25);
-                    //get the string associated with "date"
-                    date= json.getString("vintageEnd");
-                    publishProgress(50);
-                    //get the string associated wiht "url"
-                    id = json.getString("traceId");
-                    publishProgress(75);
+                    ja = json.getJSONArray("resourceSets");
+                    JSONObject obj= ja.getJSONObject(0);
+                    JSONArray item = obj.getJSONArray("resources");
+                    JSONObject json2 = item.getJSONObject(0);
+                         url = json2.getString("imageUrl");
+                         publishProgress(25);
+                         //get the string associated with "date"
+                         date= json2.getString("vintageEnd");
+                         publishProgress(50);
 
-                    FileInputStream fis;
-                    if(fileExistance(date + ".png")){
-                        fis= openFileInput(date +".png");
-                        image= BitmapFactory.decodeStream(fis);
-                        Log.i("file", "this is the local file.");
-                    }else{
-                        URL urlImage= new URL(url);
-                        HttpURLConnection imageConnection= (HttpURLConnection) urlImage.openConnection();
-                        imageConnection.connect();
-                        int responseCode= imageConnection.getResponseCode();
-                        if(responseCode==200){
-                            image= BitmapFactory.decodeStream(imageConnection.getInputStream());
-                            Log.i("file", "this file is from online.");
-                            FileOutputStream outputStream = openFileOutput( date + ".png", Context.MODE_PRIVATE );
-                            image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                            publishProgress(100);
-                            outputStream.flush();
-                            outputStream.close();
-                        }
-                    }
+                         FileInputStream fis;
+                         if (fileExistance(date + ".png")) {
+                             fis = openFileInput(date + ".png");
+                             image = BitmapFactory.decodeStream(fis);
+                             Log.i("file", "this is the local file.");
+                         } else {
+                             URL urlImage = new URL(url);
+                             HttpURLConnection imageConnection = (HttpURLConnection) urlImage.openConnection();
+                             imageConnection.connect();
+                             int responseCode = imageConnection.getResponseCode();
+                             if (responseCode == 200) {
+                                 image = BitmapFactory.decodeStream(imageConnection.getInputStream());
+                                 Log.i("file", "this file is from online.");
+                                 FileOutputStream outputStream = openFileOutput(date + ".png", Context.MODE_PRIVATE);
+                                 image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                                 publishProgress(100);
+                                 outputStream.flush();
+                                 outputStream.close();
+                             }
+                         }
 
                     return "Done";
                 } catch (Exception e) {
