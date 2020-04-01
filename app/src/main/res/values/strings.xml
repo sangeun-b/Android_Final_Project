@@ -88,13 +88,11 @@
     <string name="guardian_title">Title:</string>
     <string name="guardian_url">Url:</string>
     <string name="guardian_section">Section Name:</string>
-    <string name="details">News Details</string>
-    <string name="frament_title">Title:</string>
+
     <string name="hide">HIDE</string>
     <string name="guardian_save">Save</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 </resources>

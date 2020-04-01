@@ -41,15 +41,15 @@ public class Guardian_details_fragment extends Fragment {
 
 
         TextView title=result.findViewById(R.id.guardian_title);
-        title.setText("Title:"+dataFromActivity.getString(Guardian_search_results.TITLE));
+        title.setText("Title: "+dataFromActivity.getString(Guardian_search_results.TITLE));
 
 
         TextView url=result.findViewById(R.id.guardian_url);
-        url.setText("Url:"+dataFromActivity.getString(Guardian_search_results.URL));
+        url.setText("Url: "+dataFromActivity.getString(Guardian_search_results.URL));
 
 
         TextView section=result.findViewById(R.id.guardian_section);
-        section.setText("Section Name:"+dataFromActivity.getString(Guardian_search_results.SECTION));
+        section.setText("Section Name: "+dataFromActivity.getString(Guardian_search_results.SECTION));
 
 
         Button saveButton=result.findViewById(R.id.guardain_saveButton);
