@@ -28,6 +28,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Extract data from the specified http server and depend on the user search to show the news title in a list
+ * @author Qi Wang
+ * @version April 01, 2020
+ */
 public class Guardian_search_results extends AppCompatActivity {
     ListView titleListView;
     ArrayList<GuardianNews> list=new ArrayList<>();
@@ -37,7 +42,13 @@ public class Guardian_search_results extends AppCompatActivity {
     public static final String SECTION = "SECTION NAME";
     public static final String ID= "ID";
 
-
+    /**
+     * Call this method when the activity is starting,and call MyHttpRequest to get the news information
+     * Start with the tablet layout and put your listView on the left,and FrameLayout on the right.
+     * For the phone, just have a listView.
+     * For a phone, when a user selects something from a list, use startActivity() to go to a new activity that is only a FrameLayout.
+     * @param savedInstanceState-a Bundle containing the activity's previously frozen state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,10 +93,22 @@ public class Guardian_search_results extends AppCompatActivity {
     });
     }
 
+    /**
+     * use AsyncTask to retrieve data from an http server
+     * has 3 important functions: doInBackground, onProgressUpdate, onPostExecute
+     */
     private class MyHttpRequest extends AsyncTask<String, Integer, String> {
-        JSONObject jo;
+        //JSONObject jo;
         JSONArray jsa;
-        //Type3                Type1
+
+        /**
+         * where you do your work
+         * @param args-The first generic parameter is for the doInBackground array type.
+         *             The “...” means variable arguments.
+         * @return  an object of Type3, which represents your result.
+         *          in this case it returns an arrayList of items which include news title, url and section name.
+         */
+               //Type3                Type1
         public String doInBackground(String... args) {
             try {
                 //create a URL object of what server to contact:
@@ -103,7 +126,7 @@ public class Guardian_search_results extends AppCompatActivity {
                 while ((line = reader.readLine()) != null) {
                     sb.append(line + "\n");
                 }
-                String result = sb.toString(); //result is the whole string*/
+                String result = sb.toString(); //result is the whole string
 
                 JSONObject jo1 = new JSONObject(result);
                 //JSONObject jo2= jo1.getJSONObject("response");
@@ -133,11 +156,20 @@ public class Guardian_search_results extends AppCompatActivity {
             return "Done";
         }
 
+        /**
+         * from inside the doInBackground function to update your GUI.
+         * set the progressBar attributes
+         * @param value-The values indicating progress.
+         */
         protected void onProgressUpdate(Integer... value) {
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setProgress(value[0]);
         }
 
+        /**
+         * this means that doInBackground has finished. You can do your final GUI update
+         * @param fromDoInBackground-the exact same object that was returned by doInBackground.
+         */
         protected void onPostExecute(String fromDoInBackground) {
             titleListView.setAdapter(new GuardianListAdapter());
             progressBar.setVisibility(View.INVISIBLE);
@@ -145,6 +177,9 @@ public class Guardian_search_results extends AppCompatActivity {
 
     }
 
+    /**
+     * same as Guardian_favourite class
+     */
     private class GuardianListAdapter extends BaseAdapter{
         @Override
         public int getCount() {

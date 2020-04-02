@@ -17,6 +17,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * The fragment for news details page of tablet or phone, get the detailed information of the news
+ * and include save and hide, twe buttons.
+ * @author Qi Wang
+ * @version April 01, 2020
+ */
 public class Guardian_details_fragment extends Fragment {
     private AppCompatActivity parentActivity;
     private Bundle dataFromActivity;
@@ -24,12 +30,26 @@ public class Guardian_details_fragment extends Fragment {
     private boolean isTablet;
     SQLiteDatabase db;
 
+    /**
+     * judge if it's a tablet and assign true or false value to the variable isTablet
+     * @param tablet- boolean value true or false
+     */
     public void setTablet(boolean tablet) { isTablet = tablet; }
 
+    /**
+     * a empty constructor
+     */
     public Guardian_details_fragment() {
-        // Required empty public constructor
     }
 
+    /**
+     *Called to have the fragment instantiate its user interface view.
+     * user can see the details of Title, Url and Section name in the fragment layout
+     * @param inflater-The LayoutInflater object that can be used to inflate the details views in the fragment
+     * @param container-If not null the parent view that the fragment's UI should be attached to.
+     * @param savedInstanceState-this fragment is being re-constructed from a previous saved state as given here.
+     * @return the result of "Tile","Url","Section name" in the fragment layout.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -105,11 +125,14 @@ public class Guardian_details_fragment extends Fragment {
 
     }
 
-
+    /**
+     * When the fragment has been added to the Activity which has the FrameLayout.
+     * @param context- The Context that is inflating this fragment.
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        //context will either be ChatRoomActivity for a tablet, or EmptyActivity for phone
+        //context will either be Guardian_search_results for a tablet, or EmptyActivity for phone
         parentActivity = (AppCompatActivity)context;
     }
 
