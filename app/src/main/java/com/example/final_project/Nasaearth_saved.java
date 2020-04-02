@@ -29,6 +29,10 @@ import java.util.ArrayList;
 import static com.example.final_project.NasaEarthMyOpener.COL_ID;
 import static com.example.final_project.NasaEarthMyOpener.TABLE_NAME;
 
+/**
+ * @author Sangeun Baek
+ * This activity for viewing favorite list.
+ */
 public class Nasaearth_saved extends AppCompatActivity {
     private NasaEarthAdapter myAdapter = new NasaEarthAdapter();
     static ArrayList<NasaEarth> earthArray = new ArrayList<>();
@@ -41,7 +45,10 @@ public class Nasaearth_saved extends AppCompatActivity {
     public static final String EARTH_LONGITUDE = "Longitude";
     NasaEarthDetailsFragment earthFragment;
 
-
+    /**
+     * get the data from the database into the list view.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,15 +114,31 @@ public class Nasaearth_saved extends AppCompatActivity {
     }
 
     public class NasaEarthAdapter extends BaseAdapter {
-
+        /**
+         * number of element in the array
+         * @return current array size
+         */
         public int getCount() {
             return earthArray.size();
         }
 
+        /**
+         * get Item of the position
+         * @param position
+         * @return the item of the position
+         */
         public NasaEarth getItem(int position) {
             return earthArray.get(position);
 
         }
+
+        /**
+         * get view
+         * @param position the postion of view
+         * @param convertView
+         * @param parent
+         * @return
+         */
 
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
@@ -146,12 +169,22 @@ public class Nasaearth_saved extends AppCompatActivity {
 
         }
 
+        /**
+         * get id of the position.
+         * @param position
+         * @return the id of the position.
+         */
+
         public long getItemId(int position) {
             return getItem(position).getId();
 
         }
 
     }
+
+    /**
+     * retrieve the data form database.
+     */
     public void loadDataFromDatabase(){
         earthArray.clear();
         NasaEarthMyOpener earthDB = new NasaEarthMyOpener(this);

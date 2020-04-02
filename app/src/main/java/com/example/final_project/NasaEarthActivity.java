@@ -11,6 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+/**
+ * @author Sangeun Baek
+ * This activity allows users to search for the earth's image using the latitude and longitude that the users entered.
+ */
+
 public class NasaEarthActivity extends AppCompatActivity {
     Button search;
     ImageView saved;
@@ -19,6 +24,11 @@ public class NasaEarthActivity extends AppCompatActivity {
     static String inputLat;
     static String inputLon;
     ImageView back;
+
+    /**
+     * Loads the nasaearth layout
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

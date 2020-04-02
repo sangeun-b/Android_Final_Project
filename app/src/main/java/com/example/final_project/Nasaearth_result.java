@@ -31,6 +31,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * @author Sangeun Baekk
+ * This Activity for connect to the website and retrieve the data from the website that user want to search,
+ * Then the user can save the data to the database.
+ */
+
 public class Nasaearth_result extends AppCompatActivity {
     Button re;
     Button saved;
@@ -43,6 +49,7 @@ public class Nasaearth_result extends AppCompatActivity {
 
     /**
      * setContentView loads objects onto the screen.
+     * save the data into the database.
      * @param savedInstanceState
      */
     @Override
@@ -82,13 +89,25 @@ public class Nasaearth_result extends AppCompatActivity {
 
         });
     }
-        private class NasaEarthImage extends AsyncTask<String, Integer, String> {
+
+    /**
+     * Connect to the EarthImage website, creates and JSON parse to retrieve desired data from website.
+     */
+    private class NasaEarthImage extends AsyncTask<String, Integer, String> {
             String latitude=null, longitude=null, date=null, url=null, id=null;
             Bitmap image;
 
-            public String doInBackground(String... args) {
+        /**
+         *create a URL object of what server to contact.
+         * connect to the server
+         * convert string to JSON
+         * get the string associated with deserve name
+         *
+         * @param args
+         * @return
+         */
+        public String doInBackground(String... args) {
                 try {
-                    //create a URL object of what server to contact:
                     JSONArray ja = null;
                     URL infoUrl = new URL(args[0]);
                     //open the connection
@@ -103,7 +122,6 @@ public class Nasaearth_result extends AppCompatActivity {
 
                     while ((line = reader.readLine()) != null) {sb.append(line + "\n"); }
                     String result = sb.toString();
-                    //convert string to JSON
                     JSONObject json = new JSONObject(result);
                     ja = json.getJSONArray("resourceSets");
                     JSONObject obj= ja.getJSONObject(0);
@@ -111,7 +129,6 @@ public class Nasaearth_result extends AppCompatActivity {
                     JSONObject json2 = item.getJSONObject(0);
                          url = json2.getString("imageUrl");
                          publishProgress(25);
-                         //get the string associated with "date"
                          date= json2.getString("vintageEnd");
                          publishProgress(50);
 
@@ -143,13 +160,21 @@ public class Nasaearth_result extends AppCompatActivity {
                 return "Done";
             }
 
-            public void onProgressUpdate(Integer... value) {
+        /**
+         * update the progress bar
+         * @param value Receive the bar
+         */
+        public void onProgressUpdate(Integer... value) {
                 super.onProgressUpdate(value);
                 earthProgressBar.setVisibility(View.VISIBLE);
                 earthProgressBar.setProgress(value[0]);
             }
 
-            public void onPostExecute(String fromDoInBackground) {
+        /**
+         *
+         * @param fromDoInBackground
+         */
+        public void onPostExecute(String fromDoInBackground) {
                 super.onPostExecute(fromDoInBackground);
                 longitude= NasaEarthActivity.inputLon;
                 latitude = NasaEarthActivity.inputLat;
@@ -162,6 +187,12 @@ public class Nasaearth_result extends AppCompatActivity {
 
 
         }
+
+    /**
+     * Search image if it is exist in the local device or not
+     * @param fname file name to be retrieved
+     * @return if the file extists, it is true, if not, it is false
+     */
     public boolean fileExistance(String fname){
         File file= getBaseContext().getFileStreamPath(fname);
         return file.exists();

@@ -19,29 +19,46 @@ import android.widget.TextView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
+/**
+ *
+ * @author Sangeun Baek
+ * if the device is a tablet, use the fragment
+ * to display the detail of the selected item from saved list.
+ *
+ */
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class NasaEarthDetailsFragment extends Fragment {
     private boolean isTablet;
-    //private AppCompatActivity parentActivity;
     private Bundle dataFromActivity;
     private Bitmap image;
 
+    /**
+     * Empty public constructor
+     */
     public NasaEarthDetailsFragment() {
-        // Required empty public constructor
     }
 
+    /**
+     * check if the device is tablet or not
+     * @param tablet
+     */
     public void setTablet(boolean tablet){
         isTablet = tablet;
     }
 
+    /**
+     * Inflate the layout for this fragment
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         dataFromActivity = getArguments();
         FileInputStream fis;
         String path = dataFromActivity.getString(Nasaearth_saved.EARTH_DATE);
