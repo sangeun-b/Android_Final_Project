@@ -41,6 +41,10 @@ public class Nasaearth_result extends AppCompatActivity {
     TextView earthDateTextView;
     SQLiteDatabase db;
 
+    /**
+     * setContentView loads objects onto the screen.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
