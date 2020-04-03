@@ -20,9 +20,20 @@
     <string name="earthcklon">경도를 입력해주세요</string>
 
 
-    <string name="BBC">비비씨 뉴스</string>
+    <string name="BBC">BBC 뉴스</string>
     <string name="Guardian">가디언 뉴스</string>
     <string name="NasaEarth">나사 지구 이미지</string>
     <string name="NasaDay">나사 이미지</string>
+    <string name="author4">구 오신</string>
+    <string name="BBCAddToFavourite">BBC News Collection에 추가</string>
+    <string name="BBCBack">돌아 가기</string>
+    <string name="BBCBack1">돌아 가기</string>
+    <string name="BBCBack2">돌아 가기</string>
+    <string name="BBCFavouriteHeader">BBC 뉴스 콜렉션</string>
+    <string name="BBCNewsDetails">BBC 뉴스 세부 사항</string>
+    <string name="BBCNewsReader">BBC 뉴스</string>
+    <string name="BBCSearchButton">검색</string>
+    <string name="BBCSearchHeader">BBC 뉴스 검색 결과</string>
+    <string name="BBCSearchText">BBC 뉴스 검색</string>
 
 </resources>

@@ -20,5 +20,8 @@
     <string name="guardian_details">新闻详细信息</string>
     <string name="hide">隐藏</string>
     <string name="guardian_save">保存</string>
+    <string name="BBCBack2">返回</string>
+    <string name="author4">郭欣</string>
+    <string name="BBCSearchHeader">BBC新闻搜索结果</string>
 
 </resources>
