@@ -1,5 +1,11 @@
 package com.example.final_project;
 
+/**
+ * Store the news information includes title,url and section name and id,
+ * this class only has simple getter and setter methods.
+ * @author Qi Wang
+ * @version April 01, 2020
+ */
 public class GuardianNews {
     private String title;
     private String url;

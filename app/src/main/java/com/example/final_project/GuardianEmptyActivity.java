@@ -4,9 +4,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.final_project.Guardian_details_fragment;
-import com.example.final_project.R;
-
+/**
+ * for the phone, the fragment using the same code that you used in the tablet.
+ */
 public class GuardianEmptyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
