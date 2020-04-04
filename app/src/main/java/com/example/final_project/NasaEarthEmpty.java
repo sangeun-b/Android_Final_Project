@@ -4,6 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+/**
+ * @author Sangeun Baek
+ * This activity shows the detail of the image using the fragment,
+ * when the device is the phone.
+ */
+
 public class NasaEarthEmpty extends AppCompatActivity {
 
     /**
@@ -11,7 +17,7 @@ public class NasaEarthEmpty extends AppCompatActivity {
      * get the data that was passed from Fragement.
      * add detail fragment and pass it a bundle for information.
      * Add the fragment in FrameLayout.
-     * @param savedInstanceState
+     * @param savedInstanceState Bundle object containing the activity's previously saved state.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

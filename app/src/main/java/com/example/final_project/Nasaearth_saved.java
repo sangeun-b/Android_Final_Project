@@ -32,6 +32,8 @@ import static com.example.final_project.NasaEarthMyOpener.TABLE_NAME;
 /**
  * @author Sangeun Baek
  * This activity for viewing favorite list.
+ * User can delete the saved item,
+ * and can see the detail information of the item.
  */
 public class Nasaearth_saved extends AppCompatActivity {
     private NasaEarthAdapter myAdapter = new NasaEarthAdapter();
@@ -47,7 +49,7 @@ public class Nasaearth_saved extends AppCompatActivity {
 
     /**
      * get the data from the database into the list view.
-     * @param savedInstanceState
+     * @param savedInstanceState Bundle object containing the activity's previously saved state.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +115,10 @@ public class Nasaearth_saved extends AppCompatActivity {
 
     }
 
+    /**
+     * create the subclass extended BaseAdapter.
+     */
+
     public class NasaEarthAdapter extends BaseAdapter {
         /**
          * number of element in the array
@@ -124,8 +130,8 @@ public class Nasaearth_saved extends AppCompatActivity {
 
         /**
          * get Item of the position
-         * @param position
-         * @return the item of the position
+         * @param position row position
+         * @return the item of the row position
          */
         public NasaEarth getItem(int position) {
             return earthArray.get(position);
@@ -134,10 +140,10 @@ public class Nasaearth_saved extends AppCompatActivity {
 
         /**
          * get view
-         * @param position the postion of view
+         * @param position the position of the item
          * @param convertView
          * @param parent
-         * @return
+         * @return view of the item
          */
 
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -171,7 +177,7 @@ public class Nasaearth_saved extends AppCompatActivity {
 
         /**
          * get id of the position.
-         * @param position
+         * @param position row postion
          * @return the id of the position.
          */
 

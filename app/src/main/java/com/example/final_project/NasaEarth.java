@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+/**
+ * @author Sangeun Baek
+ * getter for Nasa Image - id, latitude, longitude, date
+ */
 
 public class NasaEarth extends AppCompatActivity {
     private long id;

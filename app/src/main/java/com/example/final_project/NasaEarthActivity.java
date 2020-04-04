@@ -14,6 +14,7 @@ import android.widget.Toast;
 /**
  * @author Sangeun Baek
  * This activity allows users to search for the earth's image using the latitude and longitude that the users entered.
+ * Save the latitude and longtitude to the SharedPreference.
  */
 
 public class NasaEarthActivity extends AppCompatActivity {
@@ -26,8 +27,13 @@ public class NasaEarthActivity extends AppCompatActivity {
     ImageView back;
 
     /**
-     * Loads the nasaearth layout
-     * @param savedInstanceState
+     * Loads the nasaearth layout.
+     * User enter the latitude and longitude to search the earth image,
+     * if user doesn't enter the value of lat and lon, can't search the image,
+     * ask user to enter the value of lat and lon.
+     * if user click the saved list, it goes to the saved list.
+     * if user click the back icon, it go back to the previous page which is main page.
+     * @param savedInstanceState Bundle object containing the activity's previously saved state.
      */
 
     @Override

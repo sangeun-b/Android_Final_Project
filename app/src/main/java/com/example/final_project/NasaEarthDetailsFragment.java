@@ -50,11 +50,11 @@ public class NasaEarthDetailsFragment extends Fragment {
     }
 
     /**
-     * Inflate the layout for this fragment
-     * @param inflater
+     * Inflate the layout for the fragment which shows the detail information of earth image.
+     * @param inflater inflate the layout
      * @param container
-     * @param savedInstanceState
-     * @return View
+     * @param savedInstanceState Bundle object containing the activity's previously saved state.
+     * @return view
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

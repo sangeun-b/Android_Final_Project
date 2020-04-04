@@ -11,7 +11,7 @@ import java.time.DateTimeException;
 
 /**
  * @author Sangeun Baek
- * This activity for creating the SQLite datbase.
+ * This activity is for creating the SQLite datbase.
  */
 
 public class NasaEarthMyOpener extends SQLiteOpenHelper {
@@ -28,8 +28,8 @@ public class NasaEarthMyOpener extends SQLiteOpenHelper {
     public static final String COL_DATE = "Date";
 
     /**
-     * default construction
-     * @param ctx
+     * constructor for SQLiteOpenHelper
+     * @param ctx where the database is opened.
      */
     public NasaEarthMyOpener (Context ctx){super(ctx, DATABASE_NAME, null, VERSION_NUM);}
 

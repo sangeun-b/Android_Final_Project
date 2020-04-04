@@ -50,7 +50,7 @@ public class Nasaearth_result extends AppCompatActivity {
     /**
      * setContentView loads objects onto the screen.
      * save the data into the database.
-     * @param savedInstanceState
+     * @param savedInstanceState Bundle object containing the activity's previously saved state.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,9 +102,8 @@ public class Nasaearth_result extends AppCompatActivity {
          * connect to the server
          * convert string to JSON
          * get the string associated with deserve name
-         *
          * @param args
-         * @return
+         * @return arrayList
          */
         public String doInBackground(String... args) {
                 try {
@@ -171,8 +170,8 @@ public class Nasaearth_result extends AppCompatActivity {
             }
 
         /**
-         *
-         * @param fromDoInBackground
+         * invoked on the UI thread after the background computation finishes.
+         * @param fromDoInBackground the result of the background computation.
          */
         public void onPostExecute(String fromDoInBackground) {
                 super.onPostExecute(fromDoInBackground);
