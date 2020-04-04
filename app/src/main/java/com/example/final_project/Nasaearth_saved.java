@@ -29,6 +29,12 @@ import java.util.ArrayList;
 import static com.example.final_project.NasaEarthMyOpener.COL_ID;
 import static com.example.final_project.NasaEarthMyOpener.TABLE_NAME;
 
+/**
+ * @author Sangeun Baek
+ * This activity for viewing favorite list.
+ * User can delete the saved item,
+ * and can see the detail information of the item.
+ */
 public class Nasaearth_saved extends AppCompatActivity {
     private NasaEarthAdapter myAdapter = new NasaEarthAdapter();
     static ArrayList<NasaEarth> earthArray = new ArrayList<>();
@@ -41,7 +47,10 @@ public class Nasaearth_saved extends AppCompatActivity {
     public static final String EARTH_LONGITUDE = "Longitude";
     NasaEarthDetailsFragment earthFragment;
 
-
+    /**
+     * get the data from the database into the list view.
+     * @param savedInstanceState Bundle object containing the activity's previously saved state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,16 +115,36 @@ public class Nasaearth_saved extends AppCompatActivity {
 
     }
 
-    public class NasaEarthAdapter extends BaseAdapter {
+    /**
+     * create the subclass extended BaseAdapter.
+     */
 
+    public class NasaEarthAdapter extends BaseAdapter {
+        /**
+         * number of element in the array
+         * @return current array size
+         */
         public int getCount() {
             return earthArray.size();
         }
 
+        /**
+         * get Item of the position
+         * @param position row position
+         * @return the item of the row position
+         */
         public NasaEarth getItem(int position) {
             return earthArray.get(position);
 
         }
+
+        /**
+         * get view
+         * @param position the position of the item
+         * @param convertView
+         * @param parent
+         * @return view of the item
+         */
 
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
@@ -146,12 +175,22 @@ public class Nasaearth_saved extends AppCompatActivity {
 
         }
 
+        /**
+         * get id of the position.
+         * @param position row postion
+         * @return the id of the position.
+         */
+
         public long getItemId(int position) {
             return getItem(position).getId();
 
         }
 
     }
+
+    /**
+     * retrieve the data form database.
+     */
     public void loadDataFromDatabase(){
         earthArray.clear();
         NasaEarthMyOpener earthDB = new NasaEarthMyOpener(this);

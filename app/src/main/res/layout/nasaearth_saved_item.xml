@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/earthsavedimage"
         android:text="lat"
+        android:layout_marginTop="5dp"
         />
 
     <TextView
