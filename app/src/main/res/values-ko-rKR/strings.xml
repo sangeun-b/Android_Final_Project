@@ -20,9 +20,7 @@
     <string name="earthcklon">경도를 입력해주세요</string>
     <string name="earthsavedtitle">저장 목록</string>
     <string name="earthhide">숨기기</string>
-
-
-    <string name="BBC">비비씨 뉴스</string>
+    <string name="BBC">BBC 뉴스</string>
     <string name="Guardian">가디언 뉴스</string>
     <string name="NasaEarth">나사 지구 이미지</string>
     <string name="NasaDay">나사 하루 이미지</string>

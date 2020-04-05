@@ -20,11 +20,28 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * This class extends AppCompatActivity. It is used to displays all the favourite news titles in the page.
+ * Long click on the news titles will prompt an AlertDialog with the option to remove the news from favourite list.
+ * By clicking yes, it will set the COL_ISFAVOURITE to false, remove from ArrayList and refresh the listview.
+ * Short click on the news title will go to the details page. It also allows user to go back to previous page.
+ * @author Xin Guo
+ * @version 1.0
+ */
 public class BBCFavouriteList extends AppCompatActivity {
-
+    /**
+     * Instantiate a new BBCItem ArrayList to store BBC news.
+     */
     ArrayList<BBCItem> itemList = new ArrayList<>();
+    /**
+     * Represents a MyListAdapter object.
+     */
     BBCFavouriteList.MyListAdapter adapter;
-
+    /**
+     * This method displays all the favourite news titles in the page. It calls loadDataFromDatabase() method to search for favourite news.
+     * If something found, call setAdapter() to populate the listview with news titles.
+     * @param savedInstanceState a reference to a Bundle object that is passed into the onCreate method of every Android Activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +63,7 @@ public class BBCFavouriteList extends AppCompatActivity {
             BBCItem selectedItem = itemList.get(position);
 
             goToDetails.putExtra("POSITION", position);
-            //goToDetails.putExtra("ID", selectedItem.getId());
+            goToDetails.putExtra("ID", selectedItem.getId());
             goToDetails.putExtra("TITLE", selectedItem.getTitle());
             goToDetails.putExtra("DESCRIPTION", selectedItem.getDescription());
             goToDetails.putExtra("LINK", selectedItem.getLink());
@@ -76,7 +93,10 @@ public class BBCFavouriteList extends AppCompatActivity {
         });
 
     }
-
+    /**
+     * This class connects to the database and get all the columns where COL_ISFAVOURITE is true, represents the news being added to the favourite list.
+     * With all the column information, it instantiate new BBCItem and add to the ArrayList.
+     */
     private void loadDataFromDatabase()
     {
         itemList.clear();
@@ -114,20 +134,50 @@ public class BBCFavouriteList extends AppCompatActivity {
 
         //At this point, the contactsList array has loaded every row from the cursor.
     }
-
+    /**
+     * To populate the ListView with data, call setAdapter() on the listview. ListAdapter is an Interface that you must implement by writing these 4 public functions:
+     * int getCount() – returns the number of items
+     * Object getItem(int position) – returns what to show at row position
+     * View getView( ) – creates a View object to go in a row of the ListView
+     * long getItemId(int i) – returns the database id of the item at position i
+     *
+     * @author Xin Guo
+     * @version 1.0
+     */
     private class MyListAdapter extends BaseAdapter {
+        /**
+         * How many items are in the data set represented by this Adapter.
+         * @return Count of items.
+         */
         public int getCount() {return itemList.size();}
 
+        /**
+         * Get the data item associated with the specified position in the data set.
+         * @param position Position of the item whose data we want within the adapter's data set.
+         * @return The data at the specified position.
+         */
         @Override
         public Object getItem(int position) {
             return itemList.get(position);
         }
 
+        /**
+         * Get the row id associated with the specified position in the list.
+         * @param position The position of the item within the adapter's data set whose row id we want.
+         * @return The id of the item at the specified position.
+         */
         @Override
         public long getItemId(int position) {
             return ((BBCItem)getItem(position)).getId();
         }
 
+        /**
+         * Get a View that displays the data at the specified position in the data set.
+         * @param position The position of the item within the adapter's data set of the item whose view we want.
+         * @param old The old view to reuse, if possible.
+         * @param parent The parent that this view will eventually be attached to.
+         * @return A View corresponding to the data at the specified position.
+         */
         @Override
         public View getView(int position, View old, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
@@ -139,12 +189,17 @@ public class BBCFavouriteList extends AppCompatActivity {
             return newView;
         }
     }
-
+    /**
+     * This method is used to change the value of column COL_ISFAVOURITE in the database of BBCItem.
+     * When adding a BBC news into favourite list, call this method and pass "true" as the second parameter.
+     * When removing a BBC news from favourite list, call this method and pass "false" as the second parameter.
+     * @param c the BBC news you want to modify
+     * @param s "true" when adding a BBC news into favourite list or "false" when removing a BBC news from favourite list
+     */
     protected void modifyItem(BBCItem c, String s)
     {
         ContentValues dataToInsert = new ContentValues();
         dataToInsert.put(BBCMyOpener.COL_ISFAVOURITE, s);
         BBCActivity.db.update(BBCMyOpener.TABLE_NAME, dataToInsert,BBCMyOpener.COL_ID + "= ?", new String[] {Long.toString(c.getId())});
     }
-
 }

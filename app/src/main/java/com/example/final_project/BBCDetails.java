@@ -28,10 +28,26 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
+/**
+ * This class extends AppCompatActivity. When user clicks on a BBC news title, it is used to populate a new page with BBC news detailed information,
+ * including title, description, publish date and a link to the news website.
+ * @author Xin Guo
+ * @version 1.0
+ */
 public class BBCDetails extends AppCompatActivity {
-
-    SharedPreferences prefs = null;
-
+    /**
+     * Represents a SharedPreferences viriable and initialize to null.
+     */
+    //SharedPreferences prefs = null;
+    /**
+     * Represents BBCItem id in long.
+     */
+    Long id;
+    /**
+     * This method gets the intent from main page and extract all the detailed information, including title, description, publish date and a link to the news website.
+     * It allows the user to add the news into favourite list or remove from favourite list.
+     * @param savedInstanceState a reference to a Bundle object that is passed into the onCreate method of every Android Activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +80,11 @@ public class BBCDetails extends AppCompatActivity {
             finish();
         });
 
-        prefs = getSharedPreferences("FavouriteNewsName", Context.MODE_PRIVATE);
-        prefs.getString("ReserveName", null);
+        //prefs = getSharedPreferences("FavouriteNewsName", Context.MODE_PRIVATE);
+        //prefs.getString("ReserveName", null);
 
         Button BBCAddToFavourite = findViewById(R.id.BBCAddToFavourite);
-        //Long id = fromBBC.getLongExtra("ID", 0);
+        id = fromBBC.getLongExtra("ID", 0);
         String isFavourite = fromBBC.getStringExtra("ISFAVOURITE");
         int position = fromBBC.getIntExtra("POSITION", 0);
 
@@ -85,25 +101,33 @@ public class BBCDetails extends AppCompatActivity {
             } else {
                 modifyItem(selectedItem, "true");
                 selectedItem.setIsFavourite("true");
-                saveSharedPrefs(title);
+                //saveSharedPrefs(title);
                 BBCAddToFavourite.setText("REMOVE FROM FAVOURITE LIST");
                 Snackbar.make(BBCAddToFavourite, "Added to Favourite List", Snackbar.LENGTH_LONG).show();
             }
         });
     }
-
+    /**
+     * This method is used to change the value of column COL_ISFAVOURITE in the database of BBCItem.
+     * When adding a BBC news into favourite list, call this method and pass "true" as the second parameter.
+     * When removing a BBC news from favourite list, call this method and pass "false" as the second parameter.
+     * @param c the BBC news you want to modify
+     * @param s "true" when adding a BBC news into favourite list or "false" when removing a BBC news from favourite list
+     */
     protected void modifyItem(BBCItem c, String s)
     {
         ContentValues dataToInsert = new ContentValues();
         dataToInsert.put(BBCMyOpener.COL_ISFAVOURITE, s);
-        BBCActivity.db.update(BBCMyOpener.TABLE_NAME, dataToInsert,BBCMyOpener.COL_ID + "= ?", new String[] {Long.toString(c.getId())});
+        BBCActivity.db.update(BBCMyOpener.TABLE_NAME, dataToInsert,BBCMyOpener.COL_ID + "= ?", new String[] {Long.toString(id)});
     }
-
-    private void saveSharedPrefs(String stringToSave)
+    /**
+     * This method is used to save SharedPreference on disk.
+     * @param stringToSave the String value to save into SharedPreference
+     */
+    /*private void saveSharedPrefs(String stringToSave)
     {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("ReserveName", stringToSave);
         editor.commit();
-    }
-
+    }*/
 }

@@ -6,9 +6,8 @@
     <string name="datepick">你選擇的日期是</string>
     <string name="dateTextView">日期是</string>
     <string name="NasaImageoftheDay">本日的影像</string>
-    <string name="BBCClose">關閉</string>
     <string name="app_name">期末作業</string>
-    <string name="BBC">BBC 新聞</string>
+    <string name="BBC">BBC新聞</string>
     <string name="Guardian">衛報</string>
     <string name="NasaEarth">NASA 地球</string>
     <string name="NasaDay">NASA 日期</string>
@@ -27,14 +26,11 @@
     <string name="NasaImageDatabaseRow">數據庫的序號是</string>
     <string name="NasaImageMyFavorite">我的最愛</string>
     <string name="NasaDayFragmentButton">隱藏</string>
-    <string name="BBCNewsReader">BBC 新聞</string>
-    <string name="BBCFavouriteButton">最愛</string>
-    <string name="BBCSearchText">輸入關鍵字</string>
-    <string name="BBCSearchButton">搜尋</string>
-    <string name="BBCFavouriteHeader">BBC 我的最愛</string>
-    <string name="BBCNewsDetail">BBC 完整新聞</string>
-    <string name="BBCAddToFavourite">加到我的最愛</string>
-    <string name="BBCBack">上一頁</string>
+    <string name="BBCNewsReader">BBC新聞</string>
+    <string name="BBCSearchText">搜索BBC新聞</string>
+    <string name="BBCSearchButton">搜索</string>
+    <string name="BBCFavouriteHeader">BBC新聞收藏</string>
+    <string name="BBCBack">返回</string>
     <string name="saveImageButton">儲存</string>
     <string name="earthtitle">NASA 地球</string>
     <string name="earthlon">經度</string>
@@ -69,6 +65,11 @@
     <string name="go_to_guardian">前往衛報新聞搜尋</string>
     <string name="go_to_nasa_day">前往NASA本日最佳影像</string>
     <string name="go_to_nasa_earth">前往NASA 地球影像</string>
+    <string name="BBCBack1">返回</string>
+    <string name="BBCBack2">返回</string>
+    <string name="BBCAddToFavourite">添加到BBC新聞收藏</string>
+    <string name="BBCNewsDetails">BBC新聞詳情</string>
+    <string name="BBCSearchHeader">BBC新聞搜索結果</string>
 
 
 </resources>
