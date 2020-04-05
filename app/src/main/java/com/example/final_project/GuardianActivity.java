@@ -3,36 +3,41 @@ package com.example.final_project;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-
-
 import com.google.android.material.snackbar.Snackbar;
 
 
+/**
+ * The basic functions of this application, let users enter their search keywords, and
+ * save their key words for use the next time the application is launched.
+ * Users can go to the search results list page or the favourite list page,
+ * @author Qi Wang
+ * @version April 01, 2020
+ */
 public class GuardianActivity extends AppCompatActivity {
     SharedPreferences prefs = null;
     static String searchInput;
+
+    /**
+     * Two functional buttons, for the search button, if there is no search key words, it will give an alert,
+     * otherwise jump to the search results list;
+     * the favourite button jump to the favourite list page
+     * @param savedInstanceState-a Bundle containing the activity's previously frozen state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guardian);
-        //EditText searchText=findViewById(R.id.search_news);
-        //searchInput =searchText.getText().toString();
+        EditText searchText=findViewById(R.id.search_news);
+
 
         prefs = getSharedPreferences("Guardian", Context.MODE_PRIVATE);
-        String saveSearch = prefs.getString("searchNews", "");
-        EditText searchText=findViewById(R.id.search_news);
+        String saveSearch= prefs.getString("searchNews", "");
         searchText.setText(saveSearch);
-       //SharedPreferences.Editor editor = prefs.edit();
-       //editor.putString("Guardian", searchText.getText().toString());
-      // editor.commit();
-
 
 
         Button search = findViewById(R.id.search_button);
@@ -43,13 +48,12 @@ public class GuardianActivity extends AppCompatActivity {
                     Snackbar.make(search,"Please enter the key word!",Snackbar.LENGTH_LONG).show();
                 }
                 else{
-                    EditText editText = findViewById(R.id.search_news);
-                    goToSearch.putExtra("Guardian", editText.getText().toString());
-
-                   // goToSearch.putExtra("Guardian", searchInput);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("searchNews", searchInput);
+                    editor.commit();
                     startActivity(goToSearch);
-
                     }});
+
 
 
         ImageView favourite = findViewById(R.id.favouriteList);
@@ -58,20 +62,6 @@ public class GuardianActivity extends AppCompatActivity {
 
 
         }
-
-        protected void onPause() {
-            super.onPause();
-
-            EditText typeField = findViewById(R.id.search_news);
-            String searchNews = typeField.getText().toString();
-            savedSharedPrefs(searchNews);
-        }
-
-    private void savedSharedPrefs(String stringToSave){
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("Guardian", stringToSave);
-        editor.commit();
-    }
 
 
     }

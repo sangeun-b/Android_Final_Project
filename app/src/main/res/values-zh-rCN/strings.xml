@@ -12,7 +12,6 @@
     <string name="BBCAddToFavourite">添加到BBC新闻收藏</string>
     <string name="BBC">BBC新闻</string>
     <string name="BBCNewsDetails">BBC新闻详情</string>
-
     <string name="guardian_favourite_list">喜爱的新闻列表</string>
     <string name="guardian_title">标题：</string>
     <string name="guardian_url">网址：</string>
@@ -23,5 +22,5 @@
     <string name="BBCBack2">返回</string>
     <string name="author4">郭欣</string>
     <string name="BBCSearchHeader">BBC新闻搜索结果</string>
-
+  
 </resources>

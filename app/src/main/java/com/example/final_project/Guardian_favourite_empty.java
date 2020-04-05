@@ -4,6 +4,10 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * for the phone, the fragment using the same code that you used in the tablet.
+ *
+ */
 public class Guardian_favourite_empty extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {

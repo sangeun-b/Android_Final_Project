@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:id="@+id/earthImage"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/earthlat"
+        android:text="@string/earthlat"
+        android:textSize="20dp"
+        android:layout_below="@+id/earthImage"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/earthlon"
+        android:text="@string/earthlon"
+        android:textSize="20dp"
+        android:layout_below="@+id/earthlat"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/earthdate"
+        android:text="@string/earthdate"
+        android:textSize="20dp"
+        android:layout_below="@+id/earthlon"
+        />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/earthre"
+        android:layout_below="@+id/earthdate"
+        android:id="@+id/reButton"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#C2E9F8"
+        android:textColor="#494646"
+
+        />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/earthdate"
+        android:layout_toRightOf="@+id/reButton"
+        android:layout_marginLeft="25dp"
+        android:text="@string/earthsave"
+        android:layout_marginTop="10dp"
+        android:background="#C2E9F8"
+        android:textColor="#494646"
+        />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/earthprogress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

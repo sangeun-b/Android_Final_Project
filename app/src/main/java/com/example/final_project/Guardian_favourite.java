@@ -18,6 +18,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * User can save their favourite news to the favourite list as well as database
+ * @author Qi Wang
+ * @version April 01, 2020
+ */
 public class Guardian_favourite extends AppCompatActivity {
     private ArrayList<GuardianNews> list=new ArrayList<>();
     private MyListAdapter myAdapter;
@@ -29,7 +34,10 @@ public class Guardian_favourite extends AppCompatActivity {
     public static final String ID= "ID";
 
 
-
+    /**
+     * Call this method when the activity is starting.
+     * @param savedInstanceState-a Bundle containing the activity's previously frozen state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +50,9 @@ public class Guardian_favourite extends AppCompatActivity {
         myAdapter = new MyListAdapter();
         guardianList.setAdapter(myAdapter);
 
-
+        /**
+         * delete one news from the favourite list and database
+         */
         guardianList.setOnItemLongClickListener((parent, view, position, id) -> {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Do you want to delete this?")
@@ -82,23 +92,45 @@ public class Guardian_favourite extends AppCompatActivity {
             nextActivity.putExtras(dataToPass); //send data to next activity
             startActivity(nextActivity); //make the transition
 
-
-
         });
     }
-        private class MyListAdapter extends BaseAdapter {
+
+    /**
+     * a subclass Extended BaseAdapter that is the bridge between a ListView and the data that backs the list
+     * must implement by writing these 4 public functions
+     */
+    private class MyListAdapter extends BaseAdapter {
+        /**
+         * @return the number of items to display in the list
+         */
             public int getCount() {
                 return list.size();
             }
+
+        /**
+         * @param position-the row position
+         * @return what to show at row position
+         */
 
             public GuardianNews getItem(int position) {
                 return list.get(position);
             }
 
+        /**
+         * @param position-row position
+         * @return the database ID of the element at the given index of position
+         */
             public long getItemId(int position) {
                 return getItem(position).getId();
             }
 
+        /**
+         *this specifies how each row looks.
+         * @param position-The position of the item within the adapter's data set of the item whose view we want.
+         * @param convertView-The old view to reuse, if possible.
+         * @param parent-The parent that this view will eventually be attached to
+         * @return A View corresponding to the data at the specified position.
+         */
             public View getView(int position, View convertView, ViewGroup parent) {
                 View newView = convertView;
                 GuardianNews news = getItem(position);
@@ -113,6 +145,9 @@ public class Guardian_favourite extends AppCompatActivity {
         }
 
 
+    /**
+     *get data from database
+     */
     public void loadDataFromDatabase(){
         //get a database connection:
         GuardianMyOpener guardianDB= new GuardianMyOpener(this);
@@ -136,11 +171,9 @@ public class Guardian_favourite extends AppCompatActivity {
             long id = results.getLong(idColIndex);
 
 
-            //add the new Message to the array list:
-            //Message m=new Message(message,send,id);
+            //add the new news to the array list:
             list.add((new GuardianNews(title,url,section,id)));
         }
-
 
 
     }
