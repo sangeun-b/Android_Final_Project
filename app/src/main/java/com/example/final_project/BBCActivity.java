@@ -108,7 +108,7 @@ public class BBCActivity extends AppCompatActivity {
         String search = prefs.getString("ReserveName", null);
         BBCSearchText.setText(search);
 
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarBBC);
         progressBar.setVisibility(View.VISIBLE);
 
         MyHTTPRequest req = new MyHTTPRequest();
@@ -224,9 +224,9 @@ public class BBCActivity extends AppCompatActivity {
                 xpp.nextTag();
 
                     xpp.require(XmlPullParser.START_TAG, null, "rss");
-                    publishProgress(25);
+                    publishProgress(50);
                     while (xpp.next() != XmlPullParser.END_TAG) {
-                        publishProgress(50);
+                        //publishProgress(50);
                         if (xpp.getEventType() != XmlPullParser.START_TAG) {
                             continue;
                         }
@@ -251,9 +251,9 @@ public class BBCActivity extends AppCompatActivity {
         //Type 2
         public void onProgressUpdate(Integer ... args)
         {
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarBBC);
             progressBar.setVisibility(View.VISIBLE);
-            setProgress(args[0]);
+            progressBar.setProgress(args[0]);
         }
         /**
          * When doInBackground has finished, this method can do the final GUI update.
@@ -267,7 +267,7 @@ public class BBCActivity extends AppCompatActivity {
             ListView BBCTitle = findViewById(R.id.BBCTitle);
             BBCTitle.setAdapter(new MyListAdapter());
 
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBarBBC);
             progressBar.setVisibility(View.INVISIBLE);
 
         }

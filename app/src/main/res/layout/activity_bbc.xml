@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/BBCNewsReader"
-        android:layout_above="@+id/progressBar"
+        android:layout_above="@+id/progressBarBBC"
         android:layout_marginLeft="10pt"
         android:layout_marginRight="10pt" >
         <ListView
@@ -47,7 +47,7 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarBBC"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
