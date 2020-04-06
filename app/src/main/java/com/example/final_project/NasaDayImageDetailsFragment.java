@@ -21,6 +21,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+/**
+ * The NasaDayImageDetailsFragemnt class is a fragment which loads detailed information on either tablet or phone
+ * such as image, date, title, url and hdurl if the user click on it
+ *
+ * @author Hsing-I Wang
+ * @version 1.0
+ */
+
 public class NasaDayImageDetailsFragment extends Fragment {
 
     private boolean isTablet;

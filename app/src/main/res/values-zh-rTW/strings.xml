@@ -70,6 +70,12 @@
     <string name="BBCAddToFavourite">添加到BBC新聞收藏</string>
     <string name="BBCNewsDetails">BBC新聞詳情</string>
     <string name="BBCSearchHeader">BBC新聞搜索結果</string>
+    <string name="guardian_favourite_list">我的最愛</string>
+    <string name="guardian_details">新聞詳細訊息</string>
+    <string name="guardian_url">網址:</string>
+    <string name="guardian_section">部分名字</string>
+    <string name="hide">隱藏</string>
+    <string name="guardian_save">保存</string>
 
 
 </resources>

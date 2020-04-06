@@ -22,7 +22,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-
+/**
+ * The nasadayactivity allows the user to pick a date and display the selected date on the application.
+ * @author Hsing-I Wang
+ * @version 1.0
+ */
 public class NasaDayActivity extends FragmentActivity {
 
     private DatePickerFragment datePickerFragment;

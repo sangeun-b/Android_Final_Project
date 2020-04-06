@@ -26,6 +26,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * The NasaDayImageMyFravoritelist is a class that display all the saved images and their related information on the listview from the database.
+ * It has the delete function.
+ *
+ * @author Hsing-I Wang
+ * @version 1.0
+ */
+
 public class NasaDayImageMyfavoriteList extends AppCompatActivity {
 
     private NasaDayImageMyListAdapter nasaDayMyAdapter= new NasaDayImageMyListAdapter();

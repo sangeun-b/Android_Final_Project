@@ -36,7 +36,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-
+/**
+ * The NasaDayImage class connects to the server to fetch the image, date, title, url and hdurl based on what the user pick.
+ * Next, store the above information into the database if the user click save button.
+ * @author Hsing-I Wang
+ * @version 1.0
+ */
 public class NasaDayImage extends AppCompatActivity {
 
     ProgressBar mProgressBar;
@@ -88,6 +93,9 @@ public class NasaDayImage extends AppCompatActivity {
 
     }
 
+    /**
+     * inner class NasaImage is to query data from the Nasa website and update the result on the text field
+     */
     class NasaImage extends AsyncTask<String, Integer, String> {
 
         String date=null, url=null, hdUrl=null, title=null, ret=null;
