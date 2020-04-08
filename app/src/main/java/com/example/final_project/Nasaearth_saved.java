@@ -12,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 
 
 import com.google.android.material.snackbar.Snackbar;
@@ -92,20 +94,26 @@ public class Nasaearth_saved extends AppCompatActivity {
         });
 
         savedList.setOnItemLongClickListener((parent, view, position, id) -> {
+            FrameLayout frameLayout = findViewById(R.id.earthFragment);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(getString(R.string.earthdelete))
-                    //.setMessage(getString(R.string.select)+(position+1) + "\n"+getString(R.string.db)+id)
                     .setPositiveButton(getString(R.string.earthyes), (click,arg)-> {
                         db.delete(NasaEarthMyOpener.TABLE_NAME, NasaEarthMyOpener.COL_ID + "=?", new String[]{Long.toString(id)});
+
+                       if(frameLayout != null) {
+                           for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                               if (fragment.getArguments().getLong(EARTH_ID) == Long.valueOf(myAdapter.getItemId(position))) {
+                                   getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                                   break;
+                               }
+                           }
+                       }
                         earthArray.remove(position);
                         myAdapter.notifyDataSetChanged();
-                        if(isTablet) {
-                            getSupportFragmentManager().beginTransaction().remove(earthFragment).commit();
-                        }
-
-
 
                     })
+
+
                     .setNegativeButton(getString(R.string.earthno), (click,arg) -> {
 
                     }).create().show();
