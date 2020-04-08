@@ -27,6 +27,7 @@ import java.util.Locale;
  * @author Hsing-I Wang
  * @version 1.0
  */
+
 public class NasaDayActivity extends FragmentActivity {
 
     private DatePickerFragment datePickerFragment;

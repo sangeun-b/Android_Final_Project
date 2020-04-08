@@ -178,7 +178,7 @@ public class BBCActivity extends AppCompatActivity {
 
                 //open the connection
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                publishProgress(10);
+                publishProgress(25);
                 //wait for data:
                 InputStream response = urlConnection.getInputStream();
 

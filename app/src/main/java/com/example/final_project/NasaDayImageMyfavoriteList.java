@@ -42,7 +42,7 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
     public static final String ITEM_TITLE= "title";
     public static final String ITEM_URL= "url";
     public static final String ITEM_HDURL= "hdurl";
-    public static final String ITEM_ID= "id";
+    public static final String ITEM_ID= "_id";
     Bitmap image= null;
     SQLiteDatabase db;
     NasaDayImageDetailsFragment dFragment;
@@ -97,9 +97,8 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
             alert.setTitle(getString(R.string.NasaImageAlertDelete))
                     .setMessage(getString(R.string.NasaImageSelectRow)+ " " + pos + "\n"+ getString(R.string.NasaImageDatabaseRow) + " " + id)
                     .setPositiveButton("Yes", (click, arg) -> {
-                        list.remove(pos);
+                        //nasaDayMyAdapter.notifyDataSetChanged();
                         db.delete(NasaDayImageMyOpener.TABLE_NAME, NasaDayImageMyOpener.COL_ID + "= ?", new String[] {Long.toString(id)});
-                        nasaDayMyAdapter.notifyDataSetChanged();
                         if(frameLayout != null){
                             for(Fragment fragment : getSupportFragmentManager().getFragments()){
                                 if(fragment.getArguments().getLong(ITEM_ID) == Long.valueOf(nasaDayMyAdapter.getItemId(pos))) {
@@ -108,6 +107,8 @@ public class NasaDayImageMyfavoriteList extends AppCompatActivity {
                                 }
                             }
                         }
+                        list.remove(pos);
+                        nasaDayMyAdapter.notifyDataSetChanged();
                     })
                     .setNegativeButton("No", (click, arg) -> { })
                     .show();
