@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -81,11 +82,17 @@ public class Nasaearth_result extends AppCompatActivity {
         saved.setOnClickListener(click->{
                 String inDate = earthDateTextView.getText().toString().substring(6);
                 db=earthDB.getWritableDatabase();
-                newRowValues.put(NasaEarthMyOpener.COL_LATITUDE, NasaEarthActivity.inputLat);
-                newRowValues.put(NasaEarthMyOpener.COL_LONGITUDE, NasaEarthActivity.inputLon );
-                newRowValues.put(NasaEarthMyOpener.COL_DATE, inDate);
-                long id= db.insert(NasaEarthMyOpener.TABLE_NAME,null, newRowValues);
-                Toast.makeText(Nasaearth_result.this, getString(R.string.earthsaved) , Toast.LENGTH_LONG).show();
+                    Cursor c = db.query(false, NasaEarthMyOpener.TABLE_NAME, new String[]{"Latitude", "Longitude"},
+                            "Latitude like ? and Longitude like ?", new String[]{NasaEarthActivity.inputLat, NasaEarthActivity.inputLon}, null, null, null, null);
+                    if (c.getCount()>0) {
+                        Toast.makeText(Nasaearth_result.this, "It's already saved", Toast.LENGTH_LONG).show();
+                    }else {
+                        newRowValues.put(NasaEarthMyOpener.COL_LATITUDE, NasaEarthActivity.inputLat);
+                        newRowValues.put(NasaEarthMyOpener.COL_LONGITUDE, NasaEarthActivity.inputLon);
+                        newRowValues.put(NasaEarthMyOpener.COL_DATE, inDate);
+                        long id = db.insert(NasaEarthMyOpener.TABLE_NAME, null, newRowValues);
+                        Toast.makeText(Nasaearth_result.this, getString(R.string.earthsaved), Toast.LENGTH_LONG).show();
+                    }
 
         });
     }
